@@ -18,10 +18,10 @@
       --bg2:     #0b0b0b;
       --sf:      rgba(255,255,255,0.03);
       --sf2:     rgba(255,255,255,0.06);
-      --bd:      rgba(212,175,55,0.14);
+      --bd:      rgba(232,41,42,0.14);
       --bd2:     rgba(255,255,255,0.07);
-      --gold:    #D4AF37;
-      --gold2:   #F5C842;
+      --gold:    #E8292A;
+      --gold2:   #FF4D4D;
       --white:   #FFFFFF;
       --silver:  #9A9A9A;
       --muted:   #444;
@@ -74,8 +74,8 @@
     }
     .nav-cta:hover { background: var(--gold2); transform: translateY(-1px); animation: none; }
     @keyframes pulse-gold {
-      0%,100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
-      50%      { box-shadow: 0 0 0 8px rgba(212,175,55,0); }
+      0%,100% { box-shadow: 0 0 0 0 rgba(232,41,42,0.4); }
+      50%      { box-shadow: 0 0 0 8px rgba(232,41,42,0); }
     }
     .nav-mobile-btn {
       display: none; background: none; border: none;
@@ -98,7 +98,7 @@
       position: absolute; bottom: -100px; left: 50%;
       transform: translateX(-50%);
       width: 900px; height: 600px;
-      background: radial-gradient(ellipse, rgba(212,175,55,0.08) 0%, transparent 65%);
+      background: radial-gradient(ellipse, rgba(232,41,42,0.08) 0%, transparent 65%);
       pointer-events: none; z-index: 1;
     }
     .hero-content {
@@ -145,7 +145,7 @@
     }
     .btn-gold:hover {
       background: var(--gold2); transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(212,175,55,0.35);
+      box-shadow: 0 12px 36px rgba(232,41,42,0.35);
       animation: none;
     }
     .btn-ghost {
@@ -237,17 +237,17 @@
     .problem-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.3), transparent);
     }
     .problem-card:hover {
-      border-color: rgba(212,175,55,0.2);
+      border-color: rgba(232,41,42,0.2);
       transform: translateY(-5px);
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
     .problem-icon {
       width: 44px; height: 44px; border-radius: 10px;
-      background: rgba(212,175,55,0.07);
-      border: 1px solid rgba(212,175,55,0.15);
+      background: rgba(232,41,42,0.07);
+      border: 1px solid rgba(232,41,42,0.15);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.1rem;
     }
@@ -265,8 +265,8 @@
     #services {
       background: var(--bg);
       background-image:
-        radial-gradient(circle at 15% 50%, rgba(212,175,55,0.03) 0%, transparent 50%),
-        radial-gradient(circle at 85% 50%, rgba(212,175,55,0.02) 0%, transparent 50%);
+        radial-gradient(circle at 15% 50%, rgba(232,41,42,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 85% 50%, rgba(232,41,42,0.02) 0%, transparent 50%);
     }
     .services-grid {
       display: grid;
@@ -286,16 +286,16 @@
     .svc-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.45), transparent);
     }
     .svc-card:hover {
       border-color: var(--bd);
-      box-shadow: 0 0 48px rgba(212,175,55,0.07), 0 24px 64px rgba(0,0,0,0.5);
+      box-shadow: 0 0 48px rgba(232,41,42,0.07), 0 24px 64px rgba(0,0,0,0.5);
       transform: translateY(-6px);
     }
     .svc-card.featured {
-      border-color: rgba(212,175,55,0.28);
-      background: rgba(212,175,55,0.04);
+      border-color: rgba(232,41,42,0.28);
+      background: rgba(232,41,42,0.04);
     }
     .svc-badge {
       position: absolute; top: 1.1rem; right: 1.1rem;
@@ -308,7 +308,7 @@
       width: 44px; height: 44px;
       margin-bottom: 1.25rem;
       color: var(--gold);
-      filter: drop-shadow(0 0 10px rgba(212,175,55,0.35));
+      filter: drop-shadow(0 0 10px rgba(232,41,42,0.35));
     }
     .svc-card h3 {
       font-family: 'Space Grotesk', sans-serif;
@@ -328,7 +328,7 @@
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800; font-size: 2.1rem;
       color: var(--gold); line-height: 1; margin-bottom: 0.2rem;
-      text-shadow: 0 0 24px rgba(212,175,55,0.3);
+      text-shadow: 0 0 24px rgba(232,41,42,0.3);
     }
     .stat-label {
       font-size: 0.62rem; font-weight: 600;
@@ -359,9 +359,9 @@
       opacity: 0; transform: translateY(40px);
     }
     .portfolio-card:hover {
-      border-color: rgba(212,175,55,0.3);
+      border-color: rgba(232,41,42,0.3);
       transform: translateY(-6px);
-      box-shadow: 0 28px 64px rgba(0,0,0,0.55), 0 0 40px rgba(212,175,55,0.06);
+      box-shadow: 0 28px 64px rgba(0,0,0,0.55), 0 0 40px rgba(232,41,42,0.06);
     }
     /* Browser mockup chrome */
     .browser-bar {
@@ -411,7 +411,7 @@
       display: flex; align-items: center; justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 1.1rem;
-      color: rgba(212,175,55,0.4);
+      color: rgba(232,41,42,0.4);
       letter-spacing: 0.1em;
     }
     .ph-1 { background: linear-gradient(135deg, #0f0f0f 0%, #1a1408 50%, #0d0d0d 100%); }
@@ -446,8 +446,8 @@
     .ptag {
       font-size: 0.62rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(212,175,55,0.7);
-      border: 1px solid rgba(212,175,55,0.18);
+      color: rgba(232,41,42,0.7);
+      border: 1px solid rgba(232,41,42,0.18);
       padding: 0.18rem 0.55rem; border-radius: 4px;
     }
     .portfolio-info h3 {
@@ -472,14 +472,14 @@
     .steps-line {
       position: absolute; top: 26px;
       left: calc(12.5% + 26px); right: calc(12.5% + 26px);
-      height: 1px; background: rgba(212,175,55,0.12);
+      height: 1px; background: rgba(232,41,42,0.12);
     }
     .steps-line-fill {
       position: absolute; top: 26px;
       left: calc(12.5% + 26px); right: calc(12.5% + 26px);
       height: 1px; background: var(--gold);
       transform-origin: left; transform: scaleX(0);
-      box-shadow: 0 0 8px rgba(212,175,55,0.5);
+      box-shadow: 0 0 8px rgba(232,41,42,0.5);
     }
     .steps {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -488,14 +488,14 @@
     .step { text-align: center; padding: 0 1rem; opacity: 0; transform: translateY(30px); }
     .step-num {
       width: 52px; height: 52px; border-radius: 50%;
-      background: rgba(212,175,55,0.07);
-      border: 1.5px solid rgba(212,175,55,0.4);
+      background: rgba(232,41,42,0.07);
+      border: 1.5px solid rgba(232,41,42,0.4);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800; font-size: 1rem;
       color: var(--gold); margin: 0 auto 1.5rem;
       position: relative; z-index: 1;
-      box-shadow: 0 0 18px rgba(212,175,55,0.12);
+      box-shadow: 0 0 18px rgba(232,41,42,0.12);
     }
     .step h4 {
       font-family: 'Space Grotesk', sans-serif;
@@ -527,15 +527,15 @@
     }
     .result-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 36px rgba(212,175,55,0.06);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 36px rgba(232,41,42,0.06);
       border-color: var(--bd);
     }
     .result-tag {
       display: inline-block;
       font-size: 0.62rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(212,175,55,0.75);
-      border: 1px solid rgba(212,175,55,0.2);
+      color: rgba(232,41,42,0.75);
+      border: 1px solid rgba(232,41,42,0.2);
       padding: 0.2rem 0.6rem; border-radius: 4px;
       margin-bottom: 1rem;
     }
@@ -553,8 +553,8 @@
       gap: 0.75rem; margin-bottom: 1.25rem;
     }
     .metric {
-      background: rgba(212,175,55,0.04);
-      border: 1px solid rgba(212,175,55,0.1);
+      background: rgba(232,41,42,0.04);
+      border: 1px solid rgba(232,41,42,0.1);
       border-radius: 8px; padding: 0.75rem 1rem;
     }
     .metric-val {
@@ -589,7 +589,7 @@
       opacity: 0; transform: translateY(20px);
     }
     .tech-item:hover {
-      border-color: rgba(212,175,55,0.25);
+      border-color: rgba(232,41,42,0.25);
       transform: translateY(-4px);
     }
     .tech-logo {
@@ -620,11 +620,11 @@
     .price-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.4), transparent);
     }
     .price-card.featured {
-      border-color: rgba(212,175,55,0.35);
-      background: rgba(212,175,55,0.04);
+      border-color: rgba(232,41,42,0.35);
+      background: rgba(232,41,42,0.04);
       transform: scale(1.02);
     }
     .price-card.featured:hover { transform: scale(1.02) translateY(-4px); }
@@ -690,10 +690,10 @@
     .price-btn.solid:hover { background: var(--gold2); transform: translateY(-1px); }
     .price-btn.outline {
       background: transparent;
-      border: 1px solid rgba(212,175,55,0.3);
+      border: 1px solid rgba(232,41,42,0.3);
       color: var(--gold);
     }
-    .price-btn.outline:hover { background: rgba(212,175,55,0.07); border-color: var(--gold); }
+    .price-btn.outline:hover { background: rgba(232,41,42,0.07); border-color: var(--gold); }
 
     /* ── TESTIMONIALS ──────────────────── */
     #testimonials { background: var(--bg2); }
@@ -715,8 +715,8 @@
     .review-author { display: flex; align-items: center; gap: 0.75rem; }
     .review-avatar {
       width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(212,175,55,0.08);
-      border: 1.5px solid rgba(212,175,55,0.2);
+      background: rgba(232,41,42,0.08);
+      border: 1.5px solid rgba(232,41,42,0.2);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700; font-size: 0.8rem; color: var(--gold);
@@ -745,12 +745,12 @@
     .faq-q:hover { color: var(--gold); }
     .faq-icon {
       width: 22px; height: 22px; flex-shrink: 0;
-      border: 1.5px solid rgba(212,175,55,0.4);
+      border: 1.5px solid rgba(232,41,42,0.4);
       border-radius: 50%; color: var(--gold);
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem; transition: transform 0.3s, background 0.3s;
     }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(212,175,55,0.1); }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(232,41,42,0.1); }
     .faq-a {
       max-height: 0; overflow: hidden;
       transition: max-height 0.4s ease, padding 0.3s;
@@ -763,7 +763,7 @@
     /* ── CONTACT ───────────────────────── */
     #contact {
       background: var(--bg2);
-      background-image: radial-gradient(circle at 50% 0%, rgba(212,175,55,0.04) 0%, transparent 50%);
+      background-image: radial-gradient(circle at 50% 0%, rgba(232,41,42,0.04) 0%, transparent 50%);
     }
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -775,8 +775,8 @@
     .contact-point { display: flex; align-items: flex-start; gap: 1rem; }
     .contact-point-icon {
       width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(212,175,55,0.07);
-      border: 1px solid rgba(212,175,55,0.15);
+      background: rgba(232,41,42,0.07);
+      border: 1px solid rgba(232,41,42,0.15);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .contact-point-icon svg { width: 18px; height: 18px; color: var(--gold); }
@@ -792,7 +792,7 @@
     .contact-form::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.45), transparent);
     }
     .contact-form h3 {
       font-family: 'Space Grotesk', sans-serif;
@@ -817,8 +817,8 @@
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: rgba(212,175,55,0.4);
-      box-shadow: 0 0 0 3px rgba(212,175,55,0.06);
+      border-color: rgba(232,41,42,0.4);
+      box-shadow: 0 0 0 3px rgba(232,41,42,0.06);
     }
     .form-group select option { background: #111; }
     .form-group textarea { resize: vertical; min-height: 90px; }
@@ -828,8 +828,8 @@
     .cta-section { padding: 0 6% 110px; }
     .cta-banner {
       max-width: 1160px; margin: 0 auto;
-      background: rgba(212,175,55,0.04);
-      border: 1px solid rgba(212,175,55,0.22);
+      background: rgba(232,41,42,0.04);
+      border: 1px solid rgba(232,41,42,0.22);
       border-radius: 20px; padding: 4rem;
       text-align: center;
       position: relative; overflow: hidden;
@@ -837,7 +837,7 @@
     .cta-banner::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.65), transparent);
+      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.65), transparent);
     }
     .cta-banner h2 { margin-bottom: 0.75rem; }
     .cta-banner .section-sub { margin: 0 auto 2.25rem; }
@@ -1699,7 +1699,7 @@
   // ── Central 3D object: TorusKnot ──────────────────
   const knotGeo = new THREE.TorusKnotGeometry(1.6, 0.45, 180, 18, 2, 3);
   const knotMat = new THREE.MeshBasicMaterial({
-    color: 0xD4AF37,
+    color: 0xE8292A,
     wireframe: true,
     transparent: true,
     opacity: 0.55
@@ -1710,7 +1710,7 @@
 
   // Inner glow ring
   const ringGeo = new THREE.TorusGeometry(2.2, 0.02, 8, 80);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.15 });
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0xE8292A, transparent: true, opacity: 0.15 });
   const ring1 = new THREE.Mesh(ringGeo, ringMat);
   ring1.position.set(2.5, 0, 0);
   ring1.rotation.x = Math.PI / 3;
@@ -1735,7 +1735,7 @@
   const pGeo = new THREE.BufferGeometry();
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
   const pMat = new THREE.PointsMaterial({
-    color: 0xD4AF37, size: 0.04,
+    color: 0xE8292A, size: 0.04,
     transparent: true, opacity: 0.45
   });
   scene.add(new THREE.Points(pGeo, pMat));
@@ -1747,7 +1747,7 @@
     new THREE.TetrahedronGeometry(1, 0),
   ];
   const dimMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.03 });
-  const goldDimMat = new THREE.MeshBasicMaterial({ color: 0xD4AF37, wireframe: true, transparent: true, opacity: 0.08 });
+  const goldDimMat = new THREE.MeshBasicMaterial({ color: 0xE8292A, wireframe: true, transparent: true, opacity: 0.08 });
   const floaters = [];
   for (let i = 0; i < 55; i++) {
     const geo = smallGeos[Math.floor(Math.random() * smallGeos.length)];
