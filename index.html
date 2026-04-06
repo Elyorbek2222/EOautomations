@@ -1,1992 +1,905 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EO — Biznes Avtomatlashtirish va AI Yechimlar | Toshkent</title>
-  <meta name="description" content="O'zbekistonda biznes jarayonlarini avtomatlashtirish. AI chatbot, Telegram bot, CRM integratsiya. Bepul 30 daqiqa diagnostika. 50+ loyiha.">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biznes Avtomatlashtirish Toshkent | EO — AI & Make.com Yechimlari</title>
+  <meta name="description" content="Make.com, n8n va AI yordamida biznes jarayonlaringizni avtomatlashtiring. Telegram botlar, CRM integratsiya, AI chatbotlar. Toshkent, O'zbekiston. 15+ loyiha, 30 kun ichida natija." />
+  <meta name="keywords" content="biznes avtomatlashtirish Toshkent, AI chatbot O'zbekiston, CRM integratsiya, n8n, Make.com, Telegram bot, avtomatlashtirish" />
+  <link rel="canonical" href="https://eoautomations.vercel.app/" />
 
-    :root {
-      --bg:      #070707;
-      --bg2:     #0b0b0b;
-      --sf:      rgba(255,255,255,0.03);
-      --sf2:     rgba(255,255,255,0.06);
-      --bd:      rgba(232,41,42,0.14);
-      --bd2:     rgba(255,255,255,0.07);
-      --gold:    #E8292A;
-      --gold2:   #FF4D4D;
-      --white:   #FFFFFF;
-      --silver:  #9A9A9A;
-      --muted:   #444;
-      --r:       14px;
-    }
+  <!-- Open Graph -->
+  <meta property="og:title" content="Biznes Avtomatlashtirish Toshkent | EO — AI Yechimlari" />
+  <meta property="og:description" content="Takrorlanadigan ishlarni bir marta sozlang — keyin avtomatik ishlaydi. Make.com, n8n, AI chatbotlar. 15+ muvaffaqiyatli loyiha." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eoautomations.vercel.app/" />
+  <meta property="og:locale" content="uz_UZ" />
+  <meta property="og:image" content="https://eoautomations.vercel.app/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="EO Automations" />
 
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Biznes Avtomatlashtirish Toshkent | EO" />
+  <meta name="twitter:description" content="Make.com, n8n va AI yordamida biznesni avtomatlashtiring. 30 kun ichida natija." />
+  <meta name="twitter:image" content="https://eoautomations.vercel.app/assets/og-image.jpg" />
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
-    /* ── NAV ─────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 6%; height: 66px;
-      background: rgba(7,7,7,0.85);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: background 0.3s;
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 1.7rem;
-      color: var(--gold); letter-spacing: -0.05em;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
-    .nav-links a {
-      color: var(--silver); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      background: var(--gold); color: #060606;
-      font-weight: 700; font-size: 0.85rem;
-      padding: 0.55rem 1.3rem; border-radius: 8px;
-      border: none; cursor: pointer; text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      animation: pulse-gold 2.5s infinite;
-    }
-    .nav-cta:hover { background: var(--gold2); transform: translateY(-1px); animation: none; }
-    @keyframes pulse-gold {
-      0%,100% { box-shadow: 0 0 0 0 rgba(232,41,42,0.4); }
-      50%      { box-shadow: 0 0 0 8px rgba(232,41,42,0); }
-    }
-    .nav-mobile-btn {
-      display: none; background: none; border: none;
-      cursor: pointer; flex-direction: column; gap: 5px; padding: 4px;
-    }
-    .nav-mobile-btn span { display:block; width:22px; height:2px; background:var(--white); border-radius:2px; transition: all 0.3s; }
+  <!-- Fonts — non-render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  </noscript>
 
-    /* ── HERO ───────────────────────────── */
-    #hero {
-      position: relative; min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 90px 6% 0;
-      overflow: hidden;
-    }
-    #hero-canvas {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .hero-radial {
-      position: absolute; bottom: -100px; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
-      background: radial-gradient(ellipse, rgba(232,41,42,0.08) 0%, transparent 65%);
-      pointer-events: none; z-index: 1;
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 860px;
-    }
-    .label {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-    }
-    .label::before, .label::after {
-      content: ''; display: block;
-      width: 28px; height: 1px; background: var(--gold); opacity: 0.5;
-    }
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      line-height: 1.06; letter-spacing: -0.04em;
-      color: var(--white); margin-bottom: 1.4rem;
-    }
-    h1 .gold { color: var(--gold); }
-    h1 .dim  { color: rgba(255,255,255,0.45); }
-    .hero-sub {
-      font-size: clamp(1rem, 1.9vw, 1.15rem);
-      color: var(--silver); max-width: 580px;
-      margin: 0 auto 2.75rem; line-height: 1.78;
-    }
-    .hero-actions {
-      display: flex; gap: 1rem;
-      justify-content: center; flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--gold); color: #060606;
-      font-weight: 700; font-size: 1rem;
-      padding: 0.95rem 2.2rem; border-radius: 10px;
-      border: none; cursor: pointer; text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      animation: pulse-gold 2.5s infinite;
-    }
-    .btn-gold:hover {
-      background: var(--gold2); transform: translateY(-2px);
-      box-shadow: 0 12px 36px rgba(232,41,42,0.35);
-      animation: none;
-    }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--sf); color: var(--silver);
-      font-weight: 500; font-size: 1rem;
-      padding: 0.95rem 1.85rem; border-radius: 10px;
-      border: 1px solid var(--bd2); cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-      backdrop-filter: blur(12px);
-    }
-    .btn-ghost:hover { border-color: var(--bd); color: var(--white); background: var(--sf2); }
-    .hero-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; }
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
-    /* Trust bar */
-    .trust-bar {
-      position: relative; z-index: 2;
-      display: flex; justify-content: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      margin-top: 4rem; padding: 2.5rem 0 3rem;
-      width: 100%; max-width: 900px;
-    }
-    .trust-item {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 0 2.75rem;
-      border-right: 1px solid rgba(255,255,255,0.05);
-    }
-    .trust-item:last-child { border-right: none; }
-    .trust-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 2rem;
-      color: var(--gold); line-height: 1; margin-bottom: 0.3rem;
-    }
-    .trust-label {
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--silver);
-    }
+  <link rel="stylesheet" href="css/style.css" />
 
-    /* ── SECTIONS ──────────────────────── */
-    section { padding: 110px 6%; }
-    .container { max-width: 1160px; margin: 0 auto; }
-    .section-label {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 0.85rem;
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "EO — Business Automation & AI Solutions",
+    "description": "Make.com, n8n va AI yordamida biznes jarayonlarini avtomatlashtirish va AI yechimlar",
+    "url": "https://eoautomations.vercel.app",
+    "telephone": "+998",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Toshkent",
+      "addressCountry": "UZ"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "$$",
+    "sameAs": ["https://t.me/eo_business"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "15",
+      "bestRating": "5"
     }
-    .section-label::before {
-      content: ''; display: block;
-      width: 18px; height: 1.5px; background: var(--gold);
-    }
-    h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
-      line-height: 1.1; letter-spacing: -0.03em;
-      color: var(--white); margin-bottom: 0.9rem;
-    }
-    .section-sub {
-      font-size: 1rem; color: var(--silver);
-      max-width: 520px; line-height: 1.74;
-    }
-    .section-head { margin-bottom: 3.5rem; }
-    .section-head.center { text-align: center; }
-    .section-head.center .section-sub { margin: 0 auto; }
+  }
+  </script>
 
-    /* ── PROBLEMS ──────────────────────── */
-    #problems { background: var(--bg2); }
-    .problems-intro {
-      text-align: center; margin-bottom: 3.5rem;
-    }
-    .problems-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .problem-card {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r);
-      padding: 1.75rem;
-      backdrop-filter: blur(20px);
-      position: relative; overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      opacity: 0; transform: translateY(30px);
-    }
-    .problem-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.3), transparent);
-    }
-    .problem-card:hover {
-      border-color: rgba(232,41,42,0.2);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-    .problem-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: rgba(232,41,42,0.07);
-      border: 1px solid rgba(232,41,42,0.15);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.1rem;
-    }
-    .problem-icon svg { width: 20px; height: 20px; color: var(--gold); }
-    .problem-card h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1rem;
-      color: var(--white); margin-bottom: 0.5rem;
-    }
-    .problem-card p {
-      font-size: 0.85rem; color: var(--silver); line-height: 1.65;
-    }
-
-    /* ── SERVICES ──────────────────────── */
-    #services {
-      background: var(--bg);
-      background-image:
-        radial-gradient(circle at 15% 50%, rgba(232,41,42,0.03) 0%, transparent 50%),
-        radial-gradient(circle at 85% 50%, rgba(232,41,42,0.02) 0%, transparent 50%);
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .svc-card {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r);
-      padding: 2rem;
-      backdrop-filter: blur(20px);
-      position: relative; overflow: hidden;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      opacity: 0; transform: translateY(40px);
-    }
-    .svc-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.45), transparent);
-    }
-    .svc-card:hover {
-      border-color: var(--bd);
-      box-shadow: 0 0 48px rgba(232,41,42,0.07), 0 24px 64px rgba(0,0,0,0.5);
-      transform: translateY(-6px);
-    }
-    .svc-card.featured {
-      border-color: rgba(232,41,42,0.28);
-      background: rgba(232,41,42,0.04);
-    }
-    .svc-badge {
-      position: absolute; top: 1.1rem; right: 1.1rem;
-      background: var(--gold); color: #060606;
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.2rem 0.55rem; border-radius: 4px;
-    }
-    .svc-icon {
-      width: 44px; height: 44px;
-      margin-bottom: 1.25rem;
-      color: var(--gold);
-      filter: drop-shadow(0 0 10px rgba(232,41,42,0.35));
-    }
-    .svc-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.15rem;
-      color: var(--white); margin-bottom: 0.65rem;
-    }
-    .svc-card p {
-      font-size: 0.875rem; color: var(--silver);
-      line-height: 1.68; margin-bottom: 1.5rem;
-    }
-    .svc-stat {
-      padding: 0.9rem 0; margin-bottom: 1.2rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .stat-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 2.1rem;
-      color: var(--gold); line-height: 1; margin-bottom: 0.2rem;
-      text-shadow: 0 0 24px rgba(232,41,42,0.3);
-    }
-    .stat-label {
-      font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--silver);
-    }
-    .card-link {
-      color: var(--gold); font-size: 0.85rem; font-weight: 600;
-      text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      transition: gap 0.2s;
-    }
-    .card-link:hover { gap: 0.6rem; }
-
-    /* ── PORTFOLIO ─────────────────────── */
-    #portfolio { background: var(--bg2); }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    .portfolio-card {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r);
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      opacity: 0; transform: translateY(40px);
-    }
-    .portfolio-card:hover {
-      border-color: rgba(232,41,42,0.3);
-      transform: translateY(-6px);
-      box-shadow: 0 28px 64px rgba(0,0,0,0.55), 0 0 40px rgba(232,41,42,0.06);
-    }
-    /* Browser mockup chrome */
-    .browser-bar {
-      background: #161616;
-      padding: 9px 14px;
-      display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      flex-shrink: 0;
-    }
-    .browser-dots { display: flex; gap: 5px; }
-    .browser-dots span {
-      width: 10px; height: 10px; border-radius: 50%;
-    }
-    .dot-r { background: #ff5f57; }
-    .dot-y { background: #febc2e; }
-    .dot-g { background: #28c840; }
-    .browser-url {
-      flex: 1; height: 20px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 4px; margin-left: 6px;
-      position: relative; overflow: hidden;
-    }
-    .browser-url::after {
-      content: attr(data-url);
-      position: absolute; left: 8px; top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.65rem; color: rgba(255,255,255,0.3);
-      white-space: nowrap;
-    }
-    /* Screenshot area */
-    .portfolio-img-wrap {
-      position: relative; overflow: hidden;
-      aspect-ratio: 16/9;
-    }
-    .portfolio-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .portfolio-card:hover .portfolio-img-wrap img {
-      transform: scale(1.03);
-    }
-    /* Placeholder (used when no real image) */
-    .portfolio-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.1rem;
-      color: rgba(232,41,42,0.4);
-      letter-spacing: 0.1em;
-    }
-    .ph-1 { background: linear-gradient(135deg, #0f0f0f 0%, #1a1408 50%, #0d0d0d 100%); }
-    .ph-2 { background: linear-gradient(135deg, #080f14 0%, #0a1520 50%, #060e0e 100%); }
-    .ph-3 { background: linear-gradient(135deg, #0f0808 0%, #1a0d08 50%, #0d0808 100%); }
-    .ph-4 { background: linear-gradient(135deg, #080d0f 0%, #0a1215 50%, #07080e 100%); }
-    /* Hover overlay */
-    .portfolio-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.75);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
-    .overlay-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--gold); color: #060606;
-      font-weight: 700; font-size: 0.85rem;
-      padding: 0.65rem 1.4rem; border-radius: 8px;
-      text-decoration: none;
-      transform: translateY(8px); transition: transform 0.3s;
-    }
-    .portfolio-card:hover .overlay-btn { transform: translateY(0); }
-    /* Card info */
-    .portfolio-info {
-      padding: 1.4rem 1.5rem;
-    }
-    .portfolio-tags {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-      margin-bottom: 0.75rem;
-    }
-    .ptag {
-      font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(232,41,42,0.7);
-      border: 1px solid rgba(232,41,42,0.18);
-      padding: 0.18rem 0.55rem; border-radius: 4px;
-    }
-    .portfolio-info h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.05rem;
-      color: var(--white); margin-bottom: 0.45rem;
-    }
-    .portfolio-info p {
-      font-size: 0.83rem; color: var(--silver); line-height: 1.62;
-    }
-    .portfolio-result {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      margin-top: 0.75rem;
-      font-size: 0.8rem; font-weight: 600;
-      color: var(--gold);
-    }
-    .portfolio-result::before { content: '↑'; }
-
-    /* ── PROCESS ───────────────────────── */
-    #process { background: var(--bg2); }
-    .steps-wrap { position: relative; }
-    .steps-line {
-      position: absolute; top: 26px;
-      left: calc(12.5% + 26px); right: calc(12.5% + 26px);
-      height: 1px; background: rgba(232,41,42,0.12);
-    }
-    .steps-line-fill {
-      position: absolute; top: 26px;
-      left: calc(12.5% + 26px); right: calc(12.5% + 26px);
-      height: 1px; background: var(--gold);
-      transform-origin: left; transform: scaleX(0);
-      box-shadow: 0 0 8px rgba(232,41,42,0.5);
-    }
-    .steps {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem; position: relative;
-    }
-    .step { text-align: center; padding: 0 1rem; opacity: 0; transform: translateY(30px); }
-    .step-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: rgba(232,41,42,0.07);
-      border: 1.5px solid rgba(232,41,42,0.4);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 1rem;
-      color: var(--gold); margin: 0 auto 1.5rem;
-      position: relative; z-index: 1;
-      box-shadow: 0 0 18px rgba(232,41,42,0.12);
-    }
-    .step h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1rem;
-      color: var(--white); margin-bottom: 0.5rem;
-    }
-    .step p { font-size: 0.85rem; color: var(--silver); line-height: 1.62; }
-
-    /* ── CASE STUDIES ──────────────────── */
-    #results { background: var(--bg); }
-    .results-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .result-card {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r); padding: 2rem;
-      backdrop-filter: blur(20px);
-      position: relative; overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      opacity: 0; transform: translateY(40px);
-    }
-    .result-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0.35;
-    }
-    .result-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 36px rgba(232,41,42,0.06);
-      border-color: var(--bd);
-    }
-    .result-tag {
-      display: inline-block;
-      font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(232,41,42,0.75);
-      border: 1px solid rgba(232,41,42,0.2);
-      padding: 0.2rem 0.6rem; border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    .result-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.1rem;
-      color: var(--white); margin-bottom: 0.65rem;
-    }
-    .result-card > p {
-      font-size: 0.85rem; color: var(--silver);
-      line-height: 1.65; margin-bottom: 1.5rem;
-    }
-    .result-metrics {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0.75rem; margin-bottom: 1.25rem;
-    }
-    .metric {
-      background: rgba(232,41,42,0.04);
-      border: 1px solid rgba(232,41,42,0.1);
-      border-radius: 8px; padding: 0.75rem 1rem;
-    }
-    .metric-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 1.4rem;
-      color: var(--gold); line-height: 1;
-    }
-    .metric-lbl {
-      font-size: 0.68rem; color: var(--silver);
-      margin-top: 0.2rem;
-    }
-    .result-quote {
-      font-size: 0.82rem; color: rgba(255,255,255,0.5);
-      font-style: italic; line-height: 1.6;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    /* ── TECH STACK ────────────────────── */
-    #techstack { background: var(--bg2); }
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
-    }
-    .tech-item {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: 10px; padding: 1.25rem 1rem;
-      text-align: center;
-      transition: border-color 0.3s, transform 0.3s;
-      opacity: 0; transform: translateY(20px);
-    }
-    .tech-item:hover {
-      border-color: rgba(232,41,42,0.25);
-      transform: translateY(-4px);
-    }
-    .tech-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 0.85rem;
-      color: var(--gold); margin-bottom: 0.3rem;
-    }
-    .tech-cat {
-      font-size: 0.62rem; color: var(--muted);
-      text-transform: uppercase; letter-spacing: 0.1em;
-    }
-
-    /* ── PRICING ───────────────────────── */
-    #pricing { background: var(--bg); }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem; align-items: start;
-    }
-    .price-card {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r); padding: 2.25rem;
-      backdrop-filter: blur(20px);
-      position: relative; overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0; transform: translateY(40px);
-    }
-    .price-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.4), transparent);
-    }
-    .price-card.featured {
-      border-color: rgba(232,41,42,0.35);
-      background: rgba(232,41,42,0.04);
-      transform: scale(1.02);
-    }
-    .price-card.featured:hover { transform: scale(1.02) translateY(-4px); }
-    .price-card:not(.featured):hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-    .price-badge {
-      display: inline-block;
-      background: var(--gold); color: #060606;
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.25rem 0.65rem; border-radius: 4px;
-      margin-bottom: 1.25rem;
-    }
-    .price-tier {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.2rem;
-      color: var(--white); margin-bottom: 0.5rem;
-    }
-    .price-desc {
-      font-size: 0.82rem; color: var(--silver);
-      margin-bottom: 1.5rem; line-height: 1.6;
-    }
-    .price-main {
-      margin-bottom: 1.5rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .price-amount {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 2.2rem;
-      color: var(--white); line-height: 1;
-    }
-    .price-amount span {
-      font-size: 1.1rem; color: var(--gold); font-weight: 700;
-    }
-    .price-usd {
-      font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem;
-    }
-    .price-sub {
-      font-size: 0.78rem; color: var(--silver); margin-top: 0.3rem;
-    }
-    .price-features { list-style: none; margin-bottom: 2rem; }
-    .price-features li {
-      display: flex; align-items: flex-start; gap: 0.6rem;
-      font-size: 0.875rem; color: var(--silver);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .price-features li:last-child { border-bottom: none; }
-    .price-features li::before {
-      content: '✓'; color: var(--gold);
-      font-weight: 700; flex-shrink: 0; margin-top: 1px;
-    }
-    .price-btn {
-      display: block; width: 100%; text-align: center;
-      padding: 0.875rem; border-radius: 10px;
-      font-weight: 700; font-size: 0.9rem;
-      text-decoration: none; cursor: pointer; border: none;
-      transition: all 0.2s;
-    }
-    .price-btn.solid {
-      background: var(--gold); color: #060606;
-    }
-    .price-btn.solid:hover { background: var(--gold2); transform: translateY(-1px); }
-    .price-btn.outline {
-      background: transparent;
-      border: 1px solid rgba(232,41,42,0.3);
-      color: var(--gold);
-    }
-    .price-btn.outline:hover { background: rgba(232,41,42,0.07); border-color: var(--gold); }
-
-    /* ── TESTIMONIALS ──────────────────── */
-    #testimonials { background: var(--bg2); }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .review-card {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r); padding: 1.75rem;
-      backdrop-filter: blur(20px);
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0; transform: translateY(40px);
-    }
-    .review-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
-    .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 3px; }
-    .review-text { font-size: 0.875rem; color: var(--silver); line-height: 1.68; margin-bottom: 1.25rem; }
-    .review-author { display: flex; align-items: center; gap: 0.75rem; }
-    .review-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(232,41,42,0.08);
-      border: 1.5px solid rgba(232,41,42,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 0.8rem; color: var(--gold);
-      flex-shrink: 0;
-    }
-    .review-name { font-weight: 600; font-size: 0.875rem; color: var(--white); }
-    .review-company { font-size: 0.73rem; color: var(--muted); }
-
-    /* ── FAQ ───────────────────────────── */
-    #faq { background: var(--bg); }
-    .faq-list { max-width: 760px; margin: 0 auto; }
-    .faq-item {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      opacity: 0; transform: translateY(20px);
-    }
-    .faq-q {
-      display: flex; justify-content: space-between;
-      align-items: center; gap: 1rem;
-      padding: 1.4rem 0; cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600; font-size: 1rem;
-      color: var(--white);
-      transition: color 0.2s;
-      user-select: none;
-    }
-    .faq-q:hover { color: var(--gold); }
-    .faq-icon {
-      width: 22px; height: 22px; flex-shrink: 0;
-      border: 1.5px solid rgba(232,41,42,0.4);
-      border-radius: 50%; color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; transition: transform 0.3s, background 0.3s;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(232,41,42,0.1); }
-    .faq-a {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s;
-    }
-    .faq-a-inner {
-      font-size: 0.9rem; color: var(--silver);
-      line-height: 1.72; padding-bottom: 1.4rem;
-    }
-
-    /* ── CONTACT ───────────────────────── */
-    #contact {
-      background: var(--bg2);
-      background-image: radial-gradient(circle at 50% 0%, rgba(232,41,42,0.04) 0%, transparent 50%);
-    }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: start;
-    }
-    .contact-info h2 { margin-bottom: 1rem; }
-    .contact-info .section-sub { margin-bottom: 2rem; }
-    .contact-points { display: flex; flex-direction: column; gap: 1.1rem; }
-    .contact-point { display: flex; align-items: flex-start; gap: 1rem; }
-    .contact-point-icon {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(232,41,42,0.07);
-      border: 1px solid rgba(232,41,42,0.15);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .contact-point-icon svg { width: 18px; height: 18px; color: var(--gold); }
-    .contact-point-text strong { display: block; font-size: 0.875rem; color: var(--white); font-weight: 600; margin-bottom: 0.1rem; }
-    .contact-point-text span { font-size: 0.8rem; color: var(--silver); }
-    .contact-form {
-      background: var(--sf);
-      border: 1px solid var(--bd2);
-      border-radius: var(--r); padding: 2rem;
-      backdrop-filter: blur(20px);
-      position: relative; overflow: hidden;
-    }
-    .contact-form::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.45), transparent);
-    }
-    .contact-form h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 1.2rem;
-      color: var(--white); margin-bottom: 1.5rem;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin-bottom: 0.875rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.875rem; }
-    .form-group label { font-size: 0.78rem; font-weight: 500; color: var(--silver); }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      color: var(--white);
-      font-family: 'Inter', sans-serif; font-size: 0.9rem;
-      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: rgba(232,41,42,0.4);
-      box-shadow: 0 0 0 3px rgba(232,41,42,0.06);
-    }
-    .form-group select option { background: #111; }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-note { font-size: 0.73rem; color: var(--muted); margin-top: 0.75rem; text-align: center; }
-
-    /* ── CTA BANNER ────────────────────── */
-    .cta-section { padding: 0 6% 110px; }
-    .cta-banner {
-      max-width: 1160px; margin: 0 auto;
-      background: rgba(232,41,42,0.04);
-      border: 1px solid rgba(232,41,42,0.22);
-      border-radius: 20px; padding: 4rem;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .cta-banner::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(232,41,42,0.65), transparent);
-    }
-    .cta-banner h2 { margin-bottom: 0.75rem; }
-    .cta-banner .section-sub { margin: 0 auto 2.25rem; }
-
-    /* ── FOOTER ────────────────────────── */
-    footer {
-      background: #050505;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      padding: 3rem 6%;
-    }
-    .footer-inner {
-      max-width: 1160px; margin: 0 auto;
-      display: flex; justify-content: space-between;
-      align-items: center; gap: 2rem; flex-wrap: wrap;
-    }
-    .footer-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--gold); letter-spacing: -0.05em; }
-    .footer-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
-    .footer-links { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
-    .footer-links a { font-size: 0.85rem; color: var(--silver); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { max-width: 1160px; margin: 2rem auto 0; font-size: 0.73rem; color: var(--muted); text-align: center; }
-
-    /* ── MOBILE ────────────────────────── */
-    @media (max-width: 980px) {
-      .nav-links { display: none; }
-      .nav-mobile-btn { display: flex; }
-      .problems-grid,
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .steps-line, .steps-line-fill { display: none; }
-      .results-grid,
-      .reviews-grid,
-      .pricing-grid { grid-template-columns: 1fr; }
-      .tech-grid { grid-template-columns: repeat(3, 1fr); }
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      nav { padding: 0 4%; }
-      section { padding: 72px 4%; }
-      .cta-section { padding: 0 4% 72px; }
-      footer { padding: 2.5rem 4%; }
-      .problems-grid,
-      .services-grid { grid-template-columns: 1fr; }
-      .tech-grid { grid-template-columns: repeat(2, 1fr); }
-      .steps { grid-template-columns: 1fr; }
-      .trust-item { border-right: none; width: 50%; padding: 0.75rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .trust-item:nth-last-child(-n+2) { border-bottom: none; }
-      .cta-banner { padding: 2.5rem 1.5rem; }
-      .price-card.featured { transform: none; }
-    }
-  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Biznesingiz qanchalik texnik bo'lishi kerak?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hech qanday texnik bilim talab qilinmaydi. Biz hamma narsani o'rnatamiz, tushuntiramiz va xodimlaringizni o'qitamiz. Sizdan faqat jarayonni tushuntirish va tasdiqlov kerak."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mavjud tizimlarim o'zgaradimi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yo'q. Biz mavjud tizimlaringizga (1C, Google Sheets, CRM, Telegram) ulanamiz. Almashtirish shart emas — integratsiya qilamiz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qancha vaqtda natija ko'rinadi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oddiy loyihalar 3–7 kunda ishga tushadi. Murakkab yechimlar 2–4 hafta. ROI odatda birinchi oyda ko'rinadi — buning uchun 30 kunlik kafolat beramiz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Make.com va n8n nima va nega ularni tanladingiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Make.com va n8n — dunyoning eng kuchli vizual avtomatlashtirish platformalari. 1000+ integratsiya, AI qo'llab-quvvatlash, arzon narx. Zapier ga qaraganda 5–10 marta tejamkorroq."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Loyiha tugagandan keyin kim qo'llab-quvvatlaydi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starter — 30 kun, Growth — muddatsiz oylik xizmat. Har qanday muammo, yangi funksiyalar, optimallashtirish — hammasi qo'llab-quvvatlash paketiga kiradi."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<!-- ══════════ NAV ══════════ -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">EO</a>
-  <ul class="nav-links">
-    <li><a href="#services">Xizmatlar</a></li>
-    <li><a href="#portfolio">Ishlar</a></li>
-    <li><a href="#results">Natijalar</a></li>
-    <li><a href="#pricing">Narxlar</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Kontakt</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Bepul Diagnostika →</a>
-  <button class="nav-mobile-btn" id="menuBtn" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo">EO<span>.</span></a>
 
-<!-- ══════════ HERO ══════════ -->
-<section id="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-radial"></div>
-  <div class="hero-content">
-    <div class="label">AI va Avtomatlashtirish &middot; Toshkent</div>
-    <h1>
-      Biznesingizni<br>
-      <span class="gold">AI bilan</span> <span class="dim">kuchaytiring</span>
-    </h1>
-    <p class="hero-sub">
-      Har kuni takrorlanadigan ishlarni bir marta sozlang — keyin avtomatik ishlaydi.
-      Vaqtingizni tejang, daromadingizni oshiring.
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-gold">Bepul Diagnostika →</a>
-      <a href="#services" class="btn-ghost">Xizmatlarni ko'rish</a>
-    </div>
-    <p class="hero-note">✓ Bepul &nbsp;·&nbsp; ✓ 30 daqiqa &nbsp;·&nbsp; ✓ Majburiyatsiz</p>
-  </div>
-  <div class="trust-bar">
-    <div class="trust-item">
-      <span class="trust-num" data-count="50" data-suffix="+">0+</span>
-      <span class="trust-label">Loyiha</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-num" data-count="70" data-suffix="%">0%</span>
-      <span class="trust-label">Vaqt Tejash</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-num">30 kun</span>
-      <span class="trust-label">ROI Muddati</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-num">24/7</span>
-      <span class="trust-label">Ishlash Rejimi</span>
-    </div>
-    <div class="trust-item">
-      <span class="trust-num" data-count="98" data-suffix="%">0%</span>
-      <span class="trust-label">Mijoz Mamnuniyati</span>
-    </div>
-  </div>
-</section>
+      <nav class="nav__links" id="navLinks">
+        <a href="#services">Xizmatlar</a>
+        <a href="#cases">Ishlar</a>
+        <a href="#process">Jarayon</a>
+        <a href="#pricing">Narxlar</a>
+        <a href="#faq">FAQ</a>
+      </nav>
 
-<!-- ══════════ PROBLEMS ══════════ -->
-<section id="problems">
-  <div class="container">
-    <div class="problems-intro">
-      <div class="section-label" style="justify-content:center">Muammolar</div>
-      <h2>Biznesingizda ham<br>shu muammolar bormi?</h2>
-      <p class="section-sub" style="margin:0 auto">Agar quyidagilardan birortasi tanish kelsa — biz yordam bera olamiz.</p>
+      <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--sm nav__cta">
+        Bepul Diagnostika
+      </a>
+
+      <button class="nav__burger" id="navBurger" aria-label="Menyuni ochish">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="problems-grid">
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+  </header>
+
+  <!-- ══════════════════════════════ SCROLL VIDEO HERO ════════════════ -->
+  <!--
+    VIDEO SCRUB HERO
+    ─────────────────────────────────────────────────────────────────
+    Foydalanuvchi scroll qilganda video o'ynaydi:
+      0%  → 35%  : Charchagan ish muhiti (ishlar rutinasi ko'pligi)
+      35% → 65%  : O'tish / transformatsiya sahna
+      65% → 100% : Zamonaviy avtomatlashgan makongacha yetib boradi
+    ─────────────────────────────────────────────────────────────────
+  -->
+  <section class="svh" id="home">
+    <!-- Scroll space: 400vh → video butun scroll davomida pinlangan -->
+    <div class="svh__pin" id="svhPin">
+
+      <!-- Full-screen video -->
+      <video
+        class="svh__video"
+        id="heroVideo"
+        muted
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="assets/hero.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Gradient overlays -->
+      <div class="svh__overlay-top"></div>
+      <div class="svh__overlay-bottom"></div>
+      <div class="svh__overlay-dark" id="svhDark"></div>
+
+      <!-- ── FAZA 1: Rутина / Chaos ──────────────────────────── -->
+      <div class="svh__phase" id="svhPhase1">
+        <div class="svh__phase-inner">
+          <span class="svh__eyebrow">Bugungi holat</span>
+          <h1 class="svh__title">
+            Har kuni<br />
+            <em>bir xil ishlar.</em><br />
+            Yana va yana.
+          </h1>
+          <p class="svh__sub">
+            Xodimlar hisobot yozadi. Savollarga javob beradi.<br />
+            Ma'lumot ko'chiradi. Va yana qaytadi. Doim.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── FAZA 2: O'tish / Transformatsiya ───────────────── -->
+      <div class="svh__phase" id="svhPhase2">
+        <div class="svh__phase-inner">
+          <span class="svh__eyebrow">O'zgarish boshlanadi</span>
+          <h1 class="svh__title">
+            Bir marta<br />
+            <span class="gradient-text">sozlang.</span>
+          </h1>
+          <p class="svh__sub">
+            Make.com · n8n · AI — bularni birlashtirish kifoya.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── FAZA 3: Natija / Loft ──────────────────────────── -->
+      <div class="svh__phase" id="svhPhase3">
+        <div class="svh__phase-inner">
+          <span class="svh__eyebrow">EO bilan natija</span>
+          <h1 class="svh__title">
+            Biznesingiz<br />
+            <span class="gradient-text">avtomatik.</span>
+          </h1>
+          <p class="svh__sub">
+            24/7 ishlaydi. Xodimlar kreativga vaqt topadi.<br />
+            Siz — rivojlanishga.
+          </p>
+          <div class="svh__actions">
+            <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--primary">
+              Bepul Diagnostika →
+            </a>
+            <a href="#services" class="btn btn--ghost">Xizmatlarni ko'rish</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="svh__progress">
+        <div class="svh__progress-track">
+          <div class="svh__progress-fill" id="svhProgressFill"></div>
+        </div>
+        <div class="svh__progress-labels">
+          <span id="pLabel1" class="pl active">Rutina</span>
+          <span id="pLabel2" class="pl">O'tish</span>
+          <span id="pLabel3" class="pl">Natija</span>
+        </div>
+      </div>
+
+      <!-- Scroll cue (faqat boshlanishda ko'rinadi) -->
+      <div class="svh__cue" id="svhCue">
+        <span>Pastga suring</span>
+        <div class="svh__cue-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 4v12M4 10l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h4>Har kuni bir xil ishlarni takrorlash</h4>
-        <p>Xodimlar ma'lumot kiritish, hisobot, xabar yuborish kabi takroriy ishlarga ko'p vaqt sarflaydi.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </div>
-        <h4>Xaridorlar savollariga javob kechikadi</h4>
-        <p>Tunda, dam olish kunlari kelgan so'rovlar javobsiz qoladi — mijozlar raqobatchilarga ketadi.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-        </div>
-        <h4>Ma'lumotlarni qo'lda kiritish</h4>
-        <p>Excel, daftar, telefon — ma'lumotlar har yerda sochilib yotibdi va xatolar ko'paymoqda.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-          </svg>
-        </div>
-        <h4>Sotuv jarayoni tartibsiz</h4>
-        <p>Qaysi mijoz qaysi bosqichda, kim bilan gaplashgan, qachon follow-up qilish kerak — hech kim bilmaydi.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-          </svg>
-        </div>
-        <h4>Hisobot tayyorlash ko'p vaqt oladi</h4>
-        <p>Oylik hisobotni qo'lda yig'ish uchun 2-3 kun ketadi, lekin yanglish bo'lishi ham mumkin.</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/><polyline points="16,7 22,7 22,13"/>
-          </svg>
-        </div>
-        <h4>Raqobatchilar tezroq harakat qilmoqda</h4>
-        <p>Ular allaqachon AI va avtomatlashtirish orqali xarajatni kamaytirib, tezlikni oshirgan.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ SERVICES ══════════ -->
-<section id="services">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Xizmatlar</div>
-      <h2>Biznesingizga mos yechim</h2>
-      <p class="section-sub">Har bir xizmat aniq natija va qaytim muddati bilan keladi.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="svc-card">
-        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-        </svg>
-        <h3>Jarayon Avtomatlashtirish</h3>
-        <p>Make.com, n8n yoki Zapier orqali takroriy ishlarni bir marta sozlab, avtomatik ishlashini ta'minlaymiz.</p>
-        <div class="svc-stat">
-          <div class="stat-num">40%</div>
-          <div class="stat-label">Vaqt tejash (o'rtacha)</div>
-        </div>
-        <a href="#contact" class="card-link">Batafsil →</a>
       </div>
 
-      <div class="svc-card featured">
-        <span class="svc-badge">Eng mashhur</span>
-        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        <h3>AI Chatbot va Virtual Assistent</h3>
-        <p>Telegram, Instagram, WhatsApp yoki sayt uchun AI chatbot — savollarga darhol javob, buyurtma qabul qilish, yo'naltirish.</p>
-        <div class="svc-stat">
-          <div class="stat-num">70%</div>
-          <div class="stat-label">Savollar avtomatik javob</div>
-        </div>
-        <a href="#contact" class="card-link">Batafsil →</a>
-      </div>
+    </div><!-- /svh__pin -->
+  </section>
 
-      <div class="svc-card">
-        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
-        </svg>
-        <h3>CRM va Sotuv Avtomatlashtirish</h3>
-        <p>Bitrix24 yoki amoCRM sozlash + AI orqali avtomatik follow-up, eslatmalar, sotuv hisobotlari.</p>
-        <div class="svc-stat">
-          <div class="stat-num">25–35%</div>
-          <div class="stat-label">Sotuv o'sishi</div>
+  <!-- Trust bar (paydo bo'ladi video tugagandan keyin) -->
+  <div class="hero__trust-bar reveal-up" id="trustBar">
+    <div class="container">
+      <div class="trust-bar__inner">
+        <div class="trust-item">
+          <span class="trust-num" data-count="15">15</span><span>+</span>
+          <p>Loyiha</p>
         </div>
-        <a href="#contact" class="card-link">Batafsil →</a>
-      </div>
-
-      <div class="svc-card">
-        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-          <polyline points="7,8 12,13 17,8"/>
-        </svg>
-        <h3>Ma'lumot Tahlili va Dashboard</h3>
-        <p>Barcha ko'rsatkichlarni bir joyga to'plash + real-time dashboard (Google Looker Studio, Power BI).</p>
-        <div class="svc-stat">
-          <div class="stat-num">5 daqiqa</div>
-          <div class="stat-label">Kunlik hisobot vaqti</div>
+        <div class="trust-div"></div>
+        <div class="trust-item">
+          <span class="trust-num" data-count="78">78</span><span>%</span>
+          <p>Bot javob darajasi</p>
         </div>
-        <a href="#contact" class="card-link">Batafsil →</a>
-      </div>
-
-      <div class="svc-card">
-        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-        </svg>
-        <h3>Hujjat Avtomatlashtirish</h3>
-        <p>Shartnomalar, schyot-fakturalar, aktlar — shablon asosida avtomatik yaratish, imzolash, yuborish (Didox.uz).</p>
-        <div class="svc-stat">
-          <div class="stat-num">1 daqiqa</div>
-          <div class="stat-label">To'liq hujjat tayyorlash</div>
+        <div class="trust-div"></div>
+        <div class="trust-item">
+          <span class="trust-num" data-count="30">30</span><span> kun</span>
+          <p>ROI kafolati</p>
         </div>
-        <a href="#contact" class="card-link">Batafsil →</a>
-      </div>
-
-      <div class="svc-card">
-        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-        <h3>Marketing Avtomatlashtirish</h3>
-        <p>Telegram/Instagram post scheduling, email/SMS kampaniyalar, lead nurturing — 24/7 avtomatik ishlaydi.</p>
-        <div class="svc-stat">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Marketing to'xtovsiz</div>
+        <div class="trust-div"></div>
+        <div class="trust-item">
+          <span>24/7</span>
+          <p>Ishlash rejimi</p>
         </div>
-        <a href="#contact" class="card-link">Batafsil →</a>
       </div>
-
     </div>
   </div>
-</section>
 
-<!-- ══════════ PORTFOLIO ══════════ -->
-<section id="portfolio">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Qilingan Ishlar</div>
-      <h2>Haqiqiy loyihalar, haqiqiy natijalar</h2>
-      <p class="section-sub">Har bir loyihada biznes muammosi aniqlanib, texnik yechim amalga oshirildi.</p>
+  <!-- ══════════════════════════════ LOGOS / STACK ══════════════════════ -->
+  <section class="stack-bar">
+    <div class="container">
+      <p class="stack-bar__label">Ishlatadigan texnologiyalar</p>
+      <div class="stack-bar__logos">
+        <span class="stack-logo">Make.com</span>
+        <span class="stack-logo">n8n</span>
+        <span class="stack-logo">Zapier</span>
+        <span class="stack-logo">OpenAI</span>
+        <span class="stack-logo">Claude AI</span>
+        <span class="stack-logo">Telegram API</span>
+        <span class="stack-logo">WhatsApp API</span>
+        <span class="stack-logo">amoCRM</span>
+        <span class="stack-logo">Bitrix24</span>
+        <span class="stack-logo">Google Sheets</span>
+      </div>
     </div>
-    <div class="portfolio-grid">
+  </section>
 
-      <!-- LOYIHA 1 — Rasm qo'shish uchun: src="" ga screenshot yo'lini yozing -->
-      <div class="portfolio-card">
-        <div class="browser-bar">
-          <div class="browser-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
-          <div class="browser-url" data-url="savdo-kompaniya.uz"></div>
+  <!-- ══════════════════════════════ PROBLEM / SOLUTION ═════════════════ -->
+  <section class="problem section">
+    <div class="container">
+      <div class="problem__grid">
+        <div class="problem__side reveal-left">
+          <div class="section-label">Muammo</div>
+          <h2 class="section-title">Har kuni soatlab vaqt yo'qolmoqda</h2>
+          <div class="problem__list">
+            <div class="problem-item">
+              <span class="problem-icon">😤</span>
+              <p>Xodimlar bir xil ishni qayta-qayta qo'lda bajaradi</p>
+            </div>
+            <div class="problem-item">
+              <span class="problem-icon">📉</span>
+              <p>Mijozlar javob kutib, raqobatchilarga ketadi</p>
+            </div>
+            <div class="problem-item">
+              <span class="problem-icon">🌀</span>
+              <p>Ma'lumotlar har joyda tarqoq — hisob-kitob qiyin</p>
+            </div>
+            <div class="problem-item">
+              <span class="problem-icon">💸</span>
+              <p>Qo'lda bajarilgan ishlar xatolarga to'la, tuzatish qimmat</p>
+            </div>
+          </div>
         </div>
-        <div class="portfolio-img-wrap">
-          <!-- Real rasm bo'lsa: <img src="loyiha1.png" alt="Savdo kompaniya sayt"> -->
-          <!-- Placeholder: -->
-          <div class="portfolio-placeholder ph-1">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+
+        <div class="problem__arrow reveal-up">
+          <div class="arrow-circle">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4L28 16L16 28M4 16H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="portfolio-overlay">
-            <a href="#contact" class="overlay-btn">Batafsil ko'rish →</a>
-          </div>
         </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tags">
-            <span class="ptag">CRM</span>
-            <span class="ptag">Avtomatlashtirish</span>
-            <span class="ptag">Dashboard</span>
+
+        <div class="problem__side reveal-right">
+          <div class="section-label accent">EO Yechimi</div>
+          <h2 class="section-title">Bir marta sozlang — mangu ishlaydi</h2>
+          <div class="problem__list">
+            <div class="problem-item solution">
+              <span class="problem-icon">✅</span>
+              <p>Takrorlanuvchi jarayonlar <strong>to'liq avtomatlashtiriladi</strong></p>
+            </div>
+            <div class="problem-item solution">
+              <span class="problem-icon">⚡</span>
+              <p>Mijoz yozsa — 2 soniyada <strong>AI javob beradi</strong>, 24/7</p>
+            </div>
+            <div class="problem-item solution">
+              <span class="problem-icon">📊</span>
+              <p>Barcha ma'lumot <strong>bir dashboardda</strong>, real vaqtda</p>
+            </div>
+            <div class="problem-item solution">
+              <span class="problem-icon">🚀</span>
+              <p><strong>30 kun ichida ROI</strong> — kafolatli natija</p>
+            </div>
           </div>
-          <h3>Savdo kompaniyasi — ERP integratsiyasi</h3>
-          <p>Bitrix24 + 1C integratsiyasi. Hisobot tizimi to'liq avtomatlashdi, qo'lda kiritish yo'q.</p>
-          <div class="portfolio-result">Hisobot vaqti: 3 kun → 20 daqiqa</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- LOYIHA 2 -->
-      <div class="portfolio-card">
-        <div class="browser-bar">
-          <div class="browser-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
-          <div class="browser-url" data-url="onlineshop.uz"></div>
-        </div>
-        <div class="portfolio-img-wrap">
-          <!-- Real rasm: <img src="loyiha2.png" alt="Online do'kon"> -->
-          <div class="portfolio-placeholder ph-2">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+  <!-- ══════════════════════════════ SERVICES ══════════════════════════ -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Xizmatlar</div>
+        <h2 class="section-title">Nima qila olamiz</h2>
+        <p class="section-sub">Biznesingizning qaysi sohasini avtomatlashtirishni xohlaysiz?</p>
+      </div>
+
+      <div class="services__grid">
+        <div class="service-card reveal-up" data-delay="0">
+          <div class="sc__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M4 14C4 8.477 8.477 4 14 4s10 4.477 10 10-4.477 10-10 10S4 19.523 4 14z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M14 10v4l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="portfolio-overlay">
-            <a href="#contact" class="overlay-btn">Batafsil ko'rish →</a>
+          <h3>Jarayon Avtomatlashtirish</h3>
+          <p>Takrorlanadigan har qanday biznes jarayonini avtomatlashtiramiz: hisobotlar, bildirishnomalar, ma'lumot uzatish.</p>
+          <div class="sc__metric">
+            <span>40%</span>
+            <small>vaqt tejalishi</small>
           </div>
         </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tags">
-            <span class="ptag">Telegram Bot</span>
-            <span class="ptag">AI Chatbot</span>
-          </div>
-          <h3>Online do'kon — 24/7 AI savdo assistenti</h3>
-          <p>Telegram bot orqali savollar, buyurtmalar, to'lov xabarlari — barchasi avtomatik ishlaydi.</p>
-          <div class="portfolio-result">78% savollar avtomatik javob</div>
-        </div>
-      </div>
 
-      <!-- LOYIHA 3 -->
-      <div class="portfolio-card">
-        <div class="browser-bar">
-          <div class="browser-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
-          <div class="browser-url" data-url="xizmat-markazi.uz"></div>
-        </div>
-        <div class="portfolio-img-wrap">
-          <!-- Real rasm: <img src="loyiha3.png" alt="Xizmat markazi"> -->
-          <div class="portfolio-placeholder ph-3">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        <div class="service-card reveal-up" data-delay="1">
+          <div class="sc__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M6 8h16M6 14h10M6 20h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="21" cy="20" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M19.5 20l1 1 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="portfolio-overlay">
-            <a href="#contact" class="overlay-btn">Batafsil ko'rish →</a>
+          <h3>AI Chatbot & Virtual Assistent</h3>
+          <p>Telegram, WhatsApp, veb-sayt uchun AI chatbot. Savollar javoblaydi, buyurtma oladi, lid kvalifikatsiya qiladi.</p>
+          <div class="sc__metric">
+            <span>70%</span>
+            <small>avtomatik javoblar</small>
           </div>
         </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tags">
-            <span class="ptag">Web Sayt</span>
-            <span class="ptag">CRM</span>
-            <span class="ptag">Lead Gen</span>
-          </div>
-          <h3>Xizmat markazi — Web ekosistema</h3>
-          <p>Konvertatsiya sayt + CRM integratsiya + avtomatik lead tracking. Arizalar keskin oshdi.</p>
-          <div class="portfolio-result">Birinchi oyda arizalar 3x oshdi</div>
-        </div>
-      </div>
 
-      <!-- LOYIHA 4 -->
-      <div class="portfolio-card">
-        <div class="browser-bar">
-          <div class="browser-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
-          <div class="browser-url" data-url="marketing-agency.uz"></div>
-        </div>
-        <div class="portfolio-img-wrap">
-          <!-- Real rasm: <img src="loyiha4.png" alt="Marketing agency"> -->
-          <div class="portfolio-placeholder ph-4">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+        <div class="service-card reveal-up" data-delay="2">
+          <div class="sc__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 11h20M9 6v5M14 6v5M19 6v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="portfolio-overlay">
-            <a href="#contact" class="overlay-btn">Batafsil ko'rish →</a>
+          <h3>CRM & Sotuv Avtomatlashtirish</h3>
+          <p>amoCRM, Bitrix24 sozlash va integratsiya. Lidlar avtomatik tushadi, sotuv funnel o'zi ishlaydi.</p>
+          <div class="sc__metric">
+            <span>25–35%</span>
+            <small>sotuv o'sishi</small>
           </div>
         </div>
-        <div class="portfolio-info">
-          <div class="portfolio-tags">
-            <span class="ptag">Marketing</span>
-            <span class="ptag">n8n</span>
-            <span class="ptag">Content AI</span>
+
+        <div class="service-card reveal-up" data-delay="3">
+          <div class="sc__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M4 20l6-6 4 4 6-8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          <h3>Marketing agentlik — kontent pipeline</h3>
-          <p>n8n orqali Telegram, Instagram postlar avtomatik. Haftasiga 15 soat vaqt tejaladi.</p>
-          <div class="portfolio-result">15 soat/hafta vaqt tejash</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ PROCESS ══════════ -->
-<section id="process">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Qanday ishlaydi</div>
-      <h2>4 qadamda natijaga</h2>
-      <p class="section-sub">Hech qanday texnik bilim talab qilinmaydi — biz hamma texnik ishni o'zimiz qilamiz.</p>
-    </div>
-    <div class="steps-wrap">
-      <div class="steps-line"></div>
-      <div class="steps-line-fill" id="processLine"></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">01</div>
-          <h4>Bepul Diagnostika</h4>
-          <p>30 daqiqada biznesingizdagi yo'qotish nuqtalarini aniqlaymiz. To'liq bepul.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">02</div>
-          <h4>Yechim Loyihasi</h4>
-          <p>Aniq ROI hisob-kitobi bilan sizning biznesingizga moslashtirilgan plan tayyorlaymiz.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">03</div>
-          <h4>Joriy Etish</h4>
-          <p>Mavjud jarayonlaringizga to'xtatmay ulaymiz — ishingiz uzilmaydi.</p>
-        </div>
-        <div class="step">
-          <div class="step-num">04</div>
-          <h4>Natija + Support</h4>
-          <p>30 kun ichida o'lchanadigan foyda. Keyin 24/7 texnik qo'llab-quvvatlash.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CASE STUDIES ══════════ -->
-<section id="results">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Natijalar</div>
-      <h2>Haqiqiy biznes, haqiqiy raqamlar</h2>
-      <p class="section-sub">O'zbek bizneslari allaqachon bu natijalarni ko'rmoqda.</p>
-    </div>
-    <div class="results-grid">
-
-      <div class="result-card">
-        <div class="result-tag">Savdo Kompaniyasi</div>
-        <h3>ERP integratsiyasi — hisobotlar avtomatlashdi</h3>
-        <p>Toshkentdagi yirik savdo kompaniyasida oylik hisobot tayyorlash 3 kundan 20 daqiqaga tushdi.</p>
-        <div class="result-metrics">
-          <div class="metric">
-            <div class="metric-val">85%</div>
-            <div class="metric-lbl">Vaqt tejash</div>
-          </div>
-          <div class="metric">
-            <div class="metric-val">3 kun→20 min</div>
-            <div class="metric-lbl">Hisobot vaqti</div>
+          <h3>Ma'lumot Tahlili & Dashboard</h3>
+          <p>Google Sheets, 1C, CRM dan ma'lumotlarni birlashtirib real-time dashboard yaratamiz.</p>
+          <div class="sc__metric">
+            <span>5 daqiqa</span>
+            <small>kunlik hisobot</small>
           </div>
         </div>
-        <div class="result-quote">"Xodimlar endi mazmunli ishga vaqt topdi." — Bobur T., Direktor</div>
-      </div>
 
-      <div class="result-card">
-        <div class="result-tag">Online Do'kon</div>
-        <h3>Telegram bot — 24/7 savdo jarayoni</h3>
-        <p>Telegram bot o'rnatilgach mijozlardan kelgan savollarning 78%ni avtomatik javob berdi.</p>
-        <div class="result-metrics">
-          <div class="metric">
-            <div class="metric-val">78%</div>
-            <div class="metric-lbl">Avtomatik javob</div>
+        <div class="service-card reveal-up" data-delay="4">
+          <div class="sc__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M8 4h12l4 4v16H4V4h4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M16 4v6h8M9 14h10M9 18h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
-          <div class="metric">
-            <div class="metric-val">0.5s</div>
-            <div class="metric-lbl">Javob tezligi</div>
+          <h3>Hujjat Avtomatlashtirish</h3>
+          <p>Shartnomalar, hisob-fakturalar, aktlar — ma'lumotlar kiritilsa, hujjatlar o'zi tayyorlanadi va yuboriladi.</p>
+          <div class="sc__metric">
+            <span>1 daqiqa</span>
+            <small>hujjat tayyorlash</small>
           </div>
         </div>
-        <div class="result-quote">"Menejerim endi faqat issiq leadlar bilan ishlaydi." — Zulfiya Y.</div>
-      </div>
 
-      <div class="result-card">
-        <div class="result-tag">Xizmat Markazi</div>
-        <h3>Yangi sayt + CRM — arizalar 3x oshdi</h3>
-        <p>Web ekosistema va CRM integratsiyasidan keyin birinchi oyda yangi arizalar soni 3 baravar oshdi.</p>
-        <div class="result-metrics">
-          <div class="metric">
-            <div class="metric-val">3x</div>
-            <div class="metric-lbl">Ariza o'sishi</div>
+        <div class="service-card reveal-up" data-delay="5">
+          <div class="sc__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M4 4l8 4-8 4 8 4-8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 6h10M14 14h10M14 22h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
-          <div class="metric">
-            <div class="metric-val">17%</div>
-            <div class="metric-lbl">Konversiya</div>
-          </div>
-        </div>
-        <div class="result-quote">"EO jamoasi texnik tomonni butunlay o'zlari hal qildi." — Sardor K.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ TECH STACK ══════════ -->
-<section id="techstack">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Texnologiyalar</div>
-      <h2>Ishlatadigan vositalarimiz</h2>
-      <p class="section-sub">Dunyo miqyosidagi eng yaxshi platformalar va AI modellar.</p>
-    </div>
-    <div class="tech-grid">
-      <div class="tech-item"><div class="tech-logo">n8n</div><div class="tech-cat">Avtomatlashtirish</div></div>
-      <div class="tech-item"><div class="tech-logo">Make.com</div><div class="tech-cat">Avtomatlashtirish</div></div>
-      <div class="tech-item"><div class="tech-logo">OpenAI</div><div class="tech-cat">AI Model</div></div>
-      <div class="tech-item"><div class="tech-logo">Claude</div><div class="tech-cat">AI Model</div></div>
-      <div class="tech-item"><div class="tech-logo">Telegram API</div><div class="tech-cat">Messaging</div></div>
-      <div class="tech-item"><div class="tech-logo">WhatsApp API</div><div class="tech-cat">Messaging</div></div>
-      <div class="tech-item"><div class="tech-logo">Bitrix24</div><div class="tech-cat">CRM</div></div>
-      <div class="tech-item"><div class="tech-logo">amoCRM</div><div class="tech-cat">CRM</div></div>
-      <div class="tech-item"><div class="tech-logo">Google Sheets</div><div class="tech-cat">Ma'lumot</div></div>
-      <div class="tech-item"><div class="tech-logo">1C</div><div class="tech-cat">ERP</div></div>
-      <div class="tech-item"><div class="tech-logo">Didox.uz</div><div class="tech-cat">Hujjat</div></div>
-      <div class="tech-item"><div class="tech-logo">Zapier</div><div class="tech-cat">Avtomatlashtirish</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ PRICING ══════════ -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Narxlar</div>
-      <h2>Sizning budjetingizga mos tarif</h2>
-      <p class="section-sub">Barcha narxlar aniq — yashirin to'lovlar yo'q. Bepul diagnostikadan so'ng to'liq taklif beramiz.</p>
-    </div>
-    <div class="pricing-grid">
-
-      <div class="price-card">
-        <div class="price-tier">Starter</div>
-        <div class="price-desc">Birinchi marta sinab ko'rmoqchi bizneslar uchun</div>
-        <div class="price-main">
-          <div class="price-amount"><span>6 000 000</span> so'm</div>
-          <div class="price-usd">≈ $500 · Bir martalik to'lov</div>
-        </div>
-        <ul class="price-features">
-          <li>1 ta avtomatlashtirish jarayoni</li>
-          <li>Telegram bot (asosiy funksiyalar)</li>
-          <li>Joriy etish va test</li>
-          <li>30 kun texnik qo'llab-quvvatlash</li>
-          <li>Video qo'llanma</li>
-        </ul>
-        <a href="#contact" class="price-btn outline">Boshlash →</a>
-      </div>
-
-      <div class="price-card featured">
-        <div class="price-badge">Eng yaxshi tanlov</div>
-        <div class="price-tier">Growth</div>
-        <div class="price-desc">O'sib kelayotgan bizneslar uchun keng integratsiya</div>
-        <div class="price-main">
-          <div class="price-amount"><span>18 000 000</span> so'm</div>
-          <div class="price-usd">≈ $1,500 · + 1 200 000 so'm/oy xizmat</div>
-        </div>
-        <ul class="price-features">
-          <li>3–5 ta avtomatlashtirish jarayoni</li>
-          <li>AI chatbot (Telegram + Instagram)</li>
-          <li>CRM integratsiya va sozlash</li>
-          <li>Real-time Dashboard</li>
-          <li>3 oy qo'llab-quvvatlash</li>
-          <li>Jamoa uchun trening</li>
-        </ul>
-        <a href="#contact" class="price-btn solid">Boshlash →</a>
-      </div>
-
-      <div class="price-card">
-        <div class="price-tier">Enterprise</div>
-        <div class="price-desc">Yirik kompaniyalar uchun to'liq yechim</div>
-        <div class="price-main">
-          <div class="price-amount"><span>$3 000</span>+</div>
-          <div class="price-usd">Loyiha hajmiga qarab · Individual narx</div>
-        </div>
-        <ul class="price-features">
-          <li>Cheksiz avtomatlashtirish</li>
-          <li>Maxsus AI yechimlar</li>
-          <li>ERP/CRM to'liq integratsiya</li>
-          <li>Dedicated mutaxassis</li>
-          <li>Doimiy 24/7 support</li>
-          <li>SLA kafolat</li>
-        </ul>
-        <a href="#contact" class="price-btn outline">Muzokaraga yoziling →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ TESTIMONIALS ══════════ -->
-<section id="testimonials">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">Mijozlar</div>
-      <h2>Ular allaqachon natija ko'rdi</h2>
-      <p class="section-sub">Haqiqiy O'zbek bizneslari, haqiqiy raqamlar bilan.</p>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"ERP integratsiyasidan keyin oylik hisobot tayyorlash 3 kundan 20 daqiqaga tushdi. Xodimlar endi mazmunli ishga vaqt topdi."</p>
-        <div class="review-author">
-          <div class="review-avatar">BT</div>
-          <div>
-            <div class="review-name">Bobur T.</div>
-            <div class="review-company">Savdo kompaniyasi, Toshkent</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Telegram bot o'rnatilgach mijozlardan kelgan savollarning 78%ni avtomatik javob berdi. Menejerim endi faqat issiq leadlar bilan ishlaydi."</p>
-        <div class="review-author">
-          <div class="review-avatar">ZY</div>
-          <div>
-            <div class="review-name">Zulfiya Y.</div>
-            <div class="review-company">Online do'kon, Toshkent</div>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Yangi sayt ishga tushganidan keyin birinchi oyda ariza 3 baravar oshdi. EO jamoasi texnik tomonni butunlay o'zlari hal qildi."</p>
-        <div class="review-author">
-          <div class="review-avatar">SK</div>
-          <div>
-            <div class="review-name">Sardor K.</div>
-            <div class="review-company">Xizmat ko'rsatish markazi</div>
+          <h3>Marketing Avtomatlashtirish</h3>
+          <p>Email, Telegram kanal, SMS kampaniyalarni avtomatlashtiramiz. Segmentatsiya, trigger-xabarlar, A/B test.</p>
+          <div class="sc__metric">
+            <span>24/7</span>
+            <small>uzluksiz ishlash</small>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ FAQ ══════════ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-head center">
-      <div class="section-label">FAQ</div>
-      <h2>Ko'p so'raladigan savollar</h2>
-      <p class="section-sub">Javob topa olmadingizmi? Bizga yozing — 1 soat ichida javob beramiz.</p>
-    </div>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <span>EO bilan ishlash qancha turadi?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <div class="faq-a-inner">Loyiha hajmiga qarab farq qiladi. Starter — 6,000,000 so'mdan boshlanadi. Biz avval 30 daqiqalik bepul diagnostika o'tkazib, sizning biznesingizga mos aniq narxni aytamiz. Hech qanday yashirin to'lov yo'q.</div>
-        </div>
+  <!-- ══════════════════════════════ CASES ════════════════════════════ -->
+  <section class="cases section" id="cases">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Ishlarimiz</div>
+        <h2 class="section-title">Real loyihalar, real natijalar</h2>
+        <p class="section-sub">Har bir loyiha — muayyan muammo, muayyan yechim, o'lchangan natija</p>
       </div>
 
-      <div class="faq-item">
-        <div class="faq-q">
-          <span>Qancha vaqtda natija ko'raman?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <div class="faq-a-inner">Oddiy avtomatlashtirish (Telegram bot, 1 ta jarayon) 1-2 haftada tayyor. Murakkab loyihalar (CRM integratsiya, dashboard) 3-6 hafta oladi. Barcha mijozlarimiz 30 kun ichida birinchi natijani ko'rgan.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <span>Texnik bilim kerakmi?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <div class="faq-a-inner">Yo'q. Biz barcha texnik ishni o'zimiz qilamiz. Siz faqat muammoni va maqsadni aytasiz — qolganini biz hal qilamiz. Joriy etish tugagach video qo'llanma va jamoa traingi ham beramiz.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <span>Qaysi platformalar bilan ishlaymiz?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <div class="faq-a-inner">Telegram, Instagram, WhatsApp, Bitrix24, amoCRM, Google Sheets, 1C, Didox.uz, Regos va boshqa ko'plab tizimlar. Agar sizda boshqa tizim bo'lsa ham — avval ko'rib chiqamiz.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <span>Mavjud tizimlarimni o'zgartirish kerakmi?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <div class="faq-a-inner">Yo'q. Biz mavjud tizimlaringizga integratsiya qilamiz, almashtirmaymiz. Siz ishlatiayotgan dasturlar, jarayonlar o'zgarmaydi — faqat ular orasidagi bog'liqlik avtomatlashadi.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-q">
-          <span>Agar tizim ishlamay qolsa nima bo'ladi?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-a">
-          <div class="faq-a-inner">Barcha tarif paketlarda texnik qo'llab-quvvatlash mavjud. Starter — 30 kun, Growth — 3 oy, Enterprise — doimiy 24/7 support. Muammo yuzaga kelsa Telegram orqali xabar yuboring — 1 soat ichida javob beramiz.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CONTACT ══════════ -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="section-label">Bepul Diagnostika</div>
-        <h2>Bugun bepul diagnostika —<br>ertaga tizimli foyda.</h2>
-        <p class="section-sub">30 daqiqada biznesingizdagi asosiy yo'qotish nuqtalarini topamiz va aniq yechim tavsiya beramiz.</p>
-        <div class="contact-points" style="margin-top:2rem">
-          <div class="contact-point">
-            <div class="contact-point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
+      <div class="cases__grid">
+        <div class="case-card reveal-up" data-delay="0">
+          <div class="case-card__head">
+            <div class="case-tag">CRM Integratsiya</div>
+            <div class="case-industry">Savdo kompaniyasi</div>
+          </div>
+          <h3>CRM Dashboard — Savdo Nazorati</h3>
+          <p>Savdo kompaniyasi uchun Bitrix24 va Google Sheets integratsiyasi. Barcha lidlar, sotuv va xodimlar faoliyati bir dashboardda.</p>
+          <div class="case-results">
+            <div class="case-result">
+              <strong>3x</strong>
+              <small>Sotuv o'sishi</small>
             </div>
-            <div class="contact-point-text">
-              <strong>Telegram</strong>
-              <span>@eo_business — tez javob</span>
+            <div class="case-result">
+              <strong>0</strong>
+              <small>Qo'lda hisobot</small>
+            </div>
+            <div class="case-result">
+              <strong>2 hafta</strong>
+              <small>Amalga oshirish</small>
             </div>
           </div>
-          <div class="contact-point">
-            <div class="contact-point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
-              </svg>
+          <div class="case-stack">
+            <span>Bitrix24</span><span>Google Sheets</span><span>Make.com</span>
+          </div>
+        </div>
+
+        <div class="case-card case-card--featured reveal-up" data-delay="1">
+          <div class="case-card__head">
+            <div class="case-tag">AI Chatbot</div>
+            <div class="case-industry">Online do'kon</div>
+          </div>
+          <h3>Telegram Bot AI — Avtomatik Javoblar</h3>
+          <p>Online do'kon uchun AI Telegram bot. Mahsulot so'rovi, narx, mavjudlik, buyurtma — hammasini bot boshqaradi.</p>
+          <div class="case-results">
+            <div class="case-result">
+              <strong>78%</strong>
+              <small>Avtomatik javob</small>
             </div>
-            <div class="contact-point-text">
-              <strong>Ish vaqti</strong>
-              <span>Du–Shan, 09:00–18:00</span>
+            <div class="case-result">
+              <strong>24/7</strong>
+              <small>Ishlash</small>
+            </div>
+            <div class="case-result">
+              <strong>–60%</strong>
+              <small>Operator yuki</small>
             </div>
           </div>
-          <div class="contact-point">
-            <div class="contact-point-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
+          <div class="case-stack">
+            <span>Telegram API</span><span>OpenAI</span><span>n8n</span>
+          </div>
+        </div>
+
+        <div class="case-card reveal-up" data-delay="2">
+          <div class="case-card__head">
+            <div class="case-tag">Web Ekosistema</div>
+            <div class="case-industry">Servis markaz</div>
+          </div>
+          <h3>Servis Markaz — To'liq Ekosistema</h3>
+          <p>Sayt, CRM, Telegram bot va avtomatik hisobotlarni ulash. Har bir murojaat avtomatik qayd etiladi va javob beriladi.</p>
+          <div class="case-results">
+            <div class="case-result">
+              <strong>3x</strong>
+              <small>So'rovlar o'sishi</small>
             </div>
-            <div class="contact-point-text">
-              <strong>Manzil</strong>
-              <span>Toshkent, O'zbekiston (Remote ham)</span>
+            <div class="case-result">
+              <strong>100%</strong>
+              <small>Lidlar qayd etish</small>
+            </div>
+            <div class="case-result">
+              <strong>1 oy</strong>
+              <small>ROI qaytishi</small>
+            </div>
+          </div>
+          <div class="case-stack">
+            <span>amoCRM</span><span>Telegram</span><span>Make.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cases__cta reveal-up">
+        <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--primary">
+          Shu kabi natija olish uchun →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ PROCESS ═══════════════════════════ -->
+  <section class="process section" id="process">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Jarayon</div>
+        <h2 class="section-title">4 qadamda natijaga</h2>
+        <p class="section-sub">Birinchi qo'ng'iroqdan ishga tushirishgacha — aniq, tez, kafolatli</p>
+      </div>
+
+      <div class="process__steps">
+        <div class="process-step reveal-up" data-delay="0">
+          <div class="ps__num">01</div>
+          <div class="ps__content">
+            <h3>Bepul Diagnostika</h3>
+            <p>30 daqiqalik qo'ng'iroq. Biznesingizning qaysi jarayonlarini avtomatlashtirishni va qancha vaqt tejalishini aniqlaymiz.</p>
+            <span class="ps__time">30 daqiqa</span>
+          </div>
+          <div class="ps__connector"></div>
+        </div>
+
+        <div class="process-step reveal-up" data-delay="1">
+          <div class="ps__num">02</div>
+          <div class="ps__content">
+            <h3>Yechim Loyihasi</h3>
+            <p>Texnik spetsifikatsiya, amalga oshirish rejasi, narx va muddatlar. Siz tasdiqlaysiz — boshlaymiz.</p>
+            <span class="ps__time">1–2 kun</span>
+          </div>
+          <div class="ps__connector"></div>
+        </div>
+
+        <div class="process-step reveal-up" data-delay="2">
+          <div class="ps__num">03</div>
+          <div class="ps__content">
+            <h3>Amalga Oshirish</h3>
+            <p>Barcha integratsiyalar, testlar va sozlashlar. Siz jarayonni ko'rasiz, biz tushuntiramiz.</p>
+            <span class="ps__time">3–14 kun</span>
+          </div>
+          <div class="ps__connector"></div>
+        </div>
+
+        <div class="process-step reveal-up" data-delay="3">
+          <div class="ps__num">04</div>
+          <div class="ps__content">
+            <h3>Natija + Qo'llab-quvvatlash</h3>
+            <p>Ishga tushirish, jamoa tayyorlash va 30 kunlik kafolat davri. Muammo bo'lsa — tuzatamiz.</p>
+            <span class="ps__time">30 kun kafolat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ SOCIAL PROOF ═══════════════════════ -->
+  <section class="proof section">
+    <div class="container">
+      <div class="proof__grid">
+        <div class="proof__stat reveal-up" data-delay="0">
+          <div class="stat-num" data-count="15">15</div>
+          <div class="stat-plus">+</div>
+          <p>Muvaffaqiyatli loyihalar</p>
+        </div>
+        <div class="proof__stat reveal-up" data-delay="1">
+          <div class="stat-num" data-count="78">78</div>
+          <div class="stat-plus">%</div>
+          <p>O'rtacha bot javob darajasi</p>
+        </div>
+        <div class="proof__stat reveal-up" data-delay="2">
+          <div class="stat-num" data-count="30">30</div>
+          <div class="stat-plus"> kun</div>
+          <p>ROI kafolati muddati</p>
+        </div>
+        <div class="proof__stat reveal-up" data-delay="3">
+          <div class="stat-num" data-count="3">3</div>
+          <div class="stat-plus">x</div>
+          <p>O'rtacha sotuv o'sishi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ TESTIMONIALS ═══════════════════════ -->
+  <section class="testimonials section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Mijozlar</div>
+        <h2 class="section-title">Ular aytganida</h2>
+      </div>
+
+      <div class="testi__grid">
+        <div class="testi-card reveal-up" data-delay="0">
+          <div class="testi-stars">★★★★★</div>
+          <p>"CRM va hisobotlarni avtomatlashtirish bizga haftasiga 20+ soat tejadi. Endi menejerlar hisob yozish emas, mijozlar bilan ishlashga vaqt sarflaydi."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">S</div>
+            <div>
+              <strong>Sanjar T.</strong>
+              <small>Savdo kompaniyasi direktori, Toshkent</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card testi-card--accent reveal-up" data-delay="1">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Telegram botni sozlaganidan keyin operatorlar faqat murakkab savollar bilan shug'ullanadi. Bot 78% savolni o'zi hal qilmoqda. Ajoyib natija!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div>
+              <strong>Malika R.</strong>
+              <small>Online do'kon egasi, Toshkent</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal-up" data-delay="2">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Servis markaz uchun to'liq ekosistema yaratishdi. Har bir qo'ng'iroq, xabar avtomatik qayd etiladi. So'rovlar 3 barobar ko'paydi."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">A</div>
+            <div>
+              <strong>Azizbek K.</strong>
+              <small>Servis markaz rahbari, Toshkent</small>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="contact-form">
-        <h3>Bepul diagnostikaga yozilish</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Ismingiz</label>
-            <input type="text" placeholder="Anvar">
+  <!-- ══════════════════════════════ PRICING ═══════════════════════════ -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">Narxlar</div>
+        <h2 class="section-title">Biznesingiz o'lchamiga mos tarif</h2>
+        <p class="section-sub">Yashirin to'lovlar yo'q. Narx — bir marta aytiladi, o'zgarmaydi.</p>
+      </div>
+
+      <div class="pricing__grid">
+        <div class="pricing-card reveal-up" data-delay="0">
+          <div class="pc__tag">Starter</div>
+          <div class="pc__price">
+            <span class="pc__amount">6 000 000</span>
+            <span class="pc__currency">so'm</span>
           </div>
-          <div class="form-group">
-            <label>Telefon</label>
-            <input type="tel" placeholder="+998 90 000 00 00">
+          <p class="pc__desc">Birinchi avtomatlashtirish uchun ideal boshlang'ich paket</p>
+          <ul class="pc__features">
+            <li><span>✓</span> 1 ta asosiy jarayonni avtomatlashtirish</li>
+            <li><span>✓</span> Telegram bot yoki CRM integratsiya</li>
+            <li><span>✓</span> 30 kunlik texnik qo'llab-quvvatlash</li>
+            <li><span>✓</span> Jamoani o'qitish</li>
+            <li><span>✓</span> Amalga oshirish: 3–7 kun</li>
+          </ul>
+          <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--ghost btn--full">
+            Boshlash →
+          </a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured reveal-up" data-delay="1">
+          <div class="pc__badge">Eng mashhur</div>
+          <div class="pc__tag">Growth</div>
+          <div class="pc__price">
+            <span class="pc__amount">18 000 000</span>
+            <span class="pc__currency">so'm</span>
           </div>
+          <p class="pc__desc">O'sib borayotgan biznes uchun kompleks yechim</p>
+          <ul class="pc__features">
+            <li><span>✓</span> 3 ta jarayonni avtomatlashtirish</li>
+            <li><span>✓</span> AI chatbot + CRM + Dashboard</li>
+            <li><span>✓</span> Oylik texnik xizmat: 1 200 000 so'm</li>
+            <li><span>✓</span> Oylik tahlil va optimizatsiya</li>
+            <li><span>✓</span> Amalga oshirish: 7–14 kun</li>
+            <li><span>✓</span> Ustuvor qo'llab-quvvatlash</li>
+          </ul>
+          <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--primary btn--full">
+            Boshlash →
+          </a>
         </div>
-        <div class="form-group">
-          <label>Biznes turi</label>
-          <select>
-            <option value="">Tanlang...</option>
-            <option>Savdo / Do'kon</option>
-            <option>Xizmat ko'rsatish</option>
-            <option>Ishlab chiqarish</option>
-            <option>Restoran / Kafe</option>
-            <option>IT / Startap</option>
-            <option>Boshqa</option>
-          </select>
+
+        <div class="pricing-card reveal-up" data-delay="2">
+          <div class="pc__tag">Enterprise</div>
+          <div class="pc__price">
+            <span class="pc__amount">$3 000</span>
+            <span class="pc__currency">dan</span>
+          </div>
+          <p class="pc__desc">Yirik kompaniyalar uchun individual yechim</p>
+          <ul class="pc__features">
+            <li><span>✓</span> Cheksiz jarayonlar avtomatlashtirish</li>
+            <li><span>✓</span> Maxsus AI modellari</li>
+            <li><span>✓</span> ERP/1C integratsiyasi</li>
+            <li><span>✓</span> Dedicated menejer</li>
+            <li><span>✓</span> SLA kafolati</li>
+            <li><span>✓</span> Individual narx va muddat</li>
+          </ul>
+          <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--ghost btn--full">
+            Murojaat qilish →
+          </a>
         </div>
-        <div class="form-group">
-          <label>Qanday muammo bor? (ixtiyoriy)</label>
-          <textarea placeholder="Masalan: hisobotlar ko'p vaqt oladi, mijozlarga javob kechikadi..."></textarea>
+      </div>
+
+      <div class="pricing__guarantee reveal-up">
+        <div class="guarantee-icon">🛡️</div>
+        <div>
+          <strong>30 kunlik kafolat</strong>
+          <p>Agar natija chiqmasa — to'lovni qaytaramiz yoki tuzatamiz. Xavfsiz boshlang.</p>
         </div>
-        <button class="btn-gold" style="width:100%;justify-content:center;border:none;cursor:pointer"
-          onclick="this.textContent='✓ Yuborildi! Tez orada bog\'lanamiz.'; this.style.background='#22c55e'; this.style.animation='none';">
-          Diagnostikaga yozilish →
-        </button>
-        <p class="form-note">✓ Bepul &nbsp;·&nbsp; ✓ 30 daqiqa &nbsp;·&nbsp; ✓ Majburiyatsiz</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ CTA BANNER ══════════ -->
-<div class="cta-section">
-  <div class="cta-banner">
-    <div class="section-label" style="justify-content:center;margin-bottom:1rem">Hoziroq boshlang</div>
-    <h2>Raqobatchilaringiz<br>allaqachon avtomatlashtirgan</h2>
-    <p class="section-sub">Har kechikkan kun — yo'qotilgan foyda. 30 daqiqalik bepul diagnostika bilan qayerdan boshlashni bilib oling.</p>
-    <a href="#contact" class="btn-gold" style="margin-top:2rem">Bepul Diagnostika →</a>
-  </div>
-</div>
+  <!-- ══════════════════════════════ FAQ ════════════════════════════════ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Ko'p so'raladigan savollar</h2>
+      </div>
 
-<!-- ══════════ FOOTER ══════════ -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo">EO</div>
-      <div class="footer-tagline">Biznes Avtomatlashtirish · AI Yechimlar · Toshkent</div>
+      <div class="faq__list">
+        <div class="faq-item reveal-up" data-delay="0">
+          <button class="faq-q">
+            Biznesingiz qanchalik texnik bo'lishi kerak?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-a">
+            <p>Hech qanday texnik bilim talab qilinmaydi. Biz hamma narsani o'rnatamiz, tushuntiramiz va xodimlaringizni o'qitamiz. Sizdan faqat jarayonni tushuntirish va tasdiqlov kerak.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up" data-delay="1">
+          <button class="faq-q">
+            Mavjud tizimlarim o'zgaradimi?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-a">
+            <p>Yo'q. Biz mavjud tizimlaringizga (1C, Google Sheets, CRM, Telegram) ulanamiz. Almashtirish shart emas — integratsiya qilamiz.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up" data-delay="2">
+          <button class="faq-q">
+            Qancha vaqtda natija ko'rinadi?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-a">
+            <p>Oddiy loyihalar 3–7 kunda ishga tushadi. Murakkab yechimlar 2–4 hafta. ROI odatda birinchi oyda ko'rinadi — buning uchun 30 kunlik kafolat beramiz.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up" data-delay="3">
+          <button class="faq-q">
+            Make.com va n8n nima va nega ularni tanladingiz?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-a">
+            <p>Make.com va n8n — dunyoning eng kuchli vizual avtomatlashtirish platformalari. 1000+ integratsiya, AI qo'llab-quvvatlash, arzon narx. Zapier ga qaraganda 5–10 marta tejamkorroq.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal-up" data-delay="4">
+          <button class="faq-q">
+            Loyiha tugagandan keyin kim qo'llab-quvvatlaydi?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-a">
+            <p>Starter — 30 kun, Growth — muddatsiz oylik xizmat. Har qanday muammo, yangi funksiyalar, optimallashtirish — hammasi qo'llab-quvvatlash paketiga kiradi.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <ul class="footer-links">
-      <li><a href="#services">Xizmatlar</a></li>
-      <li><a href="#results">Natijalar</a></li>
-      <li><a href="#pricing">Narxlar</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Kontakt</a></li>
-    </ul>
-  </div>
-  <p class="footer-copy">© 2026 EO — Business Automation & AI Solutions. Barcha huquqlar himoyalangan. Toshkent, O'zbekiston.</p>
-</footer>
+  </section>
 
-<!-- ══════════════════════════════════════════
-     THREE.JS — HERO 3D (Central torus knot + particles)
-══════════════════════════════════════════ -->
-<script>
-(function() {
-  const canvas = document.getElementById('hero-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x000000, 0);
+  <!-- ══════════════════════════════ FINAL CTA ═════════════════════════ -->
+  <section class="final-cta section">
+    <div class="container">
+      <div class="final-cta__inner reveal-up">
+        <div class="fca__glow"></div>
+        <div class="section-label">Boshlanish vaqti</div>
+        <h2>Biznesingiz uchun bepul diagnostika oling</h2>
+        <p>30 daqiqa ichida qaysi jarayonlarni avtomatlashtirib, necha soat tejashingizni bilib olasiz. Majburiyat yo'q.</p>
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.z = 7;
+        <div class="fca__actions">
+          <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="btn btn--primary btn--lg">
+            Telegramda yozish →
+          </a>
+          <div class="fca__trust">
+            <span>✓ Bepul</span>
+            <span>✓ 30 daqiqa</span>
+            <span>✓ Majburiyatsiz</span>
+          </div>
+        </div>
 
-  function resize() {
-    const w = canvas.parentElement.offsetWidth;
-    const h = canvas.parentElement.offsetHeight;
-    renderer.setSize(w, h);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  }
-  resize();
-  window.addEventListener('resize', resize);
+        <div class="fca__contact-alt">
+          Yoki to'g'ridan: <a href="https://t.me/eo_business" target="_blank" rel="noopener">@eo_business</a>
+          &nbsp;·&nbsp; Dush–Juma, 09:00–18:00
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // ── Central 3D object: TorusKnot ──────────────────
-  const knotGeo = new THREE.TorusKnotGeometry(1.6, 0.45, 180, 18, 2, 3);
-  const knotMat = new THREE.MeshBasicMaterial({
-    color: 0xE8292A,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.55
-  });
-  const knot = new THREE.Mesh(knotGeo, knotMat);
-  knot.position.set(2.5, 0, 0);
-  scene.add(knot);
+  <!-- ══════════════════════════════ FOOTER ════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#" class="nav__logo">EO<span>.</span></a>
+          <p>Biznes Avtomatlashtirish & AI Yechimlar. O'zbekistonda Make.com va n8n ixtisosligida.</p>
+          <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="footer__tg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.473c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.287l-2.95-.924c-.64-.203-.654-.64.135-.948l11.527-4.447c.535-.194 1.002.13.37.28z"/>
+            </svg>
+            @eo_business
+          </a>
+        </div>
 
-  // Inner glow ring
-  const ringGeo = new THREE.TorusGeometry(2.2, 0.02, 8, 80);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0xE8292A, transparent: true, opacity: 0.15 });
-  const ring1 = new THREE.Mesh(ringGeo, ringMat);
-  ring1.position.set(2.5, 0, 0);
-  ring1.rotation.x = Math.PI / 3;
-  scene.add(ring1);
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4>Xizmatlar</h4>
+            <a href="#services">Jarayon Avtomatlashtirish</a>
+            <a href="#services">AI Chatbot</a>
+            <a href="#services">CRM Integratsiya</a>
+            <a href="#services">Dashboard</a>
+            <a href="#services">Marketing</a>
+          </div>
+          <div class="footer__col">
+            <h4>Kompaniya</h4>
+            <a href="#cases">Ishlarimiz</a>
+            <a href="#process">Jarayon</a>
+            <a href="#pricing">Narxlar</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://t.me/eo_business" target="_blank">Kontakt</a>
+          </div>
+        </div>
+      </div>
 
-  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.6, 0.015, 8, 80), ringMat);
-  ring2.position.set(2.5, 0, 0);
-  ring2.rotation.y = Math.PI / 4;
-  scene.add(ring2);
+      <div class="footer__bottom">
+        <p>© 2026 EO — Business Automation & AI Solutions. Barcha huquqlar himoyalangan.</p>
+        <p>Toshkent, O'zbekiston · <a href="https://t.me/eo_business" target="_blank">Telegram</a></p>
+      </div>
+    </div>
+  </footer>
 
-  // ── Particle field ────────────────────────────────
-  const pCount = 500;
-  const pPositions = new Float32Array(pCount * 3);
-  for (let i = 0; i < pCount; i++) {
-    const r = 8 + Math.random() * 10;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(2 * Math.random() - 1);
-    pPositions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
-    pPositions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
-    pPositions[i*3+2] = r * Math.cos(phi) - 4;
-  }
-  const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
-  const pMat = new THREE.PointsMaterial({
-    color: 0xE8292A, size: 0.04,
-    transparent: true, opacity: 0.45
-  });
-  scene.add(new THREE.Points(pGeo, pMat));
-
-  // ── Background floating wireframes ────────────────
-  const smallGeos = [
-    new THREE.IcosahedronGeometry(1, 0),
-    new THREE.OctahedronGeometry(1, 0),
-    new THREE.TetrahedronGeometry(1, 0),
-  ];
-  const dimMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.03 });
-  const goldDimMat = new THREE.MeshBasicMaterial({ color: 0xE8292A, wireframe: true, transparent: true, opacity: 0.08 });
-  const floaters = [];
-  for (let i = 0; i < 55; i++) {
-    const geo = smallGeos[Math.floor(Math.random() * smallGeos.length)];
-    const mat = Math.random() > 0.4 ? goldDimMat : dimMat;
-    const mesh = new THREE.Mesh(geo, mat);
-    const spread = 16;
-    mesh.position.set(
-      (Math.random() - 0.5) * spread,
-      (Math.random() - 0.5) * spread,
-      (Math.random() - 0.5) * 8 - 3
-    );
-    const s = 0.04 + Math.random() * 0.2;
-    mesh.scale.setScalar(s);
-    mesh.userData = {
-      rotX: (Math.random() - 0.5) * 0.007,
-      rotY: (Math.random() - 0.5) * 0.007,
-      floatY: Math.random() * Math.PI * 2,
-      floatSpeed: 0.003 + Math.random() * 0.004,
-      floatAmp: 0.015 + Math.random() * 0.025,
-      baseY: mesh.position.y
-    };
-    scene.add(mesh);
-    floaters.push(mesh);
-  }
-
-  // ── Mouse parallax ────────────────────────────────
-  let mx = 0, my = 0;
-  document.addEventListener('mousemove', e => {
-    mx = (e.clientX / window.innerWidth - 0.5) * 0.6;
-    my = (e.clientY / window.innerHeight - 0.5) * 0.4;
-  });
-
-  // ── Animate ───────────────────────────────────────
-  function animate() {
-    requestAnimationFrame(animate);
-
-    // Torus knot rotation
-    knot.rotation.x += 0.004;
-    knot.rotation.y += 0.006;
-
-    // Rings orbit
-    ring1.rotation.z += 0.003;
-    ring2.rotation.x += 0.002;
-
-    // Floaters
-    floaters.forEach(obj => {
-      obj.rotation.x += obj.userData.rotX;
-      obj.rotation.y += obj.userData.rotY;
-      obj.userData.floatY += obj.userData.floatSpeed;
-      obj.position.y = obj.userData.baseY + Math.sin(obj.userData.floatY) * obj.userData.floatAmp;
-    });
-
-    // Camera parallax
-    camera.position.x += (mx - camera.position.x) * 0.035;
-    camera.position.y += (-my - camera.position.y) * 0.035;
-    camera.lookAt(scene.position);
-
-    renderer.render(scene, camera);
-  }
-  animate();
-})();
-</script>
-
-<!-- ══════════════════════════════════════════
-     GSAP SCROLL ANIMATIONS
-══════════════════════════════════════════ -->
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-// Count-up
-document.querySelectorAll('[data-count]').forEach(el => {
-  const target = +el.dataset.count;
-  const suffix = el.dataset.suffix || '';
-  gsap.from({ val: 0 }, {
-    val: target, duration: 2, ease: 'power2.out', delay: 0.8,
-    onUpdate: function() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
-  });
-});
-
-// Section labels
-gsap.utils.toArray('.section-label').forEach(el => {
-  gsap.from(el, { opacity: 0, x: -20, duration: 0.6, scrollTrigger: { trigger: el, start: 'top 88%' } });
-});
-
-// Headings
-gsap.utils.toArray('h2').forEach(el => {
-  gsap.from(el, { opacity: 0, y: 28, duration: 0.7, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 86%' } });
-});
-
-// Section subs
-gsap.utils.toArray('.section-sub').forEach(el => {
-  gsap.from(el, { opacity: 0, y: 18, duration: 0.6, delay: 0.1, scrollTrigger: { trigger: el, start: 'top 86%' } });
-});
-
-// Problem cards stagger
-gsap.utils.toArray('.problem-card').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
-    delay: i * 0.1,
-    scrollTrigger: { trigger: '.problems-grid', start: 'top 82%' }
-  });
-});
-
-// Service cards stagger
-gsap.utils.toArray('.svc-card').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
-    delay: i * 0.1,
-    scrollTrigger: { trigger: '.services-grid', start: 'top 82%' }
-  });
-});
-
-// Steps stagger
-gsap.utils.toArray('.step').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
-    delay: i * 0.15,
-    scrollTrigger: { trigger: '.steps', start: 'top 80%' }
-  });
-});
-
-// Process line draw
-gsap.to('#processLine', {
-  scaleX: 1, duration: 1.3, ease: 'power2.inOut',
-  scrollTrigger: { trigger: '.steps', start: 'top 80%' }
-});
-
-// Portfolio cards
-gsap.utils.toArray('.portfolio-card').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
-    delay: i * 0.15,
-    scrollTrigger: { trigger: '.portfolio-grid', start: 'top 82%' }
-  });
-});
-
-// Result cards
-gsap.utils.toArray('.result-card').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
-    delay: i * 0.12,
-    scrollTrigger: { trigger: '.results-grid', start: 'top 82%' }
-  });
-});
-
-// Tech items
-gsap.utils.toArray('.tech-item').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
-    delay: i * 0.05,
-    scrollTrigger: { trigger: '.tech-grid', start: 'top 82%' }
-  });
-});
-
-// Pricing cards
-gsap.utils.toArray('.price-card').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
-    delay: i * 0.15,
-    scrollTrigger: { trigger: '.pricing-grid', start: 'top 82%' }
-  });
-});
-
-// Review cards
-gsap.utils.toArray('.review-card').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
-    delay: i * 0.12,
-    scrollTrigger: { trigger: '.reviews-grid', start: 'top 82%' }
-  });
-});
-
-// FAQ items
-gsap.utils.toArray('.faq-item').forEach((el, i) => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
-    delay: i * 0.07,
-    scrollTrigger: { trigger: '.faq-list', start: 'top 82%' }
-  });
-});
-
-// CTA banner
-gsap.from('.cta-banner', {
-  opacity: 0, y: 48, duration: 0.8, ease: 'power2.out',
-  scrollTrigger: { trigger: '.cta-banner', start: 'top 85%' }
-});
-
-// Hero entrance
-gsap.from('.hero-content > *', {
-  opacity: 0, y: 30, duration: 0.75, stagger: 0.15, ease: 'power2.out', delay: 0.3
-});
-gsap.from('.trust-item', {
-  opacity: 0, y: 20, duration: 0.5, stagger: 0.1, delay: 1.2
-});
-</script>
-
-<!-- ══════════════════════════════════════════
-     FAQ ACCORDION + MOBILE NAV
-══════════════════════════════════════════ -->
-<script>
-// FAQ accordion
-document.querySelectorAll('.faq-item').forEach(item => {
-  const q = item.querySelector('.faq-q');
-  const a = item.querySelector('.faq-a');
-  q.addEventListener('click', () => {
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.faq-a').style.maxHeight = '0';
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      a.style.maxHeight = a.scrollHeight + 'px';
-    }
-  });
-});
-
-// Mobile nav
-document.getElementById('menuBtn').addEventListener('click', function() {
-  const nav = document.querySelector('.nav-links');
-  const isOpen = nav.style.display === 'flex';
-  if (isOpen) {
-    nav.style.display = 'none';
-  } else {
-    Object.assign(nav.style, {
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'absolute',
-      top: '66px', left: '0', right: '0',
-      background: 'rgba(7,7,7,0.97)',
-      padding: '1.5rem 6%',
-      borderBottom: '1px solid rgba(255,255,255,0.05)',
-      backdropFilter: 'blur(24px)',
-      gap: '1.25rem', zIndex: '299'
-    });
-    nav.querySelectorAll('a').forEach(a => { a.onclick = () => { nav.style.display = 'none'; }; });
-  }
-});
-</script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>

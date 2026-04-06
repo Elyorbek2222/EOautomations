@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="8" fill="#070707"/>
+  <text x="5" y="24" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="#E8292A">EO</text>
+  <circle cx="27" cy="8" r="3" fill="#E8292A"/>
+</svg>

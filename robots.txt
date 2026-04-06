@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eoautomations.vercel.app/sitemap.xml
