@@ -831,29 +831,112 @@
   </section>
 
   <!-- ══════════════════════════════ FINAL CTA ═════════════════════════ -->
-  <section class="final-cta section">
+  <section class="final-cta section" id="konsultatsiya">
     <div class="container">
       <div class="final-cta__inner reveal-up">
         <div class="fca__glow"></div>
-        <div class="section-label">Boshlanish vaqti</div>
-        <h2>Biznesingiz uchun bepul diagnostika oling</h2>
-        <p>30 daqiqa ichida qaysi jarayonlarni avtomatlashtirib, necha soat tejashingizni bilib olasiz. Majburiyat yo'q.</p>
 
-        <div class="fca__actions">
-          <a href="quiz.html" class="btn btn--primary btn--lg">
-            Bepul Konsultatsiya Olish →
-          </a>
-          <div class="fca__trust">
-            <span>✓ Bepul</span>
-            <span>✓ 30 daqiqa</span>
-            <span>✓ Majburiyatsiz</span>
+        <div class="fca__grid">
+          <!-- LEFT -->
+          <div class="fca__left">
+            <div class="section-label">Boshlanish vaqti</div>
+            <h2>Biznesingiz uchun<br>bepul konsultatsiya</h2>
+            <p>So'rovnomani to'ldiring — mutaxassisimiz 24 soat ichida siz bilan bog'lanadi va avtomatlashtirish imkoniyatlarini ko'rsatadi.</p>
+
+            <div class="fca__perks">
+              <div class="fca__perk">
+                <span class="fca__perk-icon">🚀</span>
+                <div>
+                  <strong>Tez natija</strong>
+                  <span>7–14 kun ichida ishga tushirish</span>
+                </div>
+              </div>
+              <div class="fca__perk">
+                <span class="fca__perk-icon">📊</span>
+                <div>
+                  <strong>Shaxsiy tahlil</strong>
+                  <span>Sizning biznesingizga mos yechim</span>
+                </div>
+              </div>
+              <div class="fca__perk">
+                <span class="fca__perk-icon">🎯</span>
+                <div>
+                  <strong>Birinchi konsultatsiya bepul</strong>
+                  <span>Hech qanday majburiyatsiz</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="fca__contact-alt">
+              Yoki to'g'ridan: <a href="https://t.me/eo_business" target="_blank" rel="noopener">@eo_business</a>
+            </div>
+          </div>
+
+          <!-- RIGHT — FORM -->
+          <div class="fca__right">
+            <div id="fcaFormState">
+              <div class="fca__form-title">Biznesingiz haqida ayting</div>
+              <div class="fca__form-sub">* majburiy maydonlar</div>
+
+              <div class="fca__row">
+                <div class="fca__group">
+                  <label class="fca__label">Ismingiz <span class="fca__req">*</span></label>
+                  <input type="text" class="fca__input" id="fcaName" placeholder="Ism Familiya">
+                </div>
+                <div class="fca__group">
+                  <label class="fca__label">Telefon <span class="fca__req">*</span></label>
+                  <input type="tel" class="fca__input" id="fcaPhone" placeholder="+998 XX XXX XX XX">
+                </div>
+              </div>
+
+              <div class="fca__group">
+                <label class="fca__label">Kompaniya nomi</label>
+                <input type="text" class="fca__input" id="fcaCompany" placeholder="Masalan: Nexus Trade...">
+              </div>
+
+              <div class="fca__group">
+                <label class="fca__label">Biznes turi <span class="fca__req">*</span></label>
+                <div class="fca__chips" id="fcaChips">
+                  <div class="fca__chip" onclick="fcaChip(this)">E-commerce</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Restoran / Café</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Xizmat ko'rsatish</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Ishlab chiqarish</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Logistika</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Qurilish</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Ta'lim</div>
+                  <div class="fca__chip" onclick="fcaChip(this)">Boshqa</div>
+                </div>
+              </div>
+
+              <div class="fca__group">
+                <label class="fca__label">Asosiy muammo yoki maqsad <span class="fca__req">*</span></label>
+                <textarea class="fca__input fca__textarea" id="fcaProblem"
+                  placeholder="Masalan: Har kuni hisobotlarni qo'lda yig'amiz, bu 3–4 soat vaqt oladi..."></textarea>
+              </div>
+
+              <button class="btn btn--primary fca__submit" id="fcaSubmitBtn" onclick="fcaSubmit()">
+                Yuborish →
+              </button>
+              <p class="fca__note">Ma'lumotlaringiz maxfiy saqlanadi</p>
+            </div>
+
+            <!-- SUCCESS -->
+            <div id="fcaSuccess" style="display:none; text-align:center; padding:40px 0;">
+              <div style="font-size:48px; margin-bottom:16px;">✅</div>
+              <div style="font-family:var(--font-head); font-size:22px; font-weight:700; margin-bottom:10px;">Qabul qilindi!</div>
+              <div style="font-size:14px; color:var(--silver); line-height:1.7; margin-bottom:28px;">
+                Mutaxassisimiz <strong style="color:#fff">24 soat ichida</strong> siz bilan bog'lanadi.
+              </div>
+              <a href="https://t.me/eo_business" target="_blank" rel="noopener"
+                style="display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#fff;
+                       border-radius:10px;padding:13px 22px;font-weight:700;font-size:14px;text-decoration:none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.473c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.287l-2.95-.924c-.64-.203-.654-.64.135-.948l11.527-4.447c.535-.194 1.002.13.37.28z"/></svg>
+                Telegram kanalga o'tish
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="fca__contact-alt">
-          Yoki to'g'ridan: <a href="https://t.me/eo_business" target="_blank" rel="noopener">@eo_business</a>
-          &nbsp;·&nbsp; Dush–Juma, 09:00–18:00
-        </div>
       </div>
     </div>
   </section>
@@ -901,5 +984,37 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    const FCA_WEBHOOK = 'https://contentrealy.app.n8n.cloud/webhook/quiz-lead';
+    function fcaChip(el) { el.classList.toggle('fca__chip--on'); }
+    async function fcaSubmit() {
+      const name    = document.getElementById('fcaName').value.trim();
+      const phone   = document.getElementById('fcaPhone').value.trim();
+      const company = document.getElementById('fcaCompany').value.trim();
+      const problem = document.getElementById('fcaProblem').value.trim();
+      const chips   = [...document.querySelectorAll('.fca__chip--on')].map(c => c.textContent).join(', ');
+      let ok = true;
+      if (!name)    { document.getElementById('fcaName').style.borderColor    = '#E8292A'; ok = false; }
+      if (!phone)   { document.getElementById('fcaPhone').style.borderColor   = '#E8292A'; ok = false; }
+      if (!problem) { document.getElementById('fcaProblem').style.borderColor = '#E8292A'; ok = false; }
+      if (!ok) return;
+      const btn = document.getElementById('fcaSubmitBtn');
+      btn.disabled = true; btn.textContent = 'Yuborilmoqda...';
+      try {
+        await fetch(FCA_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, company: company||'—', biznesturi: chips||'—', problem, source: 'main-page-form', timestamp: new Date().toISOString() })
+        });
+      } catch(e) { console.warn(e); }
+      document.getElementById('fcaFormState').style.display = 'none';
+      document.getElementById('fcaSuccess').style.display   = 'block';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.fca__input').forEach(el =>
+        el.addEventListener('input', () => el.style.borderColor = '')
+      );
+    });
+  </script>
 </body>
 </html>
