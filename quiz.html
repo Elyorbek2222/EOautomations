@@ -3,493 +3,509 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biznesingiz haqida — EO Automation</title>
-  <meta name="description" content="Biznesingiz haqida ma'lumot qoldiring. Mutaxassisimiz siz bilan bog'lanadi.">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Bepul Audit — EO Automation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
 
     :root {
-      --bg:    #070707;
-      --bg2:   #0e0e0e;
-      --bg3:   #141414;
-      --bd2:   rgba(255,255,255,0.07);
-      --red:   #E8292A;
-      --red2:  #FF4D4D;
-      --white: #FFFFFF;
-      --gray:  #9A9A9A;
+      --bg:   #080808;
+      --card: #111111;
+      --bd:   rgba(255,255,255,0.08);
+      --red:  #E8292A;
+      --red2: #ff5a5a;
+      --w:    #ffffff;
+      --g:    #888888;
+      --g2:   #444444;
     }
 
-    body {
+    html, body {
+      height: 100%;
       background: var(--bg);
-      color: var(--white);
+      color: var(--w);
       font-family: 'Inter', sans-serif;
-      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    /* ── TOP BAR ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      height: 56px;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 6%; height: 66px;
-      background: rgba(7,7,7,0.92);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--bd2);
+      padding: 0 24px;
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--bd);
     }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
+    .topbar-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--w);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 16px;
     }
-    .logo-box {
-      width: 34px; height: 34px; border-radius: 8px;
+    .topbar-logo-box {
+      width: 28px; height: 28px; border-radius: 6px;
       background: var(--red);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800; font-size: 15px; color: #fff;
+      font-size: 12px; font-weight: 800;
     }
-    .nav-logo span {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 18px; color: var(--white);
-    }
-    .nav-back {
-      color: var(--gray); font-size: 14px; text-decoration: none;
-      display: flex; align-items: center; gap: 6px;
+    .topbar-close {
+      color: var(--g); font-size: 13px; text-decoration: none;
+      display: flex; align-items: center; gap: 5px;
       transition: color .2s;
     }
-    .nav-back:hover { color: var(--white); }
+    .topbar-close:hover { color: var(--w); }
 
-    /* PAGE */
-    .page {
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      position: fixed; top: 56px; left: 0; right: 0; z-index: 9;
+    }
+    .progress-track {
+      height: 3px; background: rgba(255,255,255,0.06);
+    }
+    .progress-fill {
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--red2));
+      transition: width .5s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── STAGE ── */
+    .stage {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      padding: 90px 20px 60px;
+      padding: 80px 20px 40px;
     }
 
-    .container {
-      width: 100%; max-width: 1040px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
+    /* ── SCREEN ── */
+    .screen {
+      display: none;
+      width: 100%; max-width: 560px;
+      animation: fadeUp .3s ease forwards;
     }
-    @media (max-width: 780px) {
-      .container { grid-template-columns: 1fr; gap: 40px; }
-      .left-side { text-align: center; }
-      .trust-row { justify-content: center; }
+    .screen.show { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* LEFT */
-    .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(232,41,42,0.1);
-      border: 1px solid rgba(232,41,42,0.25);
-      border-radius: 100px;
-      padding: 6px 14px;
-      font-size: 12px; font-weight: 600; color: var(--red);
-      letter-spacing: .08em; text-transform: uppercase;
-      margin-bottom: 24px;
+    /* ── STEP LABEL ── */
+    .step-label {
+      font-size: 12px; font-weight: 600; letter-spacing: .1em;
+      color: var(--red); text-transform: uppercase;
+      margin-bottom: 20px;
     }
-    .left-title {
+
+    /* ── QUESTION ── */
+    .q-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 38px; font-weight: 800; line-height: 1.15;
-      margin-bottom: 18px;
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 700; line-height: 1.25;
+      margin-bottom: 10px;
     }
-    .left-title span { color: var(--red); }
-    @media (max-width: 900px) { .left-title { font-size: 28px; } }
-    @media (max-width: 480px) { .left-title { font-size: 24px; } }
-
-    .left-desc {
-      font-size: 16px; color: var(--gray); line-height: 1.75;
-      margin-bottom: 36px;
+    .q-sub {
+      font-size: 15px; color: var(--g);
+      line-height: 1.6; margin-bottom: 32px;
     }
 
-    .features {
-      display: flex; flex-direction: column; gap: 14px;
-      margin-bottom: 40px;
-    }
-    .feat-item {
-      display: flex; align-items: flex-start; gap: 12px;
-    }
-    .feat-icon {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: rgba(232,41,42,0.1);
-      border: 1px solid rgba(232,41,42,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
-    }
-    .feat-text strong {
-      display: block; font-size: 14px; font-weight: 600; color: var(--white);
-      margin-bottom: 2px;
-    }
-    .feat-text span { font-size: 13px; color: var(--gray); }
+    /* ── OPTIONS ── */
+    .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
 
-    .trust-row {
-      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-    }
-    .trust-item {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--gray);
-    }
-    .trust-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--red);
-    }
-
-    /* CARD */
-    .card {
-      background: var(--bg2);
-      border: 1px solid var(--bd2);
-      border-radius: 24px;
-      padding: 40px 36px;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-    }
-    @media (max-width: 480px) { .card { padding: 28px 20px; } }
-
-    .card-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 20px; font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .card-sub {
-      font-size: 13px; color: var(--gray);
-      margin-bottom: 28px;
-    }
-
-    .form-group { margin-bottom: 18px; }
-    .form-label {
-      display: block; font-size: 13px; font-weight: 600;
-      color: var(--gray); margin-bottom: 8px;
-    }
-    .form-label .req { color: var(--red); margin-left: 2px; }
-
-    .form-input,
-    .form-textarea,
-    .form-select {
-      width: 100%;
-      background: var(--bg3);
-      border: 1.5px solid var(--bd2);
-      border-radius: 10px;
-      padding: 13px 16px;
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      transition: border-color .2s, background .2s;
-      outline: none;
-      appearance: none;
-    }
-    .form-input::placeholder,
-    .form-textarea::placeholder { color: #3a3a3a; }
-    .form-input:focus,
-    .form-textarea:focus,
-    .form-select:focus {
-      border-color: rgba(232,41,42,0.55);
-      background: #161616;
-    }
-    .form-textarea {
-      resize: vertical;
-      min-height: 100px;
-      line-height: 1.6;
-    }
-    .form-select { cursor: pointer; }
-    .form-select option { background: #1a1a1a; color: var(--white); }
-
-    .form-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
-    }
-    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
-
-    /* chips */
-    .chip-group {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .chip {
-      background: var(--bg3);
-      border: 1.5px solid var(--bd2);
-      border-radius: 100px;
-      padding: 7px 14px;
-      font-size: 13px; font-weight: 500; color: var(--gray);
+    .opt {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--card);
+      border: 1.5px solid var(--bd);
+      border-radius: 14px;
+      padding: 16px 20px;
       cursor: pointer;
-      transition: all .18s;
+      transition: border-color .15s, background .15s, transform .15s;
       user-select: none;
     }
-    .chip:hover { border-color: rgba(232,41,42,0.4); color: var(--white); }
-    .chip.selected {
+    .opt:hover {
+      border-color: rgba(232,41,42,0.4);
+      background: rgba(232,41,42,0.04);
+      transform: translateX(4px);
+    }
+    .opt.selected {
       border-color: var(--red);
-      background: rgba(232,41,42,0.1);
-      color: var(--white);
+      background: rgba(232,41,42,0.08);
+    }
+    .opt-key {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--g);
+      flex-shrink: 0;
+      transition: all .15s;
+    }
+    .opt.selected .opt-key {
+      background: var(--red); border-color: var(--red); color: var(--w);
+    }
+    .opt-text {
+      font-size: 15px; font-weight: 500; line-height: 1.4;
+    }
+    .opt-sub {
+      display: block; font-size: 12px; color: var(--g);
+      margin-top: 2px; font-weight: 400;
     }
 
-    .divider { height: 1px; background: var(--bd2); margin: 22px 0; }
-
-    .submit-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
-      color: var(--white); border: none; border-radius: 12px;
-      padding: 17px 24px;
+    /* ── NEXT BTN ── */
+    .next-btn {
+      width: 100%; padding: 16px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: var(--w); border: none; border-radius: 12px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 16px; font-weight: 700;
       cursor: pointer;
-      transition: all .2s;
       display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: opacity .2s, transform .2s, box-shadow .2s;
+      opacity: .35; pointer-events: none;
     }
-    .submit-btn:hover:not(:disabled) {
+    .next-btn.on {
+      opacity: 1; pointer-events: auto;
+    }
+    .next-btn.on:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(232,41,42,0.38);
-    }
-    .submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
-
-    .form-note {
-      font-size: 12px; color: #444; text-align: center;
-      margin-top: 12px; line-height: 1.5;
+      box-shadow: 0 12px 32px rgba(232,41,42,0.4);
     }
 
-    /* SUCCESS */
-    .success-state { display: none; text-align: center; padding: 20px 0; }
-    .success-icon {
+    /* ── WELCOME ── */
+    .welcome-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(232,41,42,0.1);
+      border: 1px solid rgba(232,41,42,0.2);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 600; color: var(--red);
+      letter-spacing: .07em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .welcome-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 6vw, 44px);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .welcome-title em { color: var(--red); font-style: normal; }
+    .welcome-desc {
+      font-size: 16px; color: var(--g); line-height: 1.7;
+      margin-bottom: 36px; max-width: 440px;
+    }
+    .welcome-meta {
+      display: flex; gap: 20px; margin-bottom: 36px; flex-wrap: wrap;
+    }
+    .wmeta-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--g);
+    }
+    .wmeta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    .start-btn {
+      width: 100%; max-width: 360px; padding: 17px 28px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: var(--w); border: none; border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px; font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(232,41,42,0.45);
+    }
+    .start-note { font-size: 12px; color: var(--g2); margin-top: 12px; }
+
+    /* ── CONTACT FORM ── */
+    .cf-label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: var(--g); margin-bottom: 8px; letter-spacing: .04em;
+    }
+    .cf-req { color: var(--red); }
+    .cf-input {
+      width: 100%;
+      background: var(--card);
+      border: 1.5px solid var(--bd);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: var(--w);
+      font-family: 'Inter', sans-serif; font-size: 15px;
+      outline: none; transition: border-color .2s;
+      appearance: none; margin-bottom: 14px;
+    }
+    .cf-input::placeholder { color: var(--g2); }
+    .cf-input:focus { border-color: rgba(232,41,42,0.5); }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .cf-row { grid-template-columns: 1fr; } }
+    .cf-note { font-size: 11px; color: var(--g2); text-align: center; margin-top: 10px; }
+
+    /* ── THANK YOU ── */
+    .ty-wrap { text-align: center; }
+    .ty-icon {
       width: 72px; height: 72px; border-radius: 50%;
       background: rgba(232,41,42,0.1);
-      border: 1px solid rgba(232,41,42,0.25);
+      border: 1.5px solid rgba(232,41,42,0.25);
       display: flex; align-items: center; justify-content: center;
-      font-size: 32px; margin: 0 auto 22px;
+      font-size: 30px; margin: 0 auto 24px;
     }
-    .success-title {
+    .ty-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px; font-weight: 800;
-      margin-bottom: 10px;
+      font-size: 28px; font-weight: 800; margin-bottom: 12px;
     }
-    .success-desc {
-      font-size: 14px; color: var(--gray); line-height: 1.7;
-      margin-bottom: 28px;
+    .ty-desc { font-size: 15px; color: var(--g); line-height: 1.7; margin-bottom: 32px; }
+    .ty-tg {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #229ED9; color: var(--w);
+      border-radius: 12px; padding: 14px 28px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      transition: background .2s, transform .2s;
     }
-    .tg-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; background: #229ED9; color: #fff; border: none;
-      border-radius: 12px; padding: 15px 24px;
-      font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
-      text-decoration: none; transition: background .2s;
+    .ty-tg:hover { background: #1a8fc5; transform: translateY(-2px); }
+    .ty-back {
+      display: block; margin-top: 20px;
+      font-size: 13px; color: var(--g); text-decoration: none;
+      transition: color .2s;
     }
-    .tg-btn:hover { background: #1a8ac0; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card      { animation: fadeUp .4s ease forwards; }
-    .left-side { animation: fadeUp .4s ease .1s both; }
+    .ty-back:hover { color: var(--w); }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <div class="logo-box">EO</div>
-    <span>Automation</span>
+<!-- TOP BAR -->
+<div class="topbar">
+  <a class="topbar-logo" href="index.html">
+    <div class="topbar-logo-box">EO</div>
+    Automation
   </a>
-  <a class="nav-back" href="index.html">← Bosh sahifa</a>
-</nav>
+  <a class="topbar-close" href="index.html">✕ Yopish</a>
+</div>
 
-<div class="page">
-  <div class="container">
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-track">
+    <div class="progress-fill" id="pFill" style="width:0%"></div>
+  </div>
+</div>
 
-    <!-- LEFT -->
-    <div class="left-side">
-      <div class="badge">💼 Bepul konsultatsiya</div>
-      <h1 class="left-title">
-        Biznesingizni <span>avtomatlashtirish</span> imkoniyatini bilib oling
-      </h1>
-      <p class="left-desc">
-        Ma'lumotlaringizni qoldiring — mutaxassisimiz 24 soat ichida siz bilan bog'lanib,
-        biznesingizga mos yechimlarni taklif qiladi.
-      </p>
+<div class="stage">
 
-      <div class="features">
-        <div class="feat-item">
-          <div class="feat-icon">🚀</div>
-          <div class="feat-text">
-            <strong>Tez amalga oshirish</strong>
-            <span>7–14 kun ichida tayyor yechim</span>
-          </div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">📊</div>
-          <div class="feat-text">
-            <strong>Shaxsiy tahlil</strong>
-            <span>Sizning biznesingizga maxsus tavsiya</span>
-          </div>
-        </div>
-        <div class="feat-item">
-          <div class="feat-icon">🎯</div>
-          <div class="feat-text">
-            <strong>Birinchi konsultatsiya bepul</strong>
-            <span>Hech qanday majburiyatsiz</span>
-          </div>
-        </div>
+  <!-- ══ WELCOME ══ -->
+  <div class="screen show" id="s0">
+    <div class="welcome-badge">✦ Bepul audit</div>
+    <h1 class="welcome-title">
+      Biznesingiz <em>avtomatlashtirish</em>ga tayyormi?
+    </h1>
+    <p class="welcome-desc">
+      6 ta savol orqali biznesingizdagi yo'qotishlarni aniqlaymiz va shaxsiy yechim taklif qilamiz.
+    </p>
+    <div class="welcome-meta">
+      <div class="wmeta-item"><div class="wmeta-dot"></div>6 ta savol</div>
+      <div class="wmeta-item"><div class="wmeta-dot"></div>2 daqiqa</div>
+      <div class="wmeta-item"><div class="wmeta-dot"></div>Bepul tavsiya</div>
+    </div>
+    <button class="start-btn" onclick="go(1)">
+      Auditni boshlash →
+    </button>
+    <p class="start-note">🔒 Ma'lumotlaringiz maxfiy saqlanadi</p>
+  </div>
+
+  <!-- ══ Q1 — Soha ══ -->
+  <div class="screen" id="s1">
+    <div class="step-label">1 / 6</div>
+    <h2 class="q-title">Biznesingiz qaysi sohada?</h2>
+    <p class="q-sub">Eng mos variantni tanlang</p>
+    <div class="options" id="opts1">
+      <div class="opt" onclick="pick(this,1)"><div class="opt-key">A</div><div class="opt-text">E-commerce / Onlayn savdo<span class="opt-sub">Onlayn do'kon, marketplace</span></div></div>
+      <div class="opt" onclick="pick(this,1)"><div class="opt-key">B</div><div class="opt-text">Xizmat ko'rsatish<span class="opt-sub">Konsalting, ta'lim, dizayn, IT</span></div></div>
+      <div class="opt" onclick="pick(this,1)"><div class="opt-key">C</div><div class="opt-text">Ishlab chiqarish / Savdo<span class="opt-sub">Ulgurji, chakana, ishlab chiqarish</span></div></div>
+      <div class="opt" onclick="pick(this,1)"><div class="opt-key">D</div><div class="opt-text">Restoran / Café / Retail<span class="opt-sub">Oziq-ovqat, do'kon, xizmat nuqtalari</span></div></div>
+    </div>
+    <button class="next-btn" id="nb1" onclick="go(2)">Keyingisi →</button>
+  </div>
+
+  <!-- ══ Q2 — Xodimlar ══ -->
+  <div class="screen" id="s2">
+    <div class="step-label">2 / 6</div>
+    <h2 class="q-title">Nechta xodim bilan ishlaysiz?</h2>
+    <p class="q-sub">Hozirgi jamoangiz hajmi</p>
+    <div class="options" id="opts2">
+      <div class="opt" onclick="pick(this,2)"><div class="opt-key">A</div><div class="opt-text">Faqat men yoki 1–3 kishi<span class="opt-sub">Kichik biznes / solopreneur</span></div></div>
+      <div class="opt" onclick="pick(this,2)"><div class="opt-key">B</div><div class="opt-text">4–15 kishi<span class="opt-sub">O'rta kichik jamoa</span></div></div>
+      <div class="opt" onclick="pick(this,2)"><div class="opt-key">C</div><div class="opt-text">16–50 kishi<span class="opt-sub">O'rtacha kompaniya</span></div></div>
+      <div class="opt" onclick="pick(this,2)"><div class="opt-key">D</div><div class="opt-text">50+ kishi<span class="opt-sub">Yirik kompaniya</span></div></div>
+    </div>
+    <button class="next-btn" id="nb2" onclick="go(3)">Keyingisi →</button>
+  </div>
+
+  <!-- ══ Q3 — Muammo ══ -->
+  <div class="screen" id="s3">
+    <div class="step-label">3 / 6</div>
+    <h2 class="q-title">Eng katta muammo nima?</h2>
+    <p class="q-sub">Har kuni nima to'sqinlik qiladi?</p>
+    <div class="options" id="opts3">
+      <div class="opt" onclick="pick(this,3)"><div class="opt-key">A</div><div class="opt-text">Vaqt yetmaydi<span class="opt-sub">Takroriy ishlar ko'p vaqt oladi</span></div></div>
+      <div class="opt" onclick="pick(this,3)"><div class="opt-key">B</div><div class="opt-text">Xatolar va tushib ketmalar<span class="opt-sub">Qo'lda kiritishda xatolar, buyurtmalar yo'qoladi</span></div></div>
+      <div class="opt" onclick="pick(this,3)"><div class="opt-key">C</div><div class="opt-text">Mijozlar bilan aloqa<span class="opt-sub">Javob berishda kechikish, mijoz yo'qoladi</span></div></div>
+      <div class="opt" onclick="pick(this,3)"><div class="opt-key">D</div><div class="opt-text">Hisobot va nazorat<span class="opt-sub">Ma'lumotlar tarqoq, holat ko'rinmaydi</span></div></div>
+    </div>
+    <button class="next-btn" id="nb3" onclick="go(4)">Keyingisi →</button>
+  </div>
+
+  <!-- ══ Q4 — Vositalar ══ -->
+  <div class="screen" id="s4">
+    <div class="step-label">4 / 6</div>
+    <h2 class="q-title">Hozir qanday vositalar ishlatiladi?</h2>
+    <p class="q-sub">Asosiy dasturlar</p>
+    <div class="options" id="opts4">
+      <div class="opt" onclick="pick(this,4)"><div class="opt-key">A</div><div class="opt-text">Faqat Excel / Google Sheets<span class="opt-sub">Asosan jadvallar</span></div></div>
+      <div class="opt" onclick="pick(this,4)"><div class="opt-key">B</div><div class="opt-text">CRM yoki ERP tizimi bor<span class="opt-sub">Bitrix24, AmoCRM, 1C va boshqalar</span></div></div>
+      <div class="opt" onclick="pick(this,4)"><div class="opt-key">C</div><div class="opt-text">Telegram / WhatsApp orqali<span class="opt-sub">Asosan messenjerlar</span></div></div>
+      <div class="opt" onclick="pick(this,4)"><div class="opt-key">D</div><div class="opt-text">Hech qanday tizim yo'q<span class="opt-sub">Og'zaki va qog'oz</span></div></div>
+    </div>
+    <button class="next-btn" id="nb4" onclick="go(5)">Keyingisi →</button>
+  </div>
+
+  <!-- ══ Q5 — Maqsad ══ -->
+  <div class="screen" id="s5">
+    <div class="step-label">5 / 6</div>
+    <h2 class="q-title">Avtomatlashtirish orqali nima olmoqchisiz?</h2>
+    <p class="q-sub">Asosiy maqsad</p>
+    <div class="options" id="opts5">
+      <div class="opt" onclick="pick(this,5)"><div class="opt-key">A</div><div class="opt-text">Vaqt tejash<span class="opt-sub">Takroriy ishlarni avtomatik qilish</span></div></div>
+      <div class="opt" onclick="pick(this,5)"><div class="opt-key">B</div><div class="opt-text">Xarajatni kamaytirish<span class="opt-sub">Xodim xarajatini optimallashtirish</span></div></div>
+      <div class="opt" onclick="pick(this,5)"><div class="opt-key">C</div><div class="opt-text">Mijozlarni ko'paytirish<span class="opt-sub">Avtomatik lead, follow-up</span></div></div>
+      <div class="opt" onclick="pick(this,5)"><div class="opt-key">D</div><div class="opt-text">Biznesni tartibga solish<span class="opt-sub">Barcha jarayonni bir joyda ko'rish</span></div></div>
+    </div>
+    <button class="next-btn" id="nb5" onclick="go(6)">Keyingisi →</button>
+  </div>
+
+  <!-- ══ Q6 — Byudjet ══ -->
+  <div class="screen" id="s6">
+    <div class="step-label">6 / 6</div>
+    <h2 class="q-title">Oylik byudjet qancha?</h2>
+    <p class="q-sub">Avtomatlashtirish uchun ajratilishi mumkin</p>
+    <div class="options" id="opts6">
+      <div class="opt" onclick="pick(this,6)"><div class="opt-key">A</div><div class="opt-text">$200 gacha / oy</div></div>
+      <div class="opt" onclick="pick(this,6)"><div class="opt-key">B</div><div class="opt-text">$200 – $500 / oy</div></div>
+      <div class="opt" onclick="pick(this,6)"><div class="opt-key">C</div><div class="opt-text">$500 – $1,500 / oy</div></div>
+      <div class="opt" onclick="pick(this,6)"><div class="opt-key">D</div><div class="opt-text">$1,500+ / oy</div></div>
+    </div>
+    <button class="next-btn" id="nb6" onclick="go(7)">Natijani ko'rish →</button>
+  </div>
+
+  <!-- ══ CONTACT ══ -->
+  <div class="screen" id="s7">
+    <div class="step-label">Deyarli tayyor!</div>
+    <h2 class="q-title">Natijani qayerga yuboraylik?</h2>
+    <p class="q-sub">Mutaxassisimiz shaxsiy tahlil va yechim bilan 24 soat ichida bog'lanadi</p>
+
+    <div class="cf-row">
+      <div>
+        <label class="cf-label">Ismingiz <span class="cf-req">*</span></label>
+        <input class="cf-input" type="text" id="cfName" placeholder="Ism Familiya">
       </div>
-
-      <div class="trust-row">
-        <div class="trust-item"><div class="trust-dot"></div>50+ loyiha</div>
-        <div class="trust-item"><div class="trust-dot"></div>3 yillik tajriba</div>
-        <div class="trust-item"><div class="trust-dot"></div>24/7 support</div>
+      <div>
+        <label class="cf-label">Telefon <span class="cf-req">*</span></label>
+        <input class="cf-input" type="tel" id="cfPhone" placeholder="+998 XX XXX XX XX">
       </div>
     </div>
+    <label class="cf-label">Kompaniya nomi</label>
+    <input class="cf-input" type="text" id="cfCompany" placeholder="Masalan: Nexus Trade...">
 
-    <!-- CARD -->
-    <div class="card">
+    <button class="next-btn on" id="submitBtn" style="margin-top:8px" onclick="submitForm()">
+      Bepul audit olish 🚀
+    </button>
+    <p class="cf-note">🔒 Ma'lumotlaringiz maxfiy — spam yo'q</p>
+  </div>
 
-      <!-- FORM -->
-      <div id="formState">
-        <div class="card-title">Biznesingiz haqida ayting</div>
-        <div class="card-sub">* bilan belgilangan maydonlar majburiy</div>
+  <!-- ══ THANK YOU ══ -->
+  <div class="screen" id="s8">
+    <div class="ty-wrap">
+      <div class="ty-icon">✅</div>
+      <h2 class="ty-title">Ariza qabul qilindi!</h2>
+      <p class="ty-desc">
+        Mutaxassisimiz <strong style="color:#fff">24 soat ichida</strong> siz bilan bog'lanadi
+        va biznesingizga mos yechimlarni taklif qiladi.
+      </p>
+      <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="ty-tg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.473c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.287l-2.95-.924c-.64-.203-.654-.64.135-.948l11.527-4.447c.535-.194 1.002.13.37.28z"/></svg>
+        Telegram kanalga o'tish
+      </a>
+      <a href="index.html" class="ty-back">← Bosh sahifaga qaytish</a>
+    </div>
+  </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Ismingiz <span class="req">*</span></label>
-            <input type="text" class="form-input" id="fName" placeholder="Ism Familiya">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Telefon <span class="req">*</span></label>
-            <input type="tel" class="form-input" id="fPhone" placeholder="+998 XX XXX XX XX">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Kompaniya / biznes nomi</label>
-          <input type="text" class="form-input" id="fCompany"
-            placeholder="Masalan: Nexus Trade, Comfort Furniture...">
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Biznes turi <span class="req">*</span></label>
-          <div class="chip-group" id="chipGroup">
-            <div class="chip" onclick="toggleChip(this)">E-commerce</div>
-            <div class="chip" onclick="toggleChip(this)">Restoran / Café</div>
-            <div class="chip" onclick="toggleChip(this)">Xizmat ko'rsatish</div>
-            <div class="chip" onclick="toggleChip(this)">Ishlab chiqarish</div>
-            <div class="chip" onclick="toggleChip(this)">Logistika</div>
-            <div class="chip" onclick="toggleChip(this)">Qurilish</div>
-            <div class="chip" onclick="toggleChip(this)">Ta'lim</div>
-            <div class="chip" onclick="toggleChip(this)">Boshqa</div>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Xodimlar soni</label>
-            <select class="form-select" id="fEmployees">
-              <option value="">Tanlang</option>
-              <option>1–5 kishi</option>
-              <option>6–20 kishi</option>
-              <option>21–50 kishi</option>
-              <option>50+ kishi</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Oylik aylanma</label>
-            <select class="form-select" id="fRevenue">
-              <option value="">Tanlang</option>
-              <option>$1,000 gacha</option>
-              <option>$1,000–5,000</option>
-              <option>$5,000–20,000</option>
-              <option>$20,000+</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Asosiy muammo yoki maqsad <span class="req">*</span></label>
-          <textarea class="form-textarea" id="fProblem"
-            placeholder="Masalan: Har kuni hisobotlarni qo'lda yig'amiz, bu 3–4 soat vaqt oladi. Yoki mijozlarga javob berishda kechikamiz..."></textarea>
-        </div>
-
-        <div class="divider"></div>
-
-        <button class="submit-btn" id="submitBtn" onclick="submitForm()">
-          Yuborish va konsultatsiya olish →
-        </button>
-        <p class="form-note">Ma'lumotlaringiz maxfiy saqlanadi va uchinchi shaxslarga berilmaydi</p>
-      </div>
-
-      <!-- SUCCESS -->
-      <div class="success-state" id="successState">
-        <div class="success-icon">✅</div>
-        <div class="success-title">Ma'lumotlar qabul qilindi!</div>
-        <div class="success-desc">
-          Mutaxassisimiz <strong style="color:#fff">24 soat ichida</strong> siz bilan bog'lanadi.<br>
-          Tezroq aloqa uchun Telegram kanalimizga qo'shiling.
-        </div>
-        <a href="https://t.me/eo_automation" target="_blank" class="tg-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/>
-          </svg>
-          Telegram kanalga o'tish
-        </a>
-      </div>
-
-    </div><!-- /card -->
-  </div><!-- /container -->
-</div><!-- /page -->
+</div><!-- /stage -->
 
 <script>
-const WEBHOOK_URL = 'https://contentrealy.app.n8n.cloud/webhook/quiz-lead';
+const WEBHOOK = 'https://contentrealy.app.n8n.cloud/webhook/quiz-lead';
+const TOTAL   = 6;
+const answers = {};
 
-function toggleChip(el) {
-  el.classList.toggle('selected');
+function pct(step) {
+  if (step === 0) return 0;
+  if (step >= 7)  return 100;
+  return Math.round(((step - 1) / TOTAL) * 100);
+}
+
+function go(step) {
+  // hide all
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('show'));
+  const next = document.getElementById('s' + step);
+  if (next) { next.classList.add('show'); }
+  document.getElementById('pFill').style.width = pct(step) + '%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function pick(el, qNum) {
+  document.querySelectorAll('#opts' + qNum + ' .opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers['q' + qNum] = el.querySelector('.opt-text').childNodes[0].textContent.trim();
+  const nb = document.getElementById('nb' + qNum);
+  if (nb) { nb.classList.add('on'); }
 }
 
 async function submitForm() {
-  const name     = document.getElementById('fName').value.trim();
-  const phone    = document.getElementById('fPhone').value.trim();
-  const company  = document.getElementById('fCompany').value.trim();
-  const problem  = document.getElementById('fProblem').value.trim();
-  const employees = document.getElementById('fEmployees').value;
-  const revenue  = document.getElementById('fRevenue').value;
-  const chips    = [...document.querySelectorAll('.chip.selected')].map(c => c.textContent).join(', ');
+  const name    = document.getElementById('cfName').value.trim();
+  const phone   = document.getElementById('cfPhone').value.trim();
+  const company = document.getElementById('cfCompany').value.trim();
 
-  // validate
-  let valid = true;
-  if (!name)    { document.getElementById('fName').style.borderColor    = '#E8292A'; valid = false; }
-  if (!phone)   { document.getElementById('fPhone').style.borderColor   = '#E8292A'; valid = false; }
-  if (!problem) { document.getElementById('fProblem').style.borderColor = '#E8292A'; valid = false; }
-  if (!valid) return;
+  let ok = true;
+  if (!name)  { document.getElementById('cfName').style.borderColor  = '#E8292A'; ok = false; }
+  if (!phone) { document.getElementById('cfPhone').style.borderColor = '#E8292A'; ok = false; }
+  if (!ok) return;
 
   const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
   btn.textContent = 'Yuborilmoqda...';
-
-  const payload = {
-    name,
-    phone,
-    company:    company    || '—',
-    biznesturi: chips      || '—',
-    employees:  employees  || '—',
-    revenue:    revenue    || '—',
-    problem,
-    source:     'website-form',
-    timestamp:  new Date().toISOString()
-  };
+  btn.disabled = true;
 
   try {
-    await fetch(WEBHOOK_URL, {
+    await fetch(WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        name, phone,
+        company:    company || '—',
+        source:     'quiz-page',
+        timestamp:  new Date().toISOString(),
+        answers: [
+          { q: 'Biznes sohasi',       a: answers.q1 || '—' },
+          { q: 'Xodimlar soni',        a: answers.q2 || '—' },
+          { q: 'Asosiy muammo',        a: answers.q3 || '—' },
+          { q: 'Hozirgi vositalar',    a: answers.q4 || '—' },
+          { q: 'Maqsad',               a: answers.q5 || '—' },
+          { q: 'Oylik byudjet',         a: answers.q6 || '—' },
+        ]
+      })
     });
-  } catch (e) {
-    console.warn('Webhook error:', e);
-  }
+  } catch(e) { console.warn(e); }
 
-  document.getElementById('formState').style.display   = 'none';
-  document.getElementById('successState').style.display = 'block';
+  go(8);
 }
 
-document.querySelectorAll('.form-input, .form-textarea').forEach(el => {
-  el.addEventListener('input', () => el.style.borderColor = '');
-});
+document.querySelectorAll('.cf-input').forEach(el =>
+  el.addEventListener('input', () => el.style.borderColor = '')
+);
 </script>
-
 </body>
 </html>
