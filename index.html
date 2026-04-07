@@ -837,46 +837,63 @@
         <div class="fca__glow"></div>
 
         <div class="fca__grid">
+
           <!-- LEFT -->
           <div class="fca__left">
             <div class="section-label">Boshlanish vaqti</div>
-            <h2>Biznesingiz uchun<br>bepul konsultatsiya</h2>
-            <p>So'rovnomani to'ldiring — mutaxassisimiz 24 soat ichida siz bilan bog'lanadi va avtomatlashtirish imkoniyatlarini ko'rsatadi.</p>
+            <h2>Biznesingiz qancha <span style="color:var(--red)">vaqt va pul</span> yo'qotmoqda?</h2>
+            <p>2 daqiqada so'rovnomani to'ldiring — mutaxassisimiz shaxsiy tahlil va yechim bilan bog'lanadi.</p>
 
-            <div class="fca__perks">
-              <div class="fca__perk">
-                <span class="fca__perk-icon">🚀</span>
-                <div>
-                  <strong>Tez natija</strong>
-                  <span>7–14 kun ichida ishga tushirish</span>
-                </div>
+            <div class="fca__steps-preview">
+              <div class="fca__sp-item fca__sp-active" id="spStep1">
+                <div class="fca__sp-num">1</div>
+                <span>Aloqa ma'lumotlari</span>
               </div>
-              <div class="fca__perk">
-                <span class="fca__perk-icon">📊</span>
-                <div>
-                  <strong>Shaxsiy tahlil</strong>
-                  <span>Sizning biznesingizga mos yechim</span>
-                </div>
+              <div class="fca__sp-arrow">→</div>
+              <div class="fca__sp-item" id="spStep2">
+                <div class="fca__sp-num">2</div>
+                <span>Biznes haqida</span>
               </div>
-              <div class="fca__perk">
-                <span class="fca__perk-icon">🎯</span>
-                <div>
-                  <strong>Birinchi konsultatsiya bepul</strong>
-                  <span>Hech qanday majburiyatsiz</span>
-                </div>
+              <div class="fca__sp-arrow">→</div>
+              <div class="fca__sp-item" id="spStep3">
+                <div class="fca__sp-num">3</div>
+                <span>Tayyор!</span>
               </div>
             </div>
 
-            <div class="fca__contact-alt">
-              Yoki to'g'ridan: <a href="https://t.me/eo_business" target="_blank" rel="noopener">@eo_business</a>
+            <div class="fca__social-proof">
+              <div class="fca__sp-avatars">
+                <div class="fca__av" style="background:#E8292A">S</div>
+                <div class="fca__av" style="background:#2a5ee8">A</div>
+                <div class="fca__av" style="background:#2ae87a">J</div>
+                <div class="fca__av" style="background:#e8a62a">M</div>
+              </div>
+              <div class="fca__sp-text">
+                <strong>50+ biznes</strong> allaqachon avtomatlashtirildi
+              </div>
+            </div>
+
+            <div class="fca__perks">
+              <div class="fca__perk"><span class="fca__perk-dot"></span>Bepul konsultatsiya — majburiyatsiz</div>
+              <div class="fca__perk"><span class="fca__perk-dot"></span>24 soat ichida javob</div>
+              <div class="fca__perk"><span class="fca__perk-dot"></span>Shaxsiy avtomatlashtirish rejasi</div>
             </div>
           </div>
 
-          <!-- RIGHT — FORM -->
+          <!-- RIGHT — 2-STEP FORM -->
           <div class="fca__right">
-            <div id="fcaFormState">
-              <div class="fca__form-title">Biznesingiz haqida ayting</div>
-              <div class="fca__form-sub">* majburiy maydonlar</div>
+
+            <!-- Progress -->
+            <div class="fca__progress">
+              <div class="fca__progress-bar">
+                <div class="fca__progress-fill" id="fcaProgressFill" style="width:50%"></div>
+              </div>
+              <span class="fca__progress-label" id="fcaProgressLabel">1 / 2 qadam</span>
+            </div>
+
+            <!-- STEP 1 -->
+            <div id="fcaStep1">
+              <div class="fca__step-title">Siz bilan qanday bog'lanamiz?</div>
 
               <div class="fca__row">
                 <div class="fca__group">
@@ -890,13 +907,8 @@
               </div>
 
               <div class="fca__group">
-                <label class="fca__label">Kompaniya nomi</label>
-                <input type="text" class="fca__input" id="fcaCompany" placeholder="Masalan: Nexus Trade...">
-              </div>
-
-              <div class="fca__group">
-                <label class="fca__label">Biznes turi <span class="fca__req">*</span></label>
-                <div class="fca__chips" id="fcaChips">
+                <label class="fca__label">Biznes turi</label>
+                <div class="fca__chips">
                   <div class="fca__chip" onclick="fcaChip(this)">E-commerce</div>
                   <div class="fca__chip" onclick="fcaChip(this)">Restoran / Café</div>
                   <div class="fca__chip" onclick="fcaChip(this)">Xizmat ko'rsatish</div>
@@ -908,35 +920,51 @@
                 </div>
               </div>
 
+              <button class="btn btn--primary fca__submit" onclick="fcaNextStep()">
+                Davom etish →
+              </button>
+              <p class="fca__note">🔒 Ma'lumotlaringiz maxfiy saqlanadi</p>
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="fcaStep2" style="display:none">
+              <div class="fca__step-title">Biznesingiz haqida ayting</div>
+
+              <div class="fca__group">
+                <label class="fca__label">Kompaniya nomi</label>
+                <input type="text" class="fca__input" id="fcaCompany" placeholder="Masalan: Nexus Trade...">
+              </div>
+
               <div class="fca__group">
                 <label class="fca__label">Asosiy muammo yoki maqsad <span class="fca__req">*</span></label>
                 <textarea class="fca__input fca__textarea" id="fcaProblem"
-                  placeholder="Masalan: Har kuni hisobotlarni qo'lda yig'amiz, bu 3–4 soat vaqt oladi..."></textarea>
+                  placeholder="Masalan: Hisobotlarni qo'lda yig'amiz — 3-4 soat ketadi. Yoki mijozlarga javob berishda kechikamiz..."></textarea>
               </div>
 
-              <button class="btn btn--primary fca__submit" id="fcaSubmitBtn" onclick="fcaSubmit()">
-                Yuborish →
-              </button>
-              <p class="fca__note">Ma'lumotlaringiz maxfiy saqlanadi</p>
+              <div class="fca__btn-row">
+                <button class="fca__back-btn" onclick="fcaPrevStep()">← Orqaga</button>
+                <button class="btn btn--primary fca__submit" id="fcaSubmitBtn" onclick="fcaSubmit()">
+                  Yuborish 🚀
+                </button>
+              </div>
+              <p class="fca__note">🔒 Ma'lumotlaringiz maxfiy saqlanadi</p>
             </div>
 
             <!-- SUCCESS -->
-            <div id="fcaSuccess" style="display:none; text-align:center; padding:40px 0;">
-              <div style="font-size:48px; margin-bottom:16px;">✅</div>
-              <div style="font-family:var(--font-head); font-size:22px; font-weight:700; margin-bottom:10px;">Qabul qilindi!</div>
-              <div style="font-size:14px; color:var(--silver); line-height:1.7; margin-bottom:28px;">
-                Mutaxassisimiz <strong style="color:#fff">24 soat ichida</strong> siz bilan bog'lanadi.
+            <div id="fcaSuccess" style="display:none; text-align:center; padding:32px 0;">
+              <div class="fca__success-icon">✅</div>
+              <div class="fca__success-title">So'rovingiz qabul qilindi!</div>
+              <div class="fca__success-desc">
+                Mutaxassisimiz <strong style="color:#fff">24 soat ichida</strong> siz bilan bog'lanadi va bepul tahlil o'tkazadi.
               </div>
-              <a href="https://t.me/eo_business" target="_blank" rel="noopener"
-                style="display:inline-flex;align-items:center;gap:8px;background:#229ED9;color:#fff;
-                       border-radius:10px;padding:13px 22px;font-weight:700;font-size:14px;text-decoration:none;">
+              <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="fca__tg-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.473c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.287l-2.95-.924c-.64-.203-.654-.64.135-.948l11.527-4.447c.535-.194 1.002.13.37.28z"/></svg>
                 Telegram kanalga o'tish
               </a>
             </div>
-          </div>
-        </div>
 
+          </div><!-- /fca__right -->
+        </div><!-- /fca__grid -->
       </div>
     </div>
   </section>
@@ -986,30 +1014,65 @@
   <script src="js/main.js"></script>
   <script>
     const FCA_WEBHOOK = 'https://contentrealy.app.n8n.cloud/webhook/quiz-lead';
+
     function fcaChip(el) { el.classList.toggle('fca__chip--on'); }
-    async function fcaSubmit() {
-      const name    = document.getElementById('fcaName').value.trim();
-      const phone   = document.getElementById('fcaPhone').value.trim();
-      const company = document.getElementById('fcaCompany').value.trim();
-      const problem = document.getElementById('fcaProblem').value.trim();
-      const chips   = [...document.querySelectorAll('.fca__chip--on')].map(c => c.textContent).join(', ');
+
+    function fcaNextStep() {
+      const name  = document.getElementById('fcaName').value.trim();
+      const phone = document.getElementById('fcaPhone').value.trim();
       let ok = true;
-      if (!name)    { document.getElementById('fcaName').style.borderColor    = '#E8292A'; ok = false; }
-      if (!phone)   { document.getElementById('fcaPhone').style.borderColor   = '#E8292A'; ok = false; }
-      if (!problem) { document.getElementById('fcaProblem').style.borderColor = '#E8292A'; ok = false; }
+      if (!name)  { document.getElementById('fcaName').style.borderColor  = '#E8292A'; ok = false; }
+      if (!phone) { document.getElementById('fcaPhone').style.borderColor = '#E8292A'; ok = false; }
       if (!ok) return;
+
+      document.getElementById('fcaStep1').style.display = 'none';
+      document.getElementById('fcaStep2').style.display = 'block';
+      document.getElementById('fcaProgressFill').style.width  = '100%';
+      document.getElementById('fcaProgressLabel').textContent = '2 / 2 qadam';
+      document.getElementById('spStep1').classList.remove('fca__sp-active');
+      document.getElementById('spStep2').classList.add('fca__sp-active');
+    }
+
+    function fcaPrevStep() {
+      document.getElementById('fcaStep2').style.display = 'none';
+      document.getElementById('fcaStep1').style.display = 'block';
+      document.getElementById('fcaProgressFill').style.width  = '50%';
+      document.getElementById('fcaProgressLabel').textContent = '1 / 2 qadam';
+      document.getElementById('spStep2').classList.remove('fca__sp-active');
+      document.getElementById('spStep1').classList.add('fca__sp-active');
+    }
+
+    async function fcaSubmit() {
+      const problem = document.getElementById('fcaProblem').value.trim();
+      if (!problem) { document.getElementById('fcaProblem').style.borderColor = '#E8292A'; return; }
+
       const btn = document.getElementById('fcaSubmitBtn');
       btn.disabled = true; btn.textContent = 'Yuborilmoqda...';
+
+      const chips = [...document.querySelectorAll('.fca__chip--on')].map(c => c.textContent).join(', ');
       try {
         await fetch(FCA_WEBHOOK, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, company: company||'—', biznesturi: chips||'—', problem, source: 'main-page-form', timestamp: new Date().toISOString() })
+          body: JSON.stringify({
+            name:       document.getElementById('fcaName').value.trim(),
+            phone:      document.getElementById('fcaPhone').value.trim(),
+            company:    document.getElementById('fcaCompany').value.trim() || '—',
+            biznesturi: chips || '—',
+            problem,
+            source:     'main-page-form',
+            timestamp:  new Date().toISOString()
+          })
         });
       } catch(e) { console.warn(e); }
-      document.getElementById('fcaFormState').style.display = 'none';
-      document.getElementById('fcaSuccess').style.display   = 'block';
+
+      document.getElementById('fcaStep2').style.display   = 'none';
+      document.getElementById('fcaSuccess').style.display = 'block';
+      document.getElementById('fcaProgressFill').style.width  = '100%';
+      document.getElementById('spStep2').classList.remove('fca__sp-active');
+      document.getElementById('spStep3').classList.add('fca__sp-active');
     }
+
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.fca__input').forEach(el =>
         el.addEventListener('input', () => el.style.borderColor = '')
