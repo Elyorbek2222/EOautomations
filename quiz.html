@@ -1,893 +1,541 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html class="dark" lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biznes Diagnostika — 10% Chegirma | EO Automation</title>
-  <meta name="description" content="Biznesingizni bepul diagnostika qiling va birinchi loyihada 10% chegirma oling.">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:    #070707;
-      --card:  #111111;
-      --card2: #161616;
-      --bd:    rgba(255,255,255,0.08);
-      --red:   #E8292A;
-      --red2:  #ff5252;
-      --w:     #ffffff;
-      --g:     #7a7a7a;
-      --g2:    #3a3a3a;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--w);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ─── OFFER BANNER ──────────────────────────────────────── */
-    .offer-banner {
-      background: linear-gradient(135deg, #1a0000 0%, #2d0505 50%, #1a0000 100%);
-      border-bottom: 1px solid rgba(232,41,42,0.3);
-      padding: 10px 20px;
-      text-align: center;
-      position: sticky; top: 0; z-index: 200;
-    }
-    .offer-banner-inner {
-      display: inline-flex; align-items: center; gap: 10px;
-      flex-wrap: wrap; justify-content: center;
-    }
-    .offer-fire { font-size: 18px; }
-    .offer-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 14px; font-weight: 700;
-      color: var(--w);
-    }
-    .offer-text span {
-      color: #ffcc00;
-      background: rgba(255,204,0,0.12);
-      border: 1px solid rgba(255,204,0,0.3);
-      border-radius: 6px;
-      padding: 2px 8px;
-      font-size: 15px;
-    }
-    .offer-sub { font-size: 12px; color: rgba(255,255,255,0.55); }
-
-    /* ─── TOPBAR ────────────────────────────────────────────── */
-    .topbar {
-      height: 58px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(16px, 4vw, 48px);
-      border-bottom: 1px solid var(--bd);
-      background: rgba(7,7,7,0.98);
-    }
-    .topbar-logo {
-      display: flex; align-items: center; gap: 9px;
-      text-decoration: none; color: var(--w);
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700; font-size: 17px;
-    }
-    .logo-box {
-      width: 30px; height: 30px; border-radius: 7px;
-      background: var(--red);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800;
-    }
-    .topbar-back {
-      color: var(--g); font-size: 13px; text-decoration: none;
-      display: flex; align-items: center; gap: 5px;
-      transition: color .2s;
-    }
-    .topbar-back:hover { color: var(--w); }
-
-    /* ─── PROGRESS ──────────────────────────────────────────── */
-    .progress-bar-wrap {
-      height: 3px; background: rgba(255,255,255,0.05);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .progress-bar-fill {
-      height: 3px;
-      background: linear-gradient(90deg, var(--red), var(--red2));
-      transition: width .45s cubic-bezier(.4,0,.2,1);
-    }
-
-    /* ─── LAYOUT ────────────────────────────────────────────── */
-    .stage {
-      min-height: calc(100vh - 120px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 40px 20px 60px;
-    }
-
-    /* ─── SCREEN SYSTEM ─────────────────────────────────────── */
-    .screen { display: none; width: 100%; max-width: 640px; }
-    .screen.show {
-      display: block;
-      animation: slideUp .35s cubic-bezier(.4,0,.2,1) forwards;
-    }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── WELCOME ───────────────────────────────────────────── */
-    .w-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 700; letter-spacing: .1em;
-      color: var(--red); text-transform: uppercase;
-      border: 1px solid rgba(232,41,42,0.25);
-      background: rgba(232,41,42,0.07);
-      border-radius: 100px; padding: 5px 14px;
-      margin-bottom: 22px;
-    }
-    .w-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(30px, 6vw, 52px);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 18px;
-    }
-    .w-title em { color: var(--red); font-style: normal; }
-    .w-desc {
-      font-size: 17px; color: var(--g); line-height: 1.7;
-      margin-bottom: 32px; max-width: 500px;
-    }
-
-    /* discount pill inside welcome */
-    .w-discount {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: linear-gradient(135deg, rgba(255,204,0,0.1), rgba(255,204,0,0.05));
-      border: 1.5px solid rgba(255,204,0,0.3);
-      border-radius: 14px;
-      padding: 12px 20px;
-      margin-bottom: 32px;
-    }
-    .w-discount-pct {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 28px; font-weight: 800; color: #ffcc00;
-      line-height: 1;
-    }
-    .w-discount-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
-    .w-discount-text strong { color: var(--w); display: block; }
-
-    .w-meta {
-      display: flex; align-items: center; gap: 20px;
-      margin-bottom: 36px; flex-wrap: wrap;
-    }
-    .w-meta-item {
-      display: flex; align-items: center; gap: 7px;
-      font-size: 13px; color: var(--g);
-    }
-    .w-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
-
-    /* Social proof avatars */
-    .w-social {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 36px;
-    }
-    .w-avatars { display: flex; }
-    .w-av {
-      width: 34px; height: 34px; border-radius: 50%;
-      border: 2px solid var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; color: #fff;
-      margin-left: -9px;
-    }
-    .w-av:first-child { margin-left: 0; }
-    .w-social-text { font-size: 13px; color: var(--g); }
-    .w-social-text strong { color: var(--w); }
-
-    .start-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 18px 36px;
-      background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
-      color: var(--w); border: none; border-radius: 100px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px; font-weight: 700;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .2s;
-      text-decoration: none;
-      box-shadow: 0 8px 32px rgba(232,41,42,0.3);
-    }
-    .start-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 48px rgba(232,41,42,0.45);
-    }
-    .start-note { font-size: 12px; color: var(--g2); margin-top: 14px; }
-
-    /* ─── QUESTION SCREEN ───────────────────────────────────── */
-    .q-step { font-size: 12px; font-weight: 700; letter-spacing: .12em;
-      color: var(--red); text-transform: uppercase; margin-bottom: 18px; }
-
-    .q-card {
-      background: var(--card);
-      border: 1px solid var(--bd);
-      border-radius: 20px;
-      padding: clamp(24px, 4vw, 40px);
-      margin-bottom: 0;
-    }
-
-    .q-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(20px, 4vw, 28px);
-      font-weight: 700; line-height: 1.3;
-      margin-bottom: 8px;
-    }
-    .q-sub {
-      font-size: 14px; color: var(--g);
-      margin-bottom: 26px; line-height: 1.6;
-    }
-
-    /* Options */
-    .options { display: flex; flex-direction: column; gap: 10px; }
-
-    .opt {
-      display: flex; align-items: center; gap: 14px;
-      background: var(--card2);
-      border: 1.5px solid var(--bd);
-      border-radius: 12px;
-      padding: 15px 18px;
-      cursor: pointer;
-      transition: border-color .15s, background .15s, transform .12s;
-      user-select: none;
-      position: relative;
-    }
-    .opt:hover {
-      border-color: rgba(232,41,42,0.45);
-      background: rgba(232,41,42,0.04);
-      transform: translateX(5px);
-    }
-    .opt.selected {
-      border-color: var(--red);
-      background: rgba(232,41,42,0.08);
-    }
-    .opt-key {
-      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700; color: var(--g);
-      transition: all .15s;
-    }
-    .opt.selected .opt-key {
-      background: var(--red); border-color: var(--red); color: #fff;
-    }
-    .opt-body { flex: 1; }
-    .opt-label { font-size: 15px; font-weight: 600; line-height: 1.3; }
-    .opt-hint { font-size: 12px; color: var(--g); margin-top: 2px; }
-
-    /* selected checkmark */
-    .opt-check {
-      width: 20px; height: 20px; border-radius: 50%;
-      background: var(--red);
-      display: none; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 11px; color: #fff; font-weight: 700;
-    }
-    .opt.selected .opt-check { display: flex; }
-
-    /* Next button */
-    .q-footer { margin-top: 20px; display: flex; align-items: center; gap: 14px; }
-    .next-btn {
-      flex: 1; padding: 15px 24px;
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      color: var(--w); border: none; border-radius: 12px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px; font-weight: 700;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      transition: opacity .2s, transform .2s, box-shadow .2s;
-      opacity: .3; pointer-events: none;
-    }
-    .next-btn.on { opacity: 1; pointer-events: auto; }
-    .next-btn.on:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(232,41,42,0.4);
-    }
-    .back-link {
-      font-size: 13px; color: var(--g); cursor: pointer;
-      text-decoration: none; transition: color .2s; flex-shrink: 0;
-    }
-    .back-link:hover { color: var(--w); }
-
-    /* ─── CONTACT SCREEN ────────────────────────────────────── */
-    .contact-card {
-      background: var(--card);
-      border: 1px solid var(--bd);
-      border-radius: 20px;
-      padding: clamp(24px, 4vw, 40px);
-    }
-    .contact-offer {
-      display: flex; align-items: center; gap: 12px;
-      background: linear-gradient(135deg, rgba(255,204,0,0.08), rgba(255,204,0,0.04));
-      border: 1px solid rgba(255,204,0,0.25);
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 24px;
-    }
-    .contact-offer-pct {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 26px; font-weight: 800; color: #ffcc00; flex-shrink: 0;
-    }
-    .contact-offer-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
-    .contact-offer-text strong { color: var(--w); }
-
-    .c-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px; font-weight: 700; margin-bottom: 6px;
-    }
-    .c-sub { font-size: 14px; color: var(--g); margin-bottom: 24px; line-height: 1.6; }
-
-    .c-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 480px) { .c-row { grid-template-columns: 1fr; } }
-
-    .c-group { margin-bottom: 14px; }
-    .c-label {
-      display: block; font-size: 12px; font-weight: 600;
-      color: var(--g); margin-bottom: 7px; letter-spacing: .03em;
-    }
-    .c-req { color: var(--red); }
-    .c-input {
-      width: 100%;
-      background: var(--card2);
-      border: 1.5px solid var(--bd);
-      border-radius: 10px;
-      padding: 13px 16px;
-      color: var(--w);
-      font-family: 'Inter', sans-serif; font-size: 15px;
-      outline: none; transition: border-color .2s;
-    }
-    .c-input::placeholder { color: var(--g2); }
-    .c-input:focus { border-color: rgba(232,41,42,0.5); }
-
-    .submit-btn {
-      width: 100%; padding: 16px;
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      color: var(--w); border: none; border-radius: 12px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px; font-weight: 700;
-      cursor: pointer; margin-top: 6px;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 8px 28px rgba(232,41,42,0.3);
-    }
-    .submit-btn:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(232,41,42,0.45);
-    }
-    .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
-    .c-note { font-size: 11px; color: var(--g2); text-align: center; margin-top: 10px; }
-
-    /* ─── THANK YOU ─────────────────────────────────────────── */
-    .ty {
-      text-align: center;
-      background: var(--card);
-      border: 1px solid var(--bd);
-      border-radius: 20px;
-      padding: clamp(40px, 6vw, 60px) clamp(24px, 5vw, 48px);
-    }
-    .ty-icon { font-size: 52px; margin-bottom: 20px; display: block; }
-    .ty-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(24px, 4vw, 32px); font-weight: 800;
-      margin-bottom: 12px; line-height: 1.2;
-    }
-    .ty-desc { font-size: 15px; color: var(--g); line-height: 1.7; margin-bottom: 28px; }
-
-    .ty-code-wrap {
-      background: rgba(255,204,0,0.06);
-      border: 1.5px dashed rgba(255,204,0,0.3);
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin-bottom: 28px;
-    }
-    .ty-code-label { font-size: 11px; color: var(--g); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
-    .ty-code {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px; font-weight: 800; color: #ffcc00;
-      letter-spacing: .06em;
-    }
-    .ty-code-hint { font-size: 12px; color: var(--g); margin-top: 4px; }
-
-    .ty-tg {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: #229ED9; color: #fff;
-      border-radius: 12px; padding: 14px 28px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px; font-weight: 700; text-decoration: none;
-      transition: background .2s, transform .2s;
-      margin-bottom: 16px;
-    }
-    .ty-tg:hover { background: #1a8fc5; transform: translateY(-2px); }
-    .ty-home { display: block; font-size: 13px; color: var(--g); text-decoration: none; transition: color .2s; }
-    .ty-home:hover { color: var(--w); }
-
-    /* ─── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .offer-sub { display: none; }
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Biznes Audit — EO Automation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#131313",
+        "surface-container-high": "#2a2a2a",
+        "surface-container-highest": "#353534",
+        "surface-container-low": "#1c1b1b",
+        "surface-container-lowest": "#0e0e0e",
+        "on-surface": "#e5e2e1",
+        "on-surface-variant": "#e6bdb8",
+        "outline": "#ad8884",
+        "outline-variant": "#5d3f3c",
+        "primary": "#E8292A",
+        "primary-container": "#ff544b",
+        "secondary-container": "#fecb00",
+        "secondary-fixed": "#ffe08b",
+      },
+      fontFamily: {
+        "headline": ["Space Grotesk"],
+        "body": ["Inter"],
+      }
+    },
+  },
+}
+</script>
+<style>
+  body { background-color: #070707; font-family: 'Inter', sans-serif; color: #e5e2e1; }
+  .sg { font-family: 'Space Grotesk', sans-serif; }
+  .dashed-border {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23fecb00' stroke-width='2' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+  /* Progress bar */
+  #pFill { transition: width .45s cubic-bezier(.4,0,.2,1); }
+  /* Screen system */
+  .screen { display: none; }
+  .screen.show { display: block; animation: fadeUp .35s cubic-bezier(.4,0,.2,1) forwards; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  /* Option hover */
+  .opt-row { transition: border-color .15s, background .15s, transform .12s; }
+  .opt-row:hover { transform: translateX(4px); }
+  .opt-row.selected { border-color: #E8292A !important; background: rgba(232,41,42,0.08) !important; }
+  .opt-row.selected .opt-key { background: #E8292A !important; border-color: #E8292A !important; color: #fff !important; }
+  .opt-row.selected .opt-check { display: flex !important; }
+  /* CTA glow */
+  .cta-glow { box-shadow: 0 0 40px rgba(232,41,42,0.35), 0 8px 24px rgba(232,41,42,0.25); }
+  .cta-glow:hover { box-shadow: 0 0 60px rgba(232,41,42,0.5), 0 12px 32px rgba(232,41,42,0.35); transform: translateY(-2px); }
+</style>
 </head>
-<body>
+<body class="antialiased overflow-x-hidden min-h-screen">
 
-<!-- ══ OFFER BANNER ══ -->
-<div class="offer-banner">
-  <div class="offer-banner-inner">
-    <span class="offer-fire">🔥</span>
-    <div class="offer-text">
-      Diagnostikani to'ldiring va birinchi loyihada <span>−10%</span> chegirma oling
+<!-- ═══ OFFER BANNER ═══ -->
+<div class="sticky top-0 z-[60] w-full bg-gradient-to-r from-[#1a0000] to-[#2d0505] flex flex-col sm:flex-row items-center justify-center py-3 px-4 gap-2 text-center">
+  <p class="font-medium text-sm tracking-wide">
+    🔥 So'rovnomani to'ldiring va birinchi loyihada
+    <span class="inline-flex items-center px-2 py-0.5 mx-1 bg-[#fecb00] text-[#0e0e0e] font-bold text-xs rounded-full">−10%</span>
+    chegirma oling
+  </p>
+  <span class="text-[#ad8884] text-[10px] uppercase tracking-widest opacity-80">· Faqat shu hafta</span>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<header class="sticky top-[44px] z-50 w-full bg-[#070707]/90 backdrop-blur-xl border-b border-[#e5e2e1]/5">
+  <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-[#E8292A] flex items-center justify-center">
+        <span class="text-white font-black text-xs sg">EO</span>
+      </div>
+      <span class="sg uppercase tracking-tight font-bold text-base text-white">Automation</span>
+    </a>
+    <!-- Progress bar -->
+    <div class="flex items-center gap-3">
+      <div id="progressWrap" class="hidden items-center gap-2">
+        <div class="w-24 h-1.5 bg-[#e5e2e1]/10 rounded-full overflow-hidden">
+          <div id="pFill" class="h-full bg-gradient-to-r from-[#E8292A] to-[#ff5252] rounded-full" style="width:0%"></div>
+        </div>
+        <span id="pLabel" class="text-[#ad8884] text-xs">1/6</span>
+      </div>
+      <a href="index.html" class="text-[#ad8884] hover:text-[#e5e2e1] transition-colors text-sm flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">arrow_back</span> Orqaga
+      </a>
     </div>
-    <span class="offer-sub">· Faqat shu hafta</span>
   </div>
-</div>
+</header>
 
-<!-- ══ TOPBAR ══ -->
-<div class="topbar">
-  <a class="topbar-logo" href="index.html">
-    <div class="logo-box">EO</div>
-    Automation
-  </a>
-  <a class="topbar-back" href="index.html">← Bosh sahifaga</a>
-</div>
+<!-- ═══ MAIN ═══ -->
+<main class="relative pt-10 pb-24 px-6 flex flex-col items-center">
+  <!-- BG glow -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#E8292A]/8 blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#E8292A]/4 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#fecb00]/3 rounded-full blur-[100px] pointer-events-none -z-10"></div>
 
-<!-- ══ PROGRESS BAR ══ -->
-<div class="progress-bar-wrap">
-  <div class="progress-bar-fill" id="pFill" style="width:0%"></div>
-</div>
-
-<!-- ══ STAGE ══ -->
-<div class="stage">
-
-  <!-- ══════════════ WELCOME ══════════════ -->
-  <div class="screen show" id="s0">
-    <div class="w-eyebrow">✦ Bepul biznes diagnostika</div>
-    <h1 class="w-title">
-      Biznesingiz<br>qancha <em>vaqt</em> va<br><em>pul</em> yo'qotmoqda?
+  <!-- ════ WELCOME ════ -->
+  <div class="screen show w-full max-w-[680px] flex flex-col items-center text-center" id="s0">
+    <!-- Eyebrow -->
+    <div class="mb-8 px-4 py-1.5 border border-[#E8292A] rounded-full inline-flex items-center gap-2">
+      <span class="text-[#E8292A] text-xs font-bold tracking-[0.2em] uppercase">✦ BEPUL BIZNES AUDIT</span>
+    </div>
+    <!-- Headline -->
+    <h1 class="sg text-5xl md:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
+      Biznesingiz qancha <span class="text-[#E8292A]">vaqt</span> va <span class="text-[#E8292A]">pul</span> yo'qotmoqda?
     </h1>
-    <p class="w-desc">
-      6 ta savol — 2 daqiqa. Javoblaringizga qarab shaxsiy avtomatlashtirish rejasi tuzamiz va birinchi loyihada chegirma beramiz.
+    <!-- Subtext -->
+    <p class="text-[#888888] text-lg leading-relaxed max-w-lg mb-10">
+      6 ta savol — 2 daqiqa. Shaxsiy avtomatlashtirish rejasi va chegirma olasiz.
     </p>
-
-    <div class="w-discount">
-      <div class="w-discount-pct">−10%</div>
-      <div class="w-discount-text">
-        <strong>Chegirma kafolatlangan</strong>
-        Diagnostikani to'ldirganlarga birinchi loyihada
-      </div>
-    </div>
-
-    <div class="w-social">
-      <div class="w-avatars">
-        <div class="w-av" style="background:#c0392b">S</div>
-        <div class="w-av" style="background:#1a5276">A</div>
-        <div class="w-av" style="background:#1e8449">J</div>
-        <div class="w-av" style="background:#7d6608">M</div>
-        <div class="w-av" style="background:#512e5f">F</div>
-      </div>
-      <div class="w-social-text">
-        <strong>50+ biznes</strong> allaqachon avtomatlashtirildi
-      </div>
-    </div>
-
-    <div class="w-meta">
-      <div class="w-meta-item"><div class="w-dot"></div>6 ta savol</div>
-      <div class="w-meta-item"><div class="w-dot"></div>2 daqiqa</div>
-      <div class="w-meta-item"><div class="w-dot"></div>Bepul & majburiyatsiz</div>
-    </div>
-
-    <button class="start-btn" onclick="go(1)">
-      Diagnostikani boshlash →
-    </button>
-    <p class="start-note">🔒 Ma'lumotlaringiz maxfiy — spam yo'q</p>
-  </div>
-
-  <!-- ══════════════ Q1 — Soha ══════════════ -->
-  <div class="screen" id="s1">
-    <div class="q-step">1 / 6 savol</div>
-    <div class="q-card">
-      <h2 class="q-title">Biznesingiz qaysi sohada?</h2>
-      <p class="q-sub">Eng mos variantni tanlang — bir marta bosing</p>
-      <div class="options" id="opts1">
-        <div class="opt" onclick="pick(this,1)">
-          <div class="opt-key">A</div>
-          <div class="opt-body">
-            <div class="opt-label">E-commerce / Onlayn savdo</div>
-            <div class="opt-hint">Onlayn do'kon, marketplace, dropshipping</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,1)">
-          <div class="opt-key">B</div>
-          <div class="opt-body">
-            <div class="opt-label">Xizmat ko'rsatish</div>
-            <div class="opt-hint">Konsalting, ta'lim, IT, dizayn, yuridik</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,1)">
-          <div class="opt-key">C</div>
-          <div class="opt-body">
-            <div class="opt-label">Ishlab chiqarish / Savdo</div>
-            <div class="opt-hint">Ulgurji, chakana, ishlab chiqarish</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,1)">
-          <div class="opt-key">D</div>
-          <div class="opt-body">
-            <div class="opt-label">Restoran / Café / Retail</div>
-            <div class="opt-hint">Oziq-ovqat, do'kon, xizmat nuqtalari</div>
-          </div>
-          <div class="opt-check">✓</div>
+    <!-- Discount box -->
+    <div class="w-full mb-10 p-6 bg-[#0e0e0e] dashed-border flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-6">
+        <div class="text-[#fecb00] text-5xl font-black sg">−10%</div>
+        <div class="text-left border-l border-[#e5e2e1]/10 pl-6">
+          <div class="text-white font-bold text-lg leading-tight mb-1">Chegirma kafolatlangan</div>
+          <div class="text-[#ad8884] text-sm">Diagnostikani to'ldirganlarga birinchi loyihada</div>
         </div>
       </div>
+      <span class="material-symbols-outlined text-[#fecb00] text-4xl hidden md:block">confirmation_number</span>
     </div>
-    <div class="q-footer">
-      <span class="back-link" onclick="go(0)">← Orqaga</span>
-      <button class="next-btn" id="nb1" onclick="go(2)">Keyingisi →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ Q2 — Xodimlar ══════════════ -->
-  <div class="screen" id="s2">
-    <div class="q-step">2 / 6 savol</div>
-    <div class="q-card">
-      <h2 class="q-title">Nechta xodim bilan ishlaysiz?</h2>
-      <p class="q-sub">Hozirgi jamoangiz hajmi</p>
-      <div class="options" id="opts2">
-        <div class="opt" onclick="pick(this,2)">
-          <div class="opt-key">A</div>
-          <div class="opt-body">
-            <div class="opt-label">Faqat men yoki 1–3 kishi</div>
-            <div class="opt-hint">Solopreneur yoki kichik jamoa</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,2)">
-          <div class="opt-key">B</div>
-          <div class="opt-body">
-            <div class="opt-label">4–15 kishi</div>
-            <div class="opt-hint">O'rta kichik kompaniya</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,2)">
-          <div class="opt-key">C</div>
-          <div class="opt-body">
-            <div class="opt-label">16–50 kishi</div>
-            <div class="opt-hint">O'rta kompaniya</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,2)">
-          <div class="opt-key">D</div>
-          <div class="opt-body">
-            <div class="opt-label">50+ kishi</div>
-            <div class="opt-hint">Yirik kompaniya / korporatsiya</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
+    <!-- Social proof -->
+    <div class="flex flex-col items-center gap-3 mb-8">
+      <div class="flex -space-x-3">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXn0CHV1FOuIZC4RR7kwPuoUBExTjV8BpvfJ1-XbYKR0FTycucKurCwYAFceQkqcM9eEIOOcrHLF2y0ViouufpQ87ccFNDWpyN2u76hYTuxqiba-IeNWTSHDOaOE27TPeVkPvtS0s9TitTfBdVvgG8StpaAwVwhesz1vjBWumai8MheeBxJ6xYcOaC4S9x45WOLOfSNAiOMNu83sPEUk1hOgTA47-NkfDxsPHGXYOR_1JO5hiyy2l1h1Wo0upMu4C5CTBPDHmm6DM" alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover"/>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqLj1XppIeF9H6f_DQUeSa1MRv-2FZaELGzsvKWvAn_G-ljcBknpGms6-9-4y2kIhhFAkUGkk1p4GvVmbxNHMzsiIGkXQkwho4itDvTFByFtB2abiWegY9uggUBEhbPlNnDv2hZk59Sx_fmbFS_AKN632LL4lpTRgaQf46JKBqlVYa6mghsvWaOPJUE98sAYoamxaG8z3buh8XWQGPFavSQLOygJE2w8dLfAis62xnxtn0Ob7pztQOWDLv7b18TsTMFymG-W1GbsA" alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover"/>
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzEJFU8dItcxjAUrzhcK56wi8ClENzRphkfO8Viq3vPxx3VtfreGIqhaoGs20vWoXG46MRtAWf8-Omu2zTPh3hxGuGxnu792BjBCYK5zyf42ppPfwqh_ntBaNAByPqFucZGgnSrYnHLXnF1teFzWqm3vnDn1OCKqJ5b2kbuZW2ysfjn_zkr-CkiEVL6Ew63L1ou_1L-p2koVoHsJNzoIRRblf0mkLL8vqHAxwV_QG-kSv0LqvIiQeZ4qJ4fhllwrg4iZHRfVZr4Nc" alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover"/>
+        <div class="w-10 h-10 rounded-full border-2 border-[#070707] bg-[#2a2a2a] flex items-center justify-center text-[10px] font-bold text-[#E8292A]">+50</div>
       </div>
+      <p class="text-[#ad8884] text-sm font-medium">50+ biznes allaqachon avtomatlashtirildi</p>
     </div>
-    <div class="q-footer">
-      <span class="back-link" onclick="go(1)">← Orqaga</span>
-      <button class="next-btn" id="nb2" onclick="go(3)">Keyingisi →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ Q3 — Muammo ══════════════ -->
-  <div class="screen" id="s3">
-    <div class="q-step">3 / 6 savol</div>
-    <div class="q-card">
-      <h2 class="q-title">Biznesingizdagi eng katta muammo?</h2>
-      <p class="q-sub">Nima eng ko'p vaqt va energiya oladi?</p>
-      <div class="options" id="opts3">
-        <div class="opt" onclick="pick(this,3)">
-          <div class="opt-key">A</div>
-          <div class="opt-body">
-            <div class="opt-label">⏰ Vaqt yetmaydi</div>
-            <div class="opt-hint">Takroriy ishlar, hujjatlar, hisobotlar</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,3)">
-          <div class="opt-key">B</div>
-          <div class="opt-body">
-            <div class="opt-label">❌ Xato va tushib ketmalar</div>
-            <div class="opt-hint">Qo'lda kiritishda xatolar, buyurtmalar yo'qoladi</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,3)">
-          <div class="opt-key">C</div>
-          <div class="opt-body">
-            <div class="opt-label">💬 Mijozlar bilan aloqa</div>
-            <div class="opt-hint">Javob berishda kechikish, mijoz yo'qoladi</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,3)">
-          <div class="opt-key">D</div>
-          <div class="opt-body">
-            <div class="opt-label">📊 Nazorat va hisobot</div>
-            <div class="opt-hint">Ma'lumotlar tarqoq, holat ko'rinmaydi</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-      </div>
-    </div>
-    <div class="q-footer">
-      <span class="back-link" onclick="go(2)">← Orqaga</span>
-      <button class="next-btn" id="nb3" onclick="go(4)">Keyingisi →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ Q4 — Vositalar ══════════════ -->
-  <div class="screen" id="s4">
-    <div class="q-step">4 / 6 savol</div>
-    <div class="q-card">
-      <h2 class="q-title">Hozir qanday vositalar ishlatiladi?</h2>
-      <p class="q-sub">Biznesingizdagi asosiy dastur yoki tizim</p>
-      <div class="options" id="opts4">
-        <div class="opt" onclick="pick(this,4)">
-          <div class="opt-key">A</div>
-          <div class="opt-body">
-            <div class="opt-label">📋 Faqat Excel / Google Sheets</div>
-            <div class="opt-hint">Asosan jadvallar va fayllar</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,4)">
-          <div class="opt-key">B</div>
-          <div class="opt-body">
-            <div class="opt-label">🖥️ CRM yoki ERP tizimi</div>
-            <div class="opt-hint">Bitrix24, AmoCRM, 1C va boshqalar</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,4)">
-          <div class="opt-key">C</div>
-          <div class="opt-body">
-            <div class="opt-label">💬 Telegram / WhatsApp</div>
-            <div class="opt-hint">Asosan messenjerlar orqali</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,4)">
-          <div class="opt-key">D</div>
-          <div class="opt-body">
-            <div class="opt-label">📝 Hech qanday tizim yo'q</div>
-            <div class="opt-hint">Og'zaki kelishuv va qog'oz</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-      </div>
-    </div>
-    <div class="q-footer">
-      <span class="back-link" onclick="go(3)">← Orqaga</span>
-      <button class="next-btn" id="nb4" onclick="go(5)">Keyingisi →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ Q5 — Maqsad ══════════════ -->
-  <div class="screen" id="s5">
-    <div class="q-step">5 / 6 savol</div>
-    <div class="q-card">
-      <h2 class="q-title">Avtomatlashtirish orqali nima olmoqchisiz?</h2>
-      <p class="q-sub">Asosiy maqsadingiz</p>
-      <div class="options" id="opts5">
-        <div class="opt" onclick="pick(this,5)">
-          <div class="opt-key">A</div>
-          <div class="opt-body">
-            <div class="opt-label">🕐 Vaqt tejash</div>
-            <div class="opt-hint">Kunlik takroriy ishlarni avtomatik qilish</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,5)">
-          <div class="opt-key">B</div>
-          <div class="opt-body">
-            <div class="opt-label">💰 Xarajatni kamaytirish</div>
-            <div class="opt-hint">Xodim va operatsion xarajatlarni optimallashtirish</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,5)">
-          <div class="opt-key">C</div>
-          <div class="opt-body">
-            <div class="opt-label">📈 Ko'proq mijoz jalb qilish</div>
-            <div class="opt-hint">Avtomatik lead, follow-up, bot</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,5)">
-          <div class="opt-key">D</div>
-          <div class="opt-body">
-            <div class="opt-label">🎯 Biznesni tartibga solish</div>
-            <div class="opt-hint">Barcha jarayonni bir joyda nazorat qilish</div>
-          </div>
-          <div class="opt-check">✓</div>
-        </div>
-      </div>
-    </div>
-    <div class="q-footer">
-      <span class="back-link" onclick="go(4)">← Orqaga</span>
-      <button class="next-btn" id="nb5" onclick="go(6)">Keyingisi →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ Q6 — Byudjet ══════════════ -->
-  <div class="screen" id="s6">
-    <div class="q-step">6 / 6 savol — Oxirgi!</div>
-    <div class="q-card">
-      <h2 class="q-title">Oylik byudjet qancha?</h2>
-      <p class="q-sub">Avtomatlashtirish uchun ajratilishi mumkin bo'lgan miqdor</p>
-      <div class="options" id="opts6">
-        <div class="opt" onclick="pick(this,6)">
-          <div class="opt-key">A</div>
-          <div class="opt-body"><div class="opt-label">$200 gacha / oy</div></div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,6)">
-          <div class="opt-key">B</div>
-          <div class="opt-body"><div class="opt-label">$200 – $500 / oy</div></div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,6)">
-          <div class="opt-key">C</div>
-          <div class="opt-body"><div class="opt-label">$500 – $1,500 / oy</div></div>
-          <div class="opt-check">✓</div>
-        </div>
-        <div class="opt" onclick="pick(this,6)">
-          <div class="opt-key">D</div>
-          <div class="opt-body"><div class="opt-label">$1,500+ / oy</div></div>
-          <div class="opt-check">✓</div>
-        </div>
-      </div>
-    </div>
-    <div class="q-footer">
-      <span class="back-link" onclick="go(5)">← Orqaga</span>
-      <button class="next-btn" id="nb6" onclick="go(7)">Natijani olish →</button>
-    </div>
-  </div>
-
-  <!-- ══════════════ CONTACT ══════════════ -->
-  <div class="screen" id="s7">
-    <div class="q-step">Deyarli tayyor! 🎉</div>
-    <div class="contact-card">
-      <div class="contact-offer">
-        <div class="contact-offer-pct">−10%</div>
-        <div class="contact-offer-text">
-          <strong>Chegirma sizni kutmoqda!</strong>
-          Ma'lumotlaringizni qoldiring — chegirma kodi va shaxsiy tavsiya yuboramiz.
-        </div>
-      </div>
-
-      <h2 class="c-title">Siz bilan qanday bog'lanamiz?</h2>
-      <p class="c-sub">Mutaxassisimiz 24 soat ichida shaxsiy yechim bilan aloqaga chiqadi</p>
-
-      <div class="c-row">
-        <div class="c-group">
-          <label class="c-label">Ismingiz <span class="c-req">*</span></label>
-          <input class="c-input" type="text" id="cfName" placeholder="Ism Familiya">
-        </div>
-        <div class="c-group">
-          <label class="c-label">Telefon <span class="c-req">*</span></label>
-          <input class="c-input" type="tel" id="cfPhone" placeholder="+998 XX XXX XX XX">
-        </div>
-      </div>
-      <div class="c-group">
-        <label class="c-label">Kompaniya nomi</label>
-        <input class="c-input" type="text" id="cfCompany" placeholder="Masalan: Nexus Trade...">
-      </div>
-
-      <button class="submit-btn" id="submitBtn" onclick="submitForm()">
-        🚀 Bepul audit + 10% chegirma olish
+    <!-- CTA -->
+    <div class="w-full relative group mb-4">
+      <div class="absolute -inset-1 bg-[#E8292A] rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+      <button onclick="startQuiz()" class="relative w-full py-5 px-8 bg-gradient-to-r from-[#E8292A] to-[#ff544b] rounded-full text-white sg text-xl font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98] cta-glow">
+        Auditni boshlash
+        <span class="material-symbols-outlined">arrow_forward</span>
       </button>
-      <p class="c-note">🔒 Ma'lumotlaringiz maxfiy — spam va reklama yo'q</p>
+    </div>
+    <!-- Meta -->
+    <div class="flex items-center justify-center gap-6 text-[#ad8884] text-sm mb-8">
+      <span>• 6 ta savol</span>
+      <span>• 2 daqiqa</span>
+      <span>• Bepul & majburiyatsiz</span>
+    </div>
+    <div class="flex items-center gap-2 text-[#ad8884] text-xs opacity-60">
+      <span class="material-symbols-outlined text-sm">lock</span>
+      Ma'lumotlaringiz maxfiy — spam yo'q
     </div>
   </div>
 
-  <!-- ══════════════ THANK YOU ══════════════ -->
-  <div class="screen" id="s8">
-    <div class="ty">
-      <span class="ty-icon">🎉</span>
-      <h2 class="ty-title">Tabriklaymiz!<br>Ariza qabul qilindi</h2>
-      <p class="ty-desc">
-        Mutaxassisimiz <strong style="color:#fff">24 soat ichida</strong> siz bilan bog'lanadi va biznesingizga mos avtomatlashtirish yechimini taklif qiladi.
-      </p>
+  <!-- ════ QUESTIONS ════ -->
 
-      <div class="ty-code-wrap">
-        <div class="ty-code-label">Sizning chegirma kodingiz</div>
-        <div class="ty-code">EO-AUDIT-10</div>
-        <div class="ty-code-hint">Birinchi loyihangizda −10% chegirma uchun</div>
+  <!-- Q1 -->
+  <div class="screen w-full max-w-[640px]" id="s1">
+    <div class="text-[#E8292A] text-xs font-bold tracking-[0.15em] uppercase mb-5">1 / 6 — Biznes sohasi</div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl md:text-3xl font-bold mb-2">Biznesingiz qaysi sohada?</h2>
+      <p class="text-[#888] text-sm mb-7">Eng mos variantni tanlang</p>
+      <div class="flex flex-col gap-3" id="opts1">
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,1)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">A</div>
+          <div class="flex-1">
+            <div class="font-semibold text-[15px]">E-commerce / Onlayn savdo</div>
+            <div class="text-[#888] text-xs mt-0.5">Onlayn do'kon, marketplace, dropshipping</div>
+          </div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,1)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">B</div>
+          <div class="flex-1">
+            <div class="font-semibold text-[15px]">Xizmat ko'rsatish</div>
+            <div class="text-[#888] text-xs mt-0.5">Konsalting, ta'lim, IT, dizayn, yuridik</div>
+          </div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,1)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">C</div>
+          <div class="flex-1">
+            <div class="font-semibold text-[15px]">Ishlab chiqarish / Savdo</div>
+            <div class="text-[#888] text-xs mt-0.5">Ulgurji, chakana, ishlab chiqarish</div>
+          </div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,1)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">D</div>
+          <div class="flex-1">
+            <div class="font-semibold text-[15px]">Restoran / Café / Retail</div>
+            <div class="text-[#888] text-xs mt-0.5">Oziq-ovqat, do'kon, xizmat nuqtalari</div>
+          </div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
       </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span onclick="go(0)" class="text-[#888] text-sm cursor-pointer hover:text-white transition-colors">← Orqaga</span>
+      <button id="nb1" onclick="go(2)" class="flex-1 py-4 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-2 opacity-30 pointer-events-none transition-all">
+        Keyingisi <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </button>
+    </div>
+  </div>
 
-      <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="ty-tg">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.473c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.287l-2.95-.924c-.64-.203-.654-.64.135-.948l11.527-4.447c.535-.194 1.002.13.37.28z"/>
-        </svg>
+  <!-- Q2 -->
+  <div class="screen w-full max-w-[640px]" id="s2">
+    <div class="text-[#E8292A] text-xs font-bold tracking-[0.15em] uppercase mb-5">2 / 6 — Jamoa hajmi</div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl md:text-3xl font-bold mb-2">Nechta xodim bilan ishlaysiz?</h2>
+      <p class="text-[#888] text-sm mb-7">Hozirgi jamoangiz hajmi</p>
+      <div class="flex flex-col gap-3" id="opts2">
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,2)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">A</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">Faqat men yoki 1–3 kishi</div><div class="text-[#888] text-xs mt-0.5">Solopreneur yoki kichik jamoa</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,2)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">B</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">4–15 kishi</div><div class="text-[#888] text-xs mt-0.5">O'rta kichik kompaniya</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,2)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">C</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">16–50 kishi</div><div class="text-[#888] text-xs mt-0.5">O'rta kompaniya</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,2)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">D</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">50+ kishi</div><div class="text-[#888] text-xs mt-0.5">Yirik kompaniya</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span onclick="go(1)" class="text-[#888] text-sm cursor-pointer hover:text-white transition-colors">← Orqaga</span>
+      <button id="nb2" onclick="go(3)" class="flex-1 py-4 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-2 opacity-30 pointer-events-none transition-all">
+        Keyingisi <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="screen w-full max-w-[640px]" id="s3">
+    <div class="text-[#E8292A] text-xs font-bold tracking-[0.15em] uppercase mb-5">3 / 6 — Asosiy muammo</div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl md:text-3xl font-bold mb-2">Eng katta muamlo nima?</h2>
+      <p class="text-[#888] text-sm mb-7">Nima eng ko'p vaqt va energiya oladi?</p>
+      <div class="flex flex-col gap-3" id="opts3">
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,3)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">A</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">⏰ Vaqt yetmaydi</div><div class="text-[#888] text-xs mt-0.5">Takroriy ishlar, hujjatlar, hisobotlar</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,3)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">B</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">❌ Xato va tushib ketmalar</div><div class="text-[#888] text-xs mt-0.5">Qo'lda kiritishda xatolar, buyurtmalar yo'qoladi</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,3)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">C</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">💬 Mijozlar bilan aloqa</div><div class="text-[#888] text-xs mt-0.5">Javob berishda kechikish, mijoz yo'qoladi</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,3)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">D</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">📊 Nazorat va hisobot</div><div class="text-[#888] text-xs mt-0.5">Ma'lumotlar tarqoq, holat ko'rinmaydi</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span onclick="go(2)" class="text-[#888] text-sm cursor-pointer hover:text-white transition-colors">← Orqaga</span>
+      <button id="nb3" onclick="go(4)" class="flex-1 py-4 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-2 opacity-30 pointer-events-none transition-all">
+        Keyingisi <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="screen w-full max-w-[640px]" id="s4">
+    <div class="text-[#E8292A] text-xs font-bold tracking-[0.15em] uppercase mb-5">4 / 6 — Hozirgi vositalar</div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl md:text-3xl font-bold mb-2">Hozir qanday vositalar ishlatiladi?</h2>
+      <p class="text-[#888] text-sm mb-7">Biznesingizdagi asosiy dastur yoki tizim</p>
+      <div class="flex flex-col gap-3" id="opts4">
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,4)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">A</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">📋 Faqat Excel / Google Sheets</div><div class="text-[#888] text-xs mt-0.5">Asosan jadvallar va fayllar</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,4)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">B</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">🖥️ CRM yoki ERP tizimi</div><div class="text-[#888] text-xs mt-0.5">Bitrix24, AmoCRM, 1C va boshqalar</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,4)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">C</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">💬 Telegram / WhatsApp</div><div class="text-[#888] text-xs mt-0.5">Asosan messenjerlar orqali</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,4)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">D</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">📝 Hech qanday tizim yo'q</div><div class="text-[#888] text-xs mt-0.5">Og'zaki kelishuv va qog'oz</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span onclick="go(3)" class="text-[#888] text-sm cursor-pointer hover:text-white transition-colors">← Orqaga</span>
+      <button id="nb4" onclick="go(5)" class="flex-1 py-4 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-2 opacity-30 pointer-events-none transition-all">
+        Keyingisi <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="screen w-full max-w-[640px]" id="s5">
+    <div class="text-[#E8292A] text-xs font-bold tracking-[0.15em] uppercase mb-5">5 / 6 — Maqsad</div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl md:text-3xl font-bold mb-2">Avtomatlashtirish orqali nima olmoqchisiz?</h2>
+      <p class="text-[#888] text-sm mb-7">Asosiy maqsadingiz</p>
+      <div class="flex flex-col gap-3" id="opts5">
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,5)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">A</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">🕐 Vaqt tejash</div><div class="text-[#888] text-xs mt-0.5">Kunlik takroriy ishlarni avtomatik qilish</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,5)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">B</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">💰 Xarajatni kamaytirish</div><div class="text-[#888] text-xs mt-0.5">Xodim va operatsion xarajatlarni optimallashtirish</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,5)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">C</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">📈 Ko'proq mijoz jalb qilish</div><div class="text-[#888] text-xs mt-0.5">Avtomatik lead, follow-up, bot</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,5)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">D</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">🎯 Biznesni tartibga solish</div><div class="text-[#888] text-xs mt-0.5">Barcha jarayonni bir joyda nazorat qilish</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span onclick="go(4)" class="text-[#888] text-sm cursor-pointer hover:text-white transition-colors">← Orqaga</span>
+      <button id="nb5" onclick="go(6)" class="flex-1 py-4 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-2 opacity-30 pointer-events-none transition-all">
+        Keyingisi <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="screen w-full max-w-[640px]" id="s6">
+    <div class="text-[#E8292A] text-xs font-bold tracking-[0.15em] uppercase mb-5">6 / 6 — Oxirgi savol!</div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl md:text-3xl font-bold mb-2">Oylik byudjet qancha?</h2>
+      <p class="text-[#888] text-sm mb-7">Avtomatlashtirish uchun ajratilishi mumkin</p>
+      <div class="flex flex-col gap-3" id="opts6">
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,6)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">A</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">$200 gacha / oy</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,6)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">B</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">$200 – $500 / oy</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,6)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">C</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">$500 – $1,500 / oy</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+        <div class="opt-row border border-[#e5e2e1]/8 bg-[#161616] p-4 flex items-center gap-4 cursor-pointer" onclick="pick(this,6)">
+          <div class="opt-key w-8 h-8 border border-[#e5e2e1]/15 bg-[#e5e2e1]/5 flex items-center justify-center text-[#888] text-sm font-bold flex-shrink-0">D</div>
+          <div class="flex-1"><div class="font-semibold text-[15px]">$1,500+ / oy</div></div>
+          <div class="opt-check w-5 h-5 bg-[#E8292A] rounded-full items-center justify-center text-white text-xs hidden">✓</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span onclick="go(5)" class="text-[#888] text-sm cursor-pointer hover:text-white transition-colors">← Orqaga</span>
+      <button id="nb6" onclick="go(7)" class="flex-1 py-4 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-2 opacity-30 pointer-events-none transition-all">
+        Natijani olish <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ════ CONTACT ════ -->
+  <div class="screen w-full max-w-[640px]" id="s7">
+    <!-- Discount reminder -->
+    <div class="w-full mb-6 p-5 bg-[#0e0e0e] dashed-border flex items-center gap-5">
+      <div class="text-[#fecb00] text-4xl font-black sg flex-shrink-0">−10%</div>
+      <div>
+        <div class="text-white font-bold text-base leading-tight mb-0.5">Chegirma sizni kutmoqda!</div>
+        <div class="text-[#ad8884] text-sm">Ma'lumotlaringizni qoldiring — chegirma kodi va shaxsiy tavsiya yuboramiz</div>
+      </div>
+    </div>
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-8 mb-5">
+      <h2 class="sg text-2xl font-bold mb-2">Siz bilan qanday bog'lanamiz?</h2>
+      <p class="text-[#888] text-sm mb-7">Mutaxassisimiz 24 soat ichida shaxsiy yechim bilan aloqaga chiqadi</p>
+      <div class="grid grid-cols-2 gap-3 mb-3">
+        <div>
+          <label class="block text-xs font-semibold text-[#888] mb-2 uppercase tracking-wide">Ismingiz <span class="text-[#E8292A]">*</span></label>
+          <input id="cfName" type="text" placeholder="Ism Familiya" class="w-full bg-[#0e0e0e] border-0 border-b-2 border-[#e5e2e1]/10 focus:border-[#E8292A] px-0 py-3 text-white text-[15px] outline-none transition-colors placeholder-[#444]"/>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-[#888] mb-2 uppercase tracking-wide">Telefon <span class="text-[#E8292A]">*</span></label>
+          <input id="cfPhone" type="tel" placeholder="+998 XX XXX XX XX" class="w-full bg-[#0e0e0e] border-0 border-b-2 border-[#e5e2e1]/10 focus:border-[#E8292A] px-0 py-3 text-white text-[15px] outline-none transition-colors placeholder-[#444]"/>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-xs font-semibold text-[#888] mb-2 uppercase tracking-wide">Kompaniya nomi</label>
+        <input id="cfCompany" type="text" placeholder="Masalan: Nexus Trade..." class="w-full bg-[#0e0e0e] border-0 border-b-2 border-[#e5e2e1]/10 focus:border-[#E8292A] px-0 py-3 text-white text-[15px] outline-none transition-colors placeholder-[#444]"/>
+      </div>
+      <div class="relative group">
+        <div class="absolute -inset-0.5 bg-[#E8292A] blur opacity-20 group-hover:opacity-35 transition duration-500"></div>
+        <button id="submitBtn" onclick="submitForm()" class="relative w-full py-4 px-8 bg-gradient-to-r from-[#E8292A] to-[#ff544b] text-white sg text-lg font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-all active:scale-[0.98]">
+          Bepul audit + 10% chegirma olish
+          <span class="material-symbols-outlined">rocket_launch</span>
+        </button>
+      </div>
+      <p class="text-[#444] text-xs text-center mt-4 uppercase tracking-widest">🔒 Maxfiy — spam va reklama yo'q</p>
+    </div>
+  </div>
+
+  <!-- ════ THANK YOU ════ -->
+  <div class="screen w-full max-w-[560px] text-center" id="s8">
+    <div class="bg-[#111] border border-[#e5e2e1]/8 p-10">
+      <div class="text-5xl mb-6">🎉</div>
+      <h2 class="sg text-3xl font-bold mb-3">Tabriklaymiz!</h2>
+      <p class="text-[#888] text-base leading-relaxed mb-8">
+        Mutaxassisimiz <strong class="text-white">24 soat ichida</strong> siz bilan bog'lanadi va biznesingizga mos avtomatlashtirish yechimini taklif qiladi.
+      </p>
+      <div class="dashed-border bg-[#0e0e0e] p-5 mb-8">
+        <div class="text-[#ad8884] text-[10px] uppercase tracking-[0.2em] mb-2">Sizning chegirma kodingiz</div>
+        <div class="sg text-3xl font-black text-[#fecb00] tracking-widest mb-1">EO-AUDIT-10</div>
+        <div class="text-[#ad8884] text-xs">Birinchi loyihangizda −10% chegirma uchun</div>
+      </div>
+      <a href="https://t.me/eo_business" target="_blank" rel="noopener" class="w-full bg-[#229ED9] hover:bg-[#1a8fc5] text-white py-4 px-8 sg font-bold text-base uppercase tracking-wide flex items-center justify-center gap-3 transition-all mb-4">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.01 9.473c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.287l-2.95-.924c-.64-.203-.654-.64.135-.948l11.527-4.447c.535-.194 1.002.13.37.28z"/></svg>
         Telegram kanalga o'tish
       </a>
-      <a href="index.html" class="ty-home">← Bosh sahifaga qaytish</a>
+      <a href="index.html" class="text-[#444] text-sm hover:text-[#888] transition-colors">← Bosh sahifaga qaytish</a>
     </div>
   </div>
 
-</div><!-- /stage -->
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-8 px-6 flex justify-between items-center bg-[#0e0e0e] border-t border-[#e5e2e1]/5 mt-auto">
+  <span class="text-[10px] uppercase tracking-widest text-[#e5e2e1] opacity-30">© 2025 EO AUTOMATION</span>
+  <div class="flex gap-6">
+    <a href="index.html" class="text-[10px] uppercase tracking-widest text-[#e5e2e1] opacity-30 hover:text-[#E8292A] hover:opacity-100 transition-all">Bosh sahifa</a>
+  </div>
+</footer>
 
 <script>
 const WEBHOOK = 'https://contentrealy.app.n8n.cloud/webhook/quiz-lead';
 const TOTAL   = 6;
 const answers = {};
 
+function startQuiz() {
+  document.getElementById('progressWrap').classList.remove('hidden');
+  document.getElementById('progressWrap').classList.add('flex');
+  go(1);
+}
+
 function go(step) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('show'));
   const el = document.getElementById('s' + step);
   if (el) el.classList.add('show');
-
   // progress
   let pct = 0;
   if (step === 0) pct = 0;
   else if (step >= 7) pct = 100;
   else pct = Math.round(((step - 1) / TOTAL) * 100);
   document.getElementById('pFill').style.width = pct + '%';
-
+  if (step >= 1 && step <= 6) {
+    document.getElementById('pLabel').textContent = step + '/6';
+  } else if (step === 7) {
+    document.getElementById('pLabel').textContent = 'Deyarli!';
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function pick(el, qNum) {
-  document.querySelectorAll('#opts' + qNum + ' .opt').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('#opts' + qNum + ' .opt-row').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
-  answers['q' + qNum] = el.querySelector('.opt-label').textContent.trim();
+  answers['q' + qNum] = el.querySelector('.font-semibold') ? el.querySelector('.font-semibold').textContent.trim() : '';
   const nb = document.getElementById('nb' + qNum);
-  if (nb) nb.classList.add('on');
+  if (nb) { nb.classList.remove('opacity-30', 'pointer-events-none'); nb.classList.add('cta-glow'); }
 }
 
 async function submitForm() {
   const name    = document.getElementById('cfName').value.trim();
   const phone   = document.getElementById('cfPhone').value.trim();
   const company = document.getElementById('cfCompany').value.trim();
-
-  if (!name)  { document.getElementById('cfName').style.borderColor  = '#E8292A'; }
-  if (!phone) { document.getElementById('cfPhone').style.borderColor = '#E8292A'; }
-  if (!name || !phone) return;
-
+  if (!name || !phone) {
+    if (!name)  document.getElementById('cfName').style.borderBottomColor  = '#E8292A';
+    if (!phone) document.getElementById('cfPhone').style.borderBottomColor = '#E8292A';
+    return;
+  }
   const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Yuborilmoqda...';
-
+  btn.disabled = true; btn.textContent = 'Yuborilmoqda...';
   try {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name, phone,
-        company:    company || '—',
+        name, phone, company: company||'—',
         discountCode: 'EO-AUDIT-10',
-        source:     'quiz-page',
-        timestamp:  new Date().toISOString(),
+        source: 'quiz-page',
+        timestamp: new Date().toISOString(),
         answers: [
-          { q: 'Biznes sohasi',     a: answers.q1 || '—' },
-          { q: 'Xodimlar soni',     a: answers.q2 || '—' },
-          { q: 'Asosiy muammo',     a: answers.q3 || '—' },
-          { q: 'Hozirgi vositalar', a: answers.q4 || '—' },
-          { q: 'Maqsad',            a: answers.q5 || '—' },
-          { q: 'Oylik byudjet',     a: answers.q6 || '—' },
+          { q:'Biznes sohasi',     a: answers.q1||'—' },
+          { q:'Xodimlar soni',     a: answers.q2||'—' },
+          { q:'Asosiy muammo',     a: answers.q3||'—' },
+          { q:'Hozirgi vositalar', a: answers.q4||'—' },
+          { q:'Maqsad',            a: answers.q5||'—' },
+          { q:'Oylik byudjet',     a: answers.q6||'—' },
         ]
       })
     });
   } catch(e) { console.warn(e); }
-
   go(8);
 }
 
-document.querySelectorAll('.c-input').forEach(el =>
-  el.addEventListener('input', () => el.style.borderColor = '')
-);
+['cfName','cfPhone','cfCompany'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => el.style.borderBottomColor = '');
+});
 </script>
 </body>
 </html>

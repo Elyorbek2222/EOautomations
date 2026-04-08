@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EO AUTOMATION | Biznes Audit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#313030",
+                    "on-surface": "#e5e2e1",
+                    "on-secondary-container": "#6e5700",
+                    "background": "#131313",
+                    "surface-tint": "#ffb4ab",
+                    "primary-fixed": "#ffdad6",
+                    "on-primary": "#690006",
+                    "secondary-container": "#fecb00",
+                    "on-secondary-fixed": "#241a00",
+                    "surface-container-high": "#2a2a2a",
+                    "primary-container": "#ff544b",
+                    "on-secondary-fixed-variant": "#584400",
+                    "tertiary-container": "#ff5353",
+                    "on-error": "#690005",
+                    "inverse-surface": "#e5e2e1",
+                    "on-tertiary-container": "#5c0009",
+                    "tertiary": "#ffb3ae",
+                    "secondary-fixed": "#ffe08b",
+                    "on-secondary": "#3d2f00",
+                    "surface-variant": "#353534",
+                    "on-surface-variant": "#e6bdb8",
+                    "surface-container": "#201f1f",
+                    "secondary": "#ffecc0",
+                    "inverse-primary": "#c00014",
+                    "on-primary-container": "#5c0005",
+                    "tertiary-fixed-dim": "#ffb3ae",
+                    "on-background": "#e5e2e1",
+                    "surface": "#131313",
+                    "outline": "#ad8884",
+                    "primary-fixed-dim": "#ffb4ab",
+                    "outline-variant": "#5d3f3c",
+                    "surface-dim": "#131313",
+                    "tertiary-fixed": "#ffdad7",
+                    "on-tertiary-fixed-variant": "#930015",
+                    "surface-container-highest": "#353534",
+                    "error-container": "#93000a",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#410004",
+                    "surface-container-low": "#1c1b1b",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#410002",
+                    "primary": "#ffb4ab",
+                    "surface-bright": "#3a3939",
+                    "secondary-fixed-dim": "#f1c100",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary": "#68000c",
+                    "on-primary-fixed-variant": "#93000c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #070707;
+            font-family: 'Inter', sans-serif;
+            color: #e5e2e1;
+        }
+        .space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+        .dashed-border {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23fecb00' stroke-width='2' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<!-- Top Sticky Offer Banner -->
+<div class="sticky top-0 z-[60] w-full bg-gradient-to-r from-[#1a0000] to-[#2d0505] flex flex-col sm:flex-row items-center justify-center py-3 px-4 gap-2 text-center">
+<p class="font-medium text-sm tracking-wide">
+            🔥 So'rovnomani to'ldiring va birinchi loyihada 
+            <span class="inline-flex items-center px-2 py-0.5 mx-1 bg-[#fecb00] text-[#0e0e0e] font-bold text-xs rounded-full">[-10%]</span> 
+            chegirma oling
+        </p>
+<span class="text-[#ad8884] text-[10px] uppercase tracking-widest opacity-80">· Faqat shu hafta</span>
+</div>
+<!-- Navbar -->
+<header class="sticky top-[52px] sm:top-[44px] z-50 w-full bg-[#070707]/80 backdrop-blur-xl border-b border-[#e5e2e1]/5">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-[#E8292A] flex items-center justify-center">
+<span class="text-[#0e0e0e] font-black text-sm">EO</span>
+</div>
+<span class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold text-lg text-white">AUTOMATION</span>
+</div>
+<a class="text-[#ad8884] hover:text-[#e5e2e1] transition-colors text-sm font-medium flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                Bosh sahifaga
+            </a>
+</div>
+</header>
+<!-- Hero Content Canvas -->
+<main class="relative pt-16 pb-24 px-6 flex flex-col items-center">
+<!-- Background Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-[#E8292A]/10 blur-[120px] pointer-events-none -z-10"></div>
+<div class="w-full max-w-[680px] flex flex-col items-center text-center">
+<!-- Eyebrow Badge -->
+<div class="mb-8 px-4 py-1.5 border border-[#E8292A] rounded-full inline-flex items-center gap-2">
+<span class="text-[#E8292A] text-xs font-bold tracking-[0.2em] uppercase">✦ BEPUL BIZNES AUDIT</span>
+</div>
+<!-- Main Headline -->
+<h1 class="space-grotesk text-4xl md:text-6xl font-bold leading-[1.1] mb-6 tracking-tight">
+                Biznesingiz qancha <span class="text-[#E8292A]">vaqt</span> va <span class="text-[#E8292A]">pul</span> yo'qotmoqda?
+            </h1>
+<!-- Subtext -->
+<p class="text-[#888888] text-[17px] leading-relaxed max-w-lg mb-12">
+                6 ta savol — 2 daqiqa. Shaxsiy avtomatlashtirish rejasi va chegirma olasiz.
+            </p>
+<!-- Discount Box (Signature Component) -->
+<div class="w-full mb-12 p-6 bg-[#0e0e0e] dashed-border flex flex-col sm:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="text-[#fecb00] text-5xl font-black space-grotesk">-10%</div>
+<div class="text-left border-l border-[#e5e2e1]/10 pl-6">
+<div class="text-white font-bold text-lg leading-tight mb-1">Chegirma kafolatlangan</div>
+<div class="text-[#ad8884] text-sm">Diagnostikani to'ldirganlarga birinchi loyihada</div>
+</div>
+</div>
+<div class="hidden md:block">
+<span class="material-symbols-outlined text-[#fecb00] text-4xl">confirmation_number</span>
+</div>
+</div>
+<!-- Social Proof -->
+<div class="flex flex-col items-center gap-4 mb-8">
+<div class="flex -space-x-3">
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover" data-alt="professional businessman headshot with clean lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXn0CHV1FOuIZC4RR7kwPuoUBExTjV8BpvfJ1-XbYKR0FTycucKurCwYAFceQkqcM9eEIOOcrHLF2y0ViouufpQ87ccFNDWpyN2u76hYTuxqiba-IeNWTSHDOaOE27TPeVkPvtS0s9TitTfBdVvgG8StpaAwVwhesz1vjBWumai8MheeBxJ6xYcOaC4S9x45WOLOfSNAiOMNu83sPEUk1hOgTA47-NkfDxsPHGXYOR_1JO5hiyy2l1h1Wo0upMu4C5CTBPDHmm6DM"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover" data-alt="professional businesswoman headshot smiling softly in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqLj1XppIeF9H6f_DQUeSa1MRv-2FZaELGzsvKWvAn_G-ljcBknpGms6-9-4y2kIhhFAkUGkk1p4GvVmbxNHMzsiIGkXQkwho4itDvTFByFtB2abiWegY9uggUBEhbPlNnDv2hZk59Sx_fmbFS_AKN632LL4lpTRgaQf46JKBqlVYa6mghsvWaOPJUE98sAYoamxaG8z3buh8XWQGPFavSQLOygJE2w8dLfAis62xnxtn0Ob7pztQOWDLv7b18TsTMFymG-W1GbsA"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover" data-alt="modern startup founder portrait with professional studio lighting and dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzEJFU8dItcxjAUrzhcK56wi8ClENzRphkfO8Viq3vPxx3VtfreGIqhaoGs20vWoXG46MRtAWf8-Omu2zTPh3hxGuGxnu792BjBCYK5zyf42ppPfwqh_ntBaNAByPqFucZGgnSrYnHLXnF1teFzWqm3vnDn1OCKqJ5b2kbuZW2ysfjn_zkr-CkiEVL6Ew63L1ou_1L-p2koVoHsJNzoIRRblf0mkLL8vqHAxwV_QG-kSv0LqvIiQeZ4qJ4fhllwrg4iZHRfVZr4Nc"/>
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-[#070707] object-cover" data-alt="executive leader female headshot professional corporate photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIC8zcfld7vuaIXTRZ9oIByqTT3i5AIASYLra-vJmOGDvoerOc-0jBomF15AuYDD9xcLygeCJbz30mcYTA9mozwK1ylYQL1A_6Uhgy7ibZUYTPobzzxXxIJUOyNpmebmwOvhMTDYJXgby3zUAa2kqbfGc_j1M8Q6jpouTPESwu3Hq888NnyIRbqo3zEMEVZdGgbv3bGfoPfkpDCDI_0wQX7wZLkiZ8HtrCd8ht0ffSkZhAvMALuhebfpmp9wLARtrA_OuxSrsUoN4"/>
+<div class="w-10 h-10 rounded-full border-2 border-[#070707] bg-[#2a2a2a] flex items-center justify-center text-[10px] font-bold text-[#E8292A]">
+                        +50
+                    </div>
+</div>
+<p class="text-[#ad8884] text-sm font-medium">50+ biznes allaqachon avtomatlashtirildi</p>
+</div>
+<!-- Main CTA -->
+<div class="w-full relative group">
+<!-- Outer Glow -->
+<div class="absolute -inset-1 bg-[#E8292A] rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+<button class="relative w-full py-5 px-8 bg-gradient-to-r from-[#E8292A] to-[#ff544b] rounded-full text-white space-grotesk text-xl font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-transform active:scale-[0.98]">
+                    Auditni boshlash
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Meta Row -->
+<div class="mt-8 flex items-center justify-center gap-6 text-[#ad8884] text-[13px] font-medium">
+<span class="flex items-center gap-2">• 6 ta savol</span>
+<span class="flex items-center gap-2">• 2 daqiqa</span>
+<span class="flex items-center gap-2">• Bepul &amp; majburiyatsiz</span>
+</div>
+<!-- Security Note -->
+<div class="mt-12 pt-6 border-t border-[#e5e2e1]/5 w-full flex items-center justify-center gap-2 text-[#ad8884] text-xs uppercase tracking-widest opacity-60">
+<span class="material-symbols-outlined text-sm">lock</span>
+                🔒 Ma'lumotlaringiz maxfiy — spam yo'q
+            </div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-6 flex flex-col md:flex-row justify-between items-center bg-[#0e0e0e] border-t border-[#e5e2e1]/5 mt-auto">
+<div class="mb-6 md:mb-0">
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#e5e2e1] opacity-40">
+                © 2024 EO AUTOMATION. PRECISION ENGINE.
+            </span>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#e5e2e1] opacity-40 hover:text-[#E8292A] transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#e5e2e1] opacity-40 hover:text-[#E8292A] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#e5e2e1] opacity-40 hover:text-[#E8292A] transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- Glassmorphic Background Texture Elements -->
+<div class="fixed top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#E8292A]/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#fecb00]/5 rounded-full blur-[100px] pointer-events-none"></div>
+</body></html>
